@@ -1,0 +1,217 @@
+// ReSharper disable NullableWarningSuppressionIsUsed
+// ReSharper disable InconsistentNaming
+
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
+using KardApi.Core;
+
+namespace KardApi.Users;
+
+[JsonConverter(typeof(CreateUploadPartResponseDataUnion.JsonConverter))]
+[Serializable]
+public record CreateUploadPartResponseDataUnion
+{
+    internal CreateUploadPartResponseDataUnion(string type, object? value)
+    {
+        Type = type;
+        Value = value;
+    }
+
+    /// <summary>
+    /// Create an instance of CreateUploadPartResponseDataUnion with <see cref="CreateUploadPartResponseDataUnion.HistoricalTransaction"/>.
+    /// </summary>
+    public CreateUploadPartResponseDataUnion(
+        CreateUploadPartResponseDataUnion.HistoricalTransaction value
+    )
+    {
+        Type = "historicalTransaction";
+        Value = value.Value;
+    }
+
+    /// <summary>
+    /// Discriminant value
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; internal set; }
+
+    /// <summary>
+    /// Discriminated union value
+    /// </summary>
+    public object? Value { get; internal set; }
+
+    /// <summary>
+    /// Returns true if <see cref="Type"/> is "historicalTransaction"
+    /// </summary>
+    public bool IsHistoricalTransaction => Type == "historicalTransaction";
+
+    /// <summary>
+    /// Returns the value as a <see cref="KardApi.Users.CreateUploadPartResponseData"/> if <see cref="Type"/> is 'historicalTransaction', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'historicalTransaction'.</exception>
+    public KardApi.Users.CreateUploadPartResponseData AsHistoricalTransaction() =>
+        IsHistoricalTransaction
+            ? (KardApi.Users.CreateUploadPartResponseData)Value!
+            : throw new global::System.Exception(
+                "CreateUploadPartResponseDataUnion.Type is not 'historicalTransaction'"
+            );
+
+    public T Match<T>(
+        Func<KardApi.Users.CreateUploadPartResponseData, T> onHistoricalTransaction,
+        Func<string, object?, T> onUnknown_
+    )
+    {
+        return Type switch
+        {
+            "historicalTransaction" => onHistoricalTransaction(AsHistoricalTransaction()),
+            _ => onUnknown_(Type, Value),
+        };
+    }
+
+    public void Visit(
+        Action<KardApi.Users.CreateUploadPartResponseData> onHistoricalTransaction,
+        Action<string, object?> onUnknown_
+    )
+    {
+        switch (Type)
+        {
+            case "historicalTransaction":
+                onHistoricalTransaction(AsHistoricalTransaction());
+                break;
+            default:
+                onUnknown_(Type, Value);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="KardApi.Users.CreateUploadPartResponseData"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsHistoricalTransaction(out KardApi.Users.CreateUploadPartResponseData? value)
+    {
+        if (Type == "historicalTransaction")
+        {
+            value = (KardApi.Users.CreateUploadPartResponseData)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
+    public override string ToString() => JsonUtils.Serialize(this);
+
+    public static implicit operator CreateUploadPartResponseDataUnion(
+        CreateUploadPartResponseDataUnion.HistoricalTransaction value
+    ) => new(value);
+
+    [Serializable]
+    internal sealed class JsonConverter : JsonConverter<CreateUploadPartResponseDataUnion>
+    {
+        public override bool CanConvert(global::System.Type typeToConvert) =>
+            typeof(CreateUploadPartResponseDataUnion).IsAssignableFrom(typeToConvert);
+
+        public override CreateUploadPartResponseDataUnion Read(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var json = JsonElement.ParseValue(ref reader);
+            if (!json.TryGetProperty("type", out var discriminatorElement))
+            {
+                throw new JsonException("Missing discriminator property 'type'");
+            }
+            if (discriminatorElement.ValueKind != JsonValueKind.String)
+            {
+                if (discriminatorElement.ValueKind == JsonValueKind.Null)
+                {
+                    throw new JsonException("Discriminator property 'type' is null");
+                }
+
+                throw new JsonException(
+                    $"Discriminator property 'type' is not a string, instead is {discriminatorElement.ToString()}"
+                );
+            }
+
+            var discriminator =
+                discriminatorElement.GetString()
+                ?? throw new JsonException("Discriminator property 'type' is null");
+
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
+            var value = discriminator switch
+            {
+                "historicalTransaction" =>
+                    jsonWithoutDiscriminator.Deserialize<KardApi.Users.CreateUploadPartResponseData?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize KardApi.Users.CreateUploadPartResponseData"
+                        ),
+                _ => json.Deserialize<object?>(options),
+            };
+            return new CreateUploadPartResponseDataUnion(discriminator, value);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            CreateUploadPartResponseDataUnion value,
+            JsonSerializerOptions options
+        )
+        {
+            JsonNode json =
+                value.Type switch
+                {
+                    "historicalTransaction" => JsonSerializer.SerializeToNode(value.Value, options),
+                    _ => JsonSerializer.SerializeToNode(value.Value, options),
+                } ?? new JsonObject();
+            json["type"] = value.Type;
+            json.WriteTo(writer, options);
+        }
+
+        public override CreateUploadPartResponseDataUnion ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new CreateUploadPartResponseDataUnion(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            CreateUploadPartResponseDataUnion value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
+        }
+    }
+
+    /// <summary>
+    /// Discriminated union type for historicalTransaction
+    /// </summary>
+    [Serializable]
+    public struct HistoricalTransaction
+    {
+        public HistoricalTransaction(KardApi.Users.CreateUploadPartResponseData value)
+        {
+            Value = value;
+        }
+
+        internal KardApi.Users.CreateUploadPartResponseData Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator CreateUploadPartResponseDataUnion.HistoricalTransaction(
+            KardApi.Users.CreateUploadPartResponseData value
+        ) => new(value);
+    }
+}

@@ -3,8 +3,9 @@
   "generatorName": "fernapi/fern-csharp-sdk",
   "generatorVersion": "2.62.0",
   "generatorConfig": {
-    "client_class_name": "KardApiClient"
+    "client_class_name": "KardApiClient",
+    "generate-mock-server-tests": false
   },
   "originGitCommit": "3557a99b05b63698696cd619c2002e7eb026cadc",
-  "sdkVersion": "0.0.1"
+  "sdkVersion": "0.0.2"
 }

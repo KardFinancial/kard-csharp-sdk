@@ -1,6 +1,6 @@
 # Reference
 ## Auth
-<details><summary><code>client.Auth.<a href="/src/KardApi/Auth/AuthClient.cs">GetTokenAsync</a>(GetTokenRequest { ... }) -> WithRawResponseTask&lt;TokenResponse&gt;</code></summary>
+<details><summary><code>client.Auth.<a href="/src/Kard/Auth/AuthClient.cs">GetTokenAsync</a>(GetTokenRequest { ... }) -> WithRawResponseTask&lt;TokenResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -43,7 +43,7 @@ await client.Auth.GetTokenAsync(
 </details>
 
 ## Files
-<details><summary><code>client.Files.<a href="/src/KardApi/Files/FilesClient.cs">GetMetadataAsync</a>(organizationId, GetFilesMetadataRequest { ... }) -> WithRawResponseTask&lt;GetFilesMetadataResponse&gt;</code></summary>
+<details><summary><code>client.Files.<a href="/src/Kard/Files/FilesClient.cs">GetMetadataAsync</a>(organizationId, GetFilesMetadataRequest { ... }) -> WithRawResponseTask&lt;GetFilesMetadataResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -119,7 +119,7 @@ await client.Files.GetMetadataAsync(
 </details>
 
 ## Subscriptions
-<details><summary><code>client.Notifications.Subscriptions.<a href="/src/KardApi/Notifications/Subscriptions/SubscriptionsClient.cs">GetAsync</a>(organizationId, GetSubscriptionsRequest { ... }) -> WithRawResponseTask&lt;SubscriptionsResponseObject&gt;</code></summary>
+<details><summary><code>client.Notifications.Subscriptions.<a href="/src/Kard/Notifications/Subscriptions/SubscriptionsClient.cs">GetAsync</a>(organizationId, GetSubscriptionsRequest { ... }) -> WithRawResponseTask&lt;SubscriptionsResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -185,7 +185,7 @@ await client.Notifications.Subscriptions.GetAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Notifications.Subscriptions.<a href="/src/KardApi/Notifications/Subscriptions/SubscriptionsClient.cs">CreateAsync</a>(organizationId, SubscriptionRequestBody { ... }) -> WithRawResponseTask&lt;CreateSubscriptionsResponseObject&gt;</code></summary>
+<details><summary><code>client.Notifications.Subscriptions.<a href="/src/Kard/Notifications/Subscriptions/SubscriptionsClient.cs">CreateAsync</a>(organizationId, SubscriptionRequestBody { ... }) -> WithRawResponseTask&lt;CreateSubscriptionsResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -269,7 +269,7 @@ await client.Notifications.Subscriptions.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Notifications.Subscriptions.<a href="/src/KardApi/Notifications/Subscriptions/SubscriptionsClient.cs">UpdateAsync</a>(organizationId, subscriptionId, UpdateSubscriptionRequestBody { ... }) -> WithRawResponseTask&lt;UpdateSubscriptionsResponseObject&gt;</code></summary>
+<details><summary><code>client.Notifications.Subscriptions.<a href="/src/Kard/Notifications/Subscriptions/SubscriptionsClient.cs">UpdateAsync</a>(organizationId, subscriptionId, UpdateSubscriptionRequestBody { ... }) -> WithRawResponseTask&lt;UpdateSubscriptionsResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -360,7 +360,7 @@ await client.Notifications.Subscriptions.UpdateAsync(
 </details>
 
 ## Organizations
-<details><summary><code>client.Organizations.<a href="/src/KardApi/Organizations/OrganizationsClient.cs">GetAsync</a>() -> WithRawResponseTask&lt;ExternalOrganizationResponse&gt;</code></summary>
+<details><summary><code>client.Organizations.<a href="/src/Kard/Organizations/OrganizationsClient.cs">GetAsync</a>() -> WithRawResponseTask&lt;ExternalOrganizationResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -400,7 +400,7 @@ await client.Organizations.GetAsync();
 </details>
 
 ## Children
-<details><summary><code>client.Organizations.Children.<a href="/src/KardApi/Organizations/Children/ChildrenClient.cs">ListAsync</a>(organizationId, ListChildrenRequest { ... }) -> WithRawResponseTask&lt;ChildOrganizationListResponse&gt;</code></summary>
+<details><summary><code>client.Organizations.Children.<a href="/src/Kard/Organizations/Children/ChildrenClient.cs">ListAsync</a>(organizationId, ListChildrenRequest { ... }) -> WithRawResponseTask&lt;ChildOrganizationListResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -462,7 +462,7 @@ await client.Organizations.Children.ListAsync("organizationId", new ListChildren
 </dl>
 </details>
 
-<details><summary><code>client.Organizations.Children.<a href="/src/KardApi/Organizations/Children/ChildrenClient.cs">CreateAsync</a>(organizationId, CreateChildRequestBody { ... }) -> WithRawResponseTask&lt;ChildOrganizationResponse&gt;</code></summary>
+<details><summary><code>client.Organizations.Children.<a href="/src/Kard/Organizations/Children/ChildrenClient.cs">CreateAsync</a>(organizationId, CreateChildRequestBody { ... }) -> WithRawResponseTask&lt;ChildOrganizationResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -534,7 +534,7 @@ await client.Organizations.Children.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Organizations.Children.<a href="/src/KardApi/Organizations/Children/ChildrenClient.cs">GetAsync</a>(organizationId, childId) -> WithRawResponseTask&lt;ChildOrganizationResponse&gt;</code></summary>
+<details><summary><code>client.Organizations.Children.<a href="/src/Kard/Organizations/Children/ChildrenClient.cs">GetAsync</a>(organizationId, childId) -> WithRawResponseTask&lt;ChildOrganizationResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -596,7 +596,7 @@ await client.Organizations.Children.GetAsync("organizationId", "childId");
 </dl>
 </details>
 
-<details><summary><code>client.Organizations.Children.<a href="/src/KardApi/Organizations/Children/ChildrenClient.cs">UpdateAsync</a>(organizationId, childId, UpdateChildRequestBody { ... }) -> WithRawResponseTask&lt;ChildOrganizationResponse&gt;</code></summary>
+<details><summary><code>client.Organizations.Children.<a href="/src/Kard/Organizations/Children/ChildrenClient.cs">UpdateAsync</a>(organizationId, childId, UpdateChildRequestBody { ... }) -> WithRawResponseTask&lt;ChildOrganizationResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -677,7 +677,7 @@ await client.Organizations.Children.UpdateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Organizations.Children.<a href="/src/KardApi/Organizations/Children/ChildrenClient.cs">DeleteAsync</a>(organizationId, childId) -> WithRawResponseTask&lt;DeleteResourceResponse&gt;</code></summary>
+<details><summary><code>client.Organizations.Children.<a href="/src/Kard/Organizations/Children/ChildrenClient.cs">DeleteAsync</a>(organizationId, childId) -> WithRawResponseTask&lt;DeleteResourceResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -740,7 +740,7 @@ await client.Organizations.Children.DeleteAsync("organizationId", "childId");
 </details>
 
 ## Placements
-<details><summary><code>client.Organizations.Placements.<a href="/src/KardApi/Organizations/Placements/PlacementsClient.cs">CreateAsync</a>(organizationId, CreatePlacementRequestBody { ... }) -> WithRawResponseTask&lt;PlacementFormatUnion&gt;</code></summary>
+<details><summary><code>client.Organizations.Placements.<a href="/src/Kard/Organizations/Placements/PlacementsClient.cs">CreateAsync</a>(organizationId, CreatePlacementRequestBody { ... }) -> WithRawResponseTask&lt;PlacementFormatUnion&gt;</code></summary>
 <dl>
 <dd>
 
@@ -819,7 +819,7 @@ await client.Organizations.Placements.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Organizations.Placements.<a href="/src/KardApi/Organizations/Placements/PlacementsClient.cs">ListAsync</a>(organizationId, ListPlacementsRequest { ... }) -> WithRawResponseTask&lt;PlacementListResponse&gt;</code></summary>
+<details><summary><code>client.Organizations.Placements.<a href="/src/Kard/Organizations/Placements/PlacementsClient.cs">ListAsync</a>(organizationId, ListPlacementsRequest { ... }) -> WithRawResponseTask&lt;PlacementListResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -881,7 +881,7 @@ await client.Organizations.Placements.ListAsync("organizationId", new ListPlacem
 </dl>
 </details>
 
-<details><summary><code>client.Organizations.Placements.<a href="/src/KardApi/Organizations/Placements/PlacementsClient.cs">GetAsync</a>(organizationId, placementId) -> WithRawResponseTask&lt;PlacementFormatUnion&gt;</code></summary>
+<details><summary><code>client.Organizations.Placements.<a href="/src/Kard/Organizations/Placements/PlacementsClient.cs">GetAsync</a>(organizationId, placementId) -> WithRawResponseTask&lt;PlacementFormatUnion&gt;</code></summary>
 <dl>
 <dd>
 
@@ -943,7 +943,7 @@ await client.Organizations.Placements.GetAsync("organizationId", "placementId");
 </dl>
 </details>
 
-<details><summary><code>client.Organizations.Placements.<a href="/src/KardApi/Organizations/Placements/PlacementsClient.cs">UpdateAsync</a>(organizationId, placementId, UpdatePlacementRequestBody { ... }) -> WithRawResponseTask&lt;PlacementFormatUnion&gt;</code></summary>
+<details><summary><code>client.Organizations.Placements.<a href="/src/Kard/Organizations/Placements/PlacementsClient.cs">UpdateAsync</a>(organizationId, placementId, UpdatePlacementRequestBody { ... }) -> WithRawResponseTask&lt;PlacementFormatUnion&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1027,7 +1027,7 @@ await client.Organizations.Placements.UpdateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Organizations.Placements.<a href="/src/KardApi/Organizations/Placements/PlacementsClient.cs">DeleteAsync</a>(organizationId, placementId) -> WithRawResponseTask&lt;DeleteResourceResponse&gt;</code></summary>
+<details><summary><code>client.Organizations.Placements.<a href="/src/Kard/Organizations/Placements/PlacementsClient.cs">DeleteAsync</a>(organizationId, placementId) -> WithRawResponseTask&lt;DeleteResourceResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1090,7 +1090,7 @@ await client.Organizations.Placements.DeleteAsync("organizationId", "placementId
 </details>
 
 ## Ping
-<details><summary><code>client.Ping.<a href="/src/KardApi/Ping/PingClient.cs">PingAsync</a>() -> WithRawResponseTask&lt;PingResponseObject&gt;</code></summary>
+<details><summary><code>client.Ping.<a href="/src/Kard/Ping/PingClient.cs">PingAsync</a>() -> WithRawResponseTask&lt;PingResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1130,7 +1130,7 @@ await client.Ping.PingAsync();
 </details>
 
 ## Transactions
-<details><summary><code>client.Transactions.<a href="/src/KardApi/Transactions/TransactionsClient.cs">CreateAsync</a>(organizationId, TransactionsRequestBody { ... }) -> WithRawResponseTask&lt;TransactionsResponse&gt;</code></summary>
+<details><summary><code>client.Transactions.<a href="/src/Kard/Transactions/TransactionsClient.cs">CreateAsync</a>(organizationId, TransactionsRequestBody { ... }) -> WithRawResponseTask&lt;TransactionsResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1262,7 +1262,7 @@ await client.Transactions.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Transactions.<a href="/src/KardApi/Transactions/TransactionsClient.cs">CreateFraudMarkersAsync</a>(organizationId, FraudulentTransactionRequestBody { ... }) -> WithRawResponseTask&lt;FraudulentTransactionObject&gt;</code></summary>
+<details><summary><code>client.Transactions.<a href="/src/Kard/Transactions/TransactionsClient.cs">CreateFraudMarkersAsync</a>(organizationId, FraudulentTransactionRequestBody { ... }) -> WithRawResponseTask&lt;FraudulentTransactionObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1341,7 +1341,7 @@ await client.Transactions.CreateFraudMarkersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Transactions.<a href="/src/KardApi/Transactions/TransactionsClient.cs">CreateAuditsAsync</a>(organizationId, userId, CreateAuditRequestBody { ... }) -> WithRawResponseTask&lt;CreateAuditResponseBody&gt;</code></summary>
+<details><summary><code>client.Transactions.<a href="/src/Kard/Transactions/TransactionsClient.cs">CreateAuditsAsync</a>(organizationId, userId, CreateAuditRequestBody { ... }) -> WithRawResponseTask&lt;CreateAuditResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1435,7 +1435,7 @@ await client.Transactions.CreateAuditsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Transactions.<a href="/src/KardApi/Transactions/TransactionsClient.cs">CreateBulkTransactionsUploadUrlAsync</a>(organizationId, CreateFileUploadRequestBody { ... }) -> WithRawResponseTask&lt;CreateFileUploadUrlResponse&gt;</code></summary>
+<details><summary><code>client.Transactions.<a href="/src/Kard/Transactions/TransactionsClient.cs">CreateBulkTransactionsUploadUrlAsync</a>(organizationId, CreateFileUploadRequestBody { ... }) -> WithRawResponseTask&lt;CreateFileUploadUrlResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1526,7 +1526,7 @@ await client.Transactions.CreateBulkTransactionsUploadUrlAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Transactions.<a href="/src/KardApi/Transactions/TransactionsClient.cs">GetEarnedRewardsAsync</a>(organizationId, userId, GetEarnedRewardsRequest { ... }) -> WithRawResponseTask&lt;GetEarnedRewardsResponse&gt;</code></summary>
+<details><summary><code>client.Transactions.<a href="/src/Kard/Transactions/TransactionsClient.cs">GetEarnedRewardsAsync</a>(organizationId, userId, GetEarnedRewardsRequest { ... }) -> WithRawResponseTask&lt;GetEarnedRewardsResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1610,7 +1610,7 @@ await client.Transactions.GetEarnedRewardsAsync(
 </details>
 
 ## Users
-<details><summary><code>client.Users.<a href="/src/KardApi/Users/UsersClient.cs">CreateAsync</a>(organizationId, CreateUsersObject { ... }) -> WithRawResponseTask&lt;CreateUsersObject&gt;</code></summary>
+<details><summary><code>client.Users.<a href="/src/Kard/Users/UsersClient.cs">CreateAsync</a>(organizationId, CreateUsersObject { ... }) -> WithRawResponseTask&lt;CreateUsersObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1705,7 +1705,7 @@ await client.Users.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Users.<a href="/src/KardApi/Users/UsersClient.cs">UpdateAsync</a>(organizationId, userId, UpdateUserObject { ... }) -> WithRawResponseTask&lt;UserResponseObject&gt;</code></summary>
+<details><summary><code>client.Users.<a href="/src/Kard/Users/UsersClient.cs">UpdateAsync</a>(organizationId, userId, UpdateUserObject { ... }) -> WithRawResponseTask&lt;UserResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1804,7 +1804,7 @@ await client.Users.UpdateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Users.<a href="/src/KardApi/Users/UsersClient.cs">DeleteAsync</a>(organizationId, userId) -> WithRawResponseTask&lt;DeleteUserResponseObject&gt;</code></summary>
+<details><summary><code>client.Users.<a href="/src/Kard/Users/UsersClient.cs">DeleteAsync</a>(organizationId, userId) -> WithRawResponseTask&lt;DeleteUserResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1868,7 +1868,7 @@ await client.Users.DeleteAsync("organization-123", "user-123");
 </dl>
 </details>
 
-<details><summary><code>client.Users.<a href="/src/KardApi/Users/UsersClient.cs">GetAsync</a>(organizationId, userId) -> WithRawResponseTask&lt;UserResponseObject&gt;</code></summary>
+<details><summary><code>client.Users.<a href="/src/Kard/Users/UsersClient.cs">GetAsync</a>(organizationId, userId) -> WithRawResponseTask&lt;UserResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1933,7 +1933,7 @@ await client.Users.GetAsync("organization-123", "user-123");
 </details>
 
 ## Users Attributions
-<details><summary><code>client.Users.Attributions.<a href="/src/KardApi/Users/Attributions/AttributionsClient.cs">CreateAsync</a>(organizationId, userId, CreateAttributionRequestObject { ... }) -> WithRawResponseTask&lt;CreateAttributionResponse&gt;</code></summary>
+<details><summary><code>client.Users.Attributions.<a href="/src/Kard/Users/Attributions/AttributionsClient.cs">CreateAsync</a>(organizationId, userId, CreateAttributionRequestObject { ... }) -> WithRawResponseTask&lt;CreateAttributionResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2056,7 +2056,7 @@ await client.Users.Attributions.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Users.Attributions.<a href="/src/KardApi/Users/Attributions/AttributionsClient.cs">ActivateAsync</a>(organizationId, userId, offerId, ActivateOfferRequest { ... }) -> WithRawResponseTask&lt;ActivateOfferResponse&gt;</code></summary>
+<details><summary><code>client.Users.Attributions.<a href="/src/Kard/Users/Attributions/AttributionsClient.cs">ActivateAsync</a>(organizationId, userId, offerId, ActivateOfferRequest { ... }) -> WithRawResponseTask&lt;ActivateOfferResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2140,7 +2140,7 @@ await client.Users.Attributions.ActivateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Users.Attributions.<a href="/src/KardApi/Users/Attributions/AttributionsClient.cs">BoostAsync</a>(organizationId, userId, offerId, BoostOfferRequest { ... }) -> WithRawResponseTask&lt;BoostOfferResponse&gt;</code></summary>
+<details><summary><code>client.Users.Attributions.<a href="/src/Kard/Users/Attributions/AttributionsClient.cs">BoostAsync</a>(organizationId, userId, offerId, BoostOfferRequest { ... }) -> WithRawResponseTask&lt;BoostOfferResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2225,7 +2225,7 @@ await client.Users.Attributions.BoostAsync(
 </details>
 
 ## WebView
-<details><summary><code>client.Users.Auth.<a href="/src/KardApi/Users/Auth/AuthClient.cs">GetWebViewTokenAsync</a>(organizationId, userId) -> WithRawResponseTask&lt;WebViewTokenResponse&gt;</code></summary>
+<details><summary><code>client.Users.Auth.<a href="/src/Kard/Users/Auth/AuthClient.cs">GetWebViewTokenAsync</a>(organizationId, userId) -> WithRawResponseTask&lt;WebViewTokenResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2288,7 +2288,7 @@ await client.Users.Auth.GetWebViewTokenAsync("organization-123", "user-123");
 </details>
 
 ## Rewards
-<details><summary><code>client.Users.Rewards.<a href="/src/KardApi/Users/Rewards/RewardsClient.cs">OffersAsync</a>(organizationId, userId, GetOffersByUserRequest { ... }) -> WithRawResponseTask&lt;OffersResponseObject&gt;</code></summary>
+<details><summary><code>client.Users.Rewards.<a href="/src/Kard/Users/Rewards/RewardsClient.cs">OffersAsync</a>(organizationId, userId, GetOffersByUserRequest { ... }) -> WithRawResponseTask&lt;OffersResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2370,7 +2370,7 @@ await client.Users.Rewards.OffersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Users.Rewards.<a href="/src/KardApi/Users/Rewards/RewardsClient.cs">PlacementOffersAsync</a>(organizationId, userId, placementId, GetOffersByPlacementRequest { ... }) -> WithRawResponseTask&lt;OffersResponseObject&gt;</code></summary>
+<details><summary><code>client.Users.Rewards.<a href="/src/Kard/Users/Rewards/RewardsClient.cs">PlacementOffersAsync</a>(organizationId, userId, placementId, GetOffersByPlacementRequest { ... }) -> WithRawResponseTask&lt;OffersResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2455,7 +2455,7 @@ await client.Users.Rewards.PlacementOffersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Users.Rewards.<a href="/src/KardApi/Users/Rewards/RewardsClient.cs">LocationsAsync</a>(organizationId, userId, GetLocationsByUserRequest { ... }) -> WithRawResponseTask&lt;LocationsResponseObject&gt;</code></summary>
+<details><summary><code>client.Users.Rewards.<a href="/src/Kard/Users/Rewards/RewardsClient.cs">LocationsAsync</a>(organizationId, userId, GetLocationsByUserRequest { ... }) -> WithRawResponseTask&lt;LocationsResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2542,7 +2542,7 @@ await client.Users.Rewards.LocationsAsync(
 </details>
 
 ## Users Uploads
-<details><summary><code>client.Users.Uploads.<a href="/src/KardApi/Users/Uploads/UploadsClient.cs">CreateAsync</a>(organizationId, userId, CreateUploadRequestObject { ... }) -> WithRawResponseTask&lt;CreateUploadResponseObject&gt;</code></summary>
+<details><summary><code>client.Users.Uploads.<a href="/src/Kard/Users/Uploads/UploadsClient.cs">CreateAsync</a>(organizationId, userId, CreateUploadRequestObject { ... }) -> WithRawResponseTask&lt;CreateUploadResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2625,7 +2625,7 @@ await client.Users.Uploads.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Users.Uploads.<a href="/src/KardApi/Users/Uploads/UploadsClient.cs">CreatePartAsync</a>(organizationId, userId, uploadId, CreateUploadPartRequestObject { ... }) -> WithRawResponseTask&lt;CreateUploadPartResponseObject&gt;</code></summary>
+<details><summary><code>client.Users.Uploads.<a href="/src/Kard/Users/Uploads/UploadsClient.cs">CreatePartAsync</a>(organizationId, userId, uploadId, CreateUploadPartRequestObject { ... }) -> WithRawResponseTask&lt;CreateUploadPartResponseObject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2757,7 +2757,7 @@ await client.Users.Uploads.CreatePartAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Users.Uploads.<a href="/src/KardApi/Users/Uploads/UploadsClient.cs">UpdateAsync</a>(organizationId, userId, uploadId, UpdateUploadRequestObject { ... }) -> WithRawResponseTask&lt;UpdateUploadResponseObject&gt;</code></summary>
+<details><summary><code>client.Users.Uploads.<a href="/src/Kard/Users/Uploads/UploadsClient.cs">UpdateAsync</a>(organizationId, userId, uploadId, UpdateUploadRequestObject { ... }) -> WithRawResponseTask&lt;UpdateUploadResponseObject&gt;</code></summary>
 <dl>
 <dd>
 

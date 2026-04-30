@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/Kard.Test/Kard.Test.csproj" />
+  <Project Path="src/Kard/Kard.csproj" />
+</Solution>

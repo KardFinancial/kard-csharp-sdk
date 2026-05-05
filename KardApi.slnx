@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="src/KardApi.Test/KardApi.Test.csproj" />
-  <Project Path="src/KardApi/KardApi.csproj" />
-</Solution>

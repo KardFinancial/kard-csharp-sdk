@@ -5,7 +5,7 @@ namespace Kard;
 /// </summary>
 [Serializable]
 public class CreateAuditMultiStatus(CreateAuditMultiStatusResponse body)
-    : KardApiApiException("CreateAuditMultiStatus", 207, body)
+    : KardApiException("CreateAuditMultiStatus", 207, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

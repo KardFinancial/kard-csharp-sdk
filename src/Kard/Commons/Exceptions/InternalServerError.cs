@@ -5,7 +5,7 @@ namespace Kard;
 /// </summary>
 [Serializable]
 public class InternalServerError(ErrorResponse body)
-    : KardApiApiException("InternalServerError", 500, body)
+    : KardApiException("InternalServerError", 500, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

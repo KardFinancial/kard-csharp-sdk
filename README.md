@@ -43,7 +43,7 @@ Instantiate and use the client with the following:
 ```csharp
 using Kard;
 
-var client = new KardApiClient("client_id", "client_secret");
+var client = new KardClient("client_id", "client_secret");
 await client.Users.CreateAsync(
     "organization-123",
     new CreateUsersObject
@@ -84,9 +84,9 @@ This SDK allows you to configure different environments for API requests.
 ```csharp
 using Kard;
 
-var client = new KardApiClient(new ClientOptions
+var client = new KardClient(new ClientOptions
 {
-    BaseUrl = KardApiEnvironment.Production
+    BaseUrl = KardEnvironment.Production
 });
 ```
 
@@ -100,7 +100,7 @@ using Kard;
 
 try {
     var response = await client.Users.CreateAsync(...);
-} catch (KardApiApiException e) {
+} catch (KardApiException e) {
     System.Console.WriteLine(e.Body);
     System.Console.WriteLine(e.StatusCode);
 }

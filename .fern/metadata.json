@@ -4,9 +4,13 @@
   "generatorVersion": "2.62.0",
   "generatorConfig": {
     "namespace": "Kard",
-    "client_class_name": "KardClient",
+    "client-class-name": "KardClient",
+    "exported-client-class-name": "KardClient",
+    "environment-class-name": "KardEnvironment",
+    "base-api-exception-class-name": "KardApiException",
+    "base-exception-class-name": "KardException",
     "generate-mock-server-tests": false
   },
   "originGitCommit": "db6a157de9ae512eb61ce26ff0969e2ea7195abf",
-  "sdkVersion": "0.0.1"
+  "sdkVersion": "0.0.2"
 }

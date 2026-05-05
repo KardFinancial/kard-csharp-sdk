@@ -5,7 +5,7 @@ namespace Kard;
 /// </summary>
 [Serializable]
 public class UnauthorizedError(ErrorResponse body)
-    : KardApiApiException("UnauthorizedError", 401, body)
+    : KardApiException("UnauthorizedError", 401, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

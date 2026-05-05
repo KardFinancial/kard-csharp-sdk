@@ -7,7 +7,7 @@ namespace Kard.Users;
 /// </summary>
 [Serializable]
 public class UploadPartMultiStatus(CreateUploadPartMultiStatusResponse body)
-    : KardApiApiException("UploadPartMultiStatus", 207, body)
+    : KardApiException("UploadPartMultiStatus", 207, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

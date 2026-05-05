@@ -5,7 +5,7 @@ namespace Kard;
 /// </summary>
 [Serializable]
 public class CreateIncomingTransactionsMultiStatus(TransactionsMultiResponse body)
-    : KardApiApiException("CreateIncomingTransactionsMultiStatus", 207, body)
+    : KardApiException("CreateIncomingTransactionsMultiStatus", 207, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

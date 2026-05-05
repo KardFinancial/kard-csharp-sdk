@@ -5,7 +5,7 @@ namespace Kard;
 /// </summary>
 [Serializable]
 public class FraudMultiStatus(FraudulentTransactionResponse body)
-    : KardApiApiException("FraudMultiStatus", 207, body)
+    : KardApiException("FraudMultiStatus", 207, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

@@ -2,11 +2,11 @@ using Kard.Core;
 
 namespace Kard;
 
-public partial class KardApiClient : IKardApiClient
+public partial class KardClient : IKardClient
 {
     private readonly RawClient _client;
 
-    public KardApiClient(
+    public KardClient(
         string? clientId = null,
         string? clientSecret = null,
         ClientOptions? clientOptions = null
@@ -27,7 +27,7 @@ public partial class KardApiClient : IKardApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Kard" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Kard.Sdk/0.0.1" },
+                { "User-Agent", "Kard.Sdk/0.0.2" },
             }
         );
         foreach (var header in platformHeaders)

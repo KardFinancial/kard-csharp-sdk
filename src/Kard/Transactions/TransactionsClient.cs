@@ -62,7 +62,7 @@ public partial class TransactionsClient : ITransactionsClient
             }
             catch (JsonException e)
             {
-                throw new KardApiApiException(
+                throw new KardApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -102,7 +102,7 @@ public partial class TransactionsClient : ITransactionsClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new KardApiApiException(
+            throw new KardApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody
@@ -162,7 +162,7 @@ public partial class TransactionsClient : ITransactionsClient
             }
             catch (JsonException e)
             {
-                throw new KardApiApiException(
+                throw new KardApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -200,7 +200,7 @@ public partial class TransactionsClient : ITransactionsClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new KardApiApiException(
+            throw new KardApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody
@@ -260,7 +260,7 @@ public partial class TransactionsClient : ITransactionsClient
             }
             catch (JsonException e)
             {
-                throw new KardApiApiException(
+                throw new KardApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -304,7 +304,7 @@ public partial class TransactionsClient : ITransactionsClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new KardApiApiException(
+            throw new KardApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody
@@ -366,7 +366,7 @@ public partial class TransactionsClient : ITransactionsClient
             }
             catch (JsonException e)
             {
-                throw new KardApiApiException(
+                throw new KardApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -404,7 +404,7 @@ public partial class TransactionsClient : ITransactionsClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new KardApiApiException(
+            throw new KardApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody
@@ -472,7 +472,7 @@ public partial class TransactionsClient : ITransactionsClient
             }
             catch (JsonException e)
             {
-                throw new KardApiApiException(
+                throw new KardApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -510,7 +510,7 @@ public partial class TransactionsClient : ITransactionsClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new KardApiApiException(
+            throw new KardApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody

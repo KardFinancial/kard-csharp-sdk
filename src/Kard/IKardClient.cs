@@ -1,6 +1,6 @@
 namespace Kard;
 
-public partial interface IKardApiClient
+public partial interface IKardClient
 {
     public IAuthClient Auth { get; }
     public IFilesClient Files { get; }

@@ -5,7 +5,7 @@ namespace Kard;
 /// </summary>
 [Serializable]
 public class NetworkBlockedError(NetworkBlockedErrorBody body)
-    : KardApiApiException("NetworkBlockedError", 403, body)
+    : KardApiException("NetworkBlockedError", 403, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

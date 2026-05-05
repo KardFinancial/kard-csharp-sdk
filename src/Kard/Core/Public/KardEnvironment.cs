@@ -1,7 +1,7 @@
 namespace Kard;
 
 [Serializable]
-public class KardApiEnvironment
+public class KardEnvironment
 {
     public const string Production = "https://rewards-api.getkard.com";
 

@@ -5,7 +5,7 @@ namespace Kard;
 /// </summary>
 [Serializable]
 public class DoesNotExistError(ErrorResponse body)
-    : KardApiApiException("DoesNotExistError", 404, body)
+    : KardApiException("DoesNotExistError", 404, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

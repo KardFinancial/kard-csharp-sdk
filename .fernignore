@@ -1,1 +1,6 @@
 # Specify files that shouldn't be modified by Fern
+
+# Custom HEM (Hashed Email) utility
+src/KardFinancial/Hem
+src/KardFinancial.Test/Hem
+src/KardFinancial.Test/KardFinancial.Test.Custom.props

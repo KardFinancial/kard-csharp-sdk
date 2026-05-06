@@ -1,0 +1,195 @@
+[
+  {
+    "name": "Simple lowercase",
+    "input": "User@Example.com",
+    "normalized": "user@example.com",
+    "sha256_hex": "b4c9a289323b21a01c3e940f150eb9b8c542587f1abfd8f0e1cc1ffc5e475514",
+    "uid2_validated": true
+  },
+  {
+    "name": "Already normalized",
+    "input": "user@example.com",
+    "normalized": "user@example.com",
+    "sha256_hex": "b4c9a289323b21a01c3e940f150eb9b8c542587f1abfd8f0e1cc1ffc5e475514",
+    "uid2_validated": true
+  },
+  {
+    "name": "Leading/trailing spaces",
+    "input": "  user@example.com  ",
+    "normalized": "user@example.com",
+    "sha256_hex": "b4c9a289323b21a01c3e940f150eb9b8c542587f1abfd8f0e1cc1ffc5e475514",
+    "uid2_validated": true
+  },
+  {
+    "name": "Tabs and newlines",
+    "input": "\tuser@example.com\n",
+    "normalized": "user@example.com",
+    "sha256_hex": "b4c9a289323b21a01c3e940f150eb9b8c542587f1abfd8f0e1cc1ffc5e475514",
+    "uid2_validated": true
+  },
+  {
+    "name": "Internal whitespace",
+    "input": "us er@example.com",
+    "normalized": "user@example.com",
+    "sha256_hex": "b4c9a289323b21a01c3e940f150eb9b8c542587f1abfd8f0e1cc1ffc5e475514",
+    "uid2_validated": true
+  },
+  {
+    "name": "Mixed case + whitespace",
+    "input": "  John.Doe@Example.COM  ",
+    "normalized": "john.doe@example.com",
+    "sha256_hex": "836f82db99121b3481011f16b49dfa5fbc714a0d1b1b9f784a1ebbbf5b39577f"
+  },
+  {
+    "name": "ALL CAPS",
+    "input": "USER@EXAMPLE.COM",
+    "normalized": "user@example.com",
+    "sha256_hex": "b4c9a289323b21a01c3e940f150eb9b8c542587f1abfd8f0e1cc1ffc5e475514",
+    "uid2_validated": true
+  },
+  {
+    "name": "Gmail: dots removed",
+    "input": "john.doe@gmail.com",
+    "normalized": "johndoe@gmail.com",
+    "sha256_hex": "06a240d11cc201676da976f7b49341181fd180da37cbe40a77432c0a366c80c3"
+  },
+  {
+    "name": "Gmail: many dots",
+    "input": "j.o.h.n.d.o.e@gmail.com",
+    "normalized": "johndoe@gmail.com",
+    "sha256_hex": "06a240d11cc201676da976f7b49341181fd180da37cbe40a77432c0a366c80c3"
+  },
+  {
+    "name": "Gmail: leading dot",
+    "input": ".user@gmail.com",
+    "normalized": "user@gmail.com",
+    "sha256_hex": "02ee7bdc4ccf5c94808a0118eb531822f13e7e38e3810ab29ebefb2c2feb8e58"
+  },
+  {
+    "name": "Gmail: trailing dot in local",
+    "input": "user.@gmail.com",
+    "normalized": "user@gmail.com",
+    "sha256_hex": "02ee7bdc4ccf5c94808a0118eb531822f13e7e38e3810ab29ebefb2c2feb8e58"
+  },
+  {
+    "name": "Gmail: consecutive dots",
+    "input": "us..er@gmail.com",
+    "normalized": "user@gmail.com",
+    "sha256_hex": "02ee7bdc4ccf5c94808a0118eb531822f13e7e38e3810ab29ebefb2c2feb8e58"
+  },
+  {
+    "name": "Gmail: no dots (no-op)",
+    "input": "johndoe@gmail.com",
+    "normalized": "johndoe@gmail.com",
+    "sha256_hex": "06a240d11cc201676da976f7b49341181fd180da37cbe40a77432c0a366c80c3"
+  },
+  {
+    "name": "Gmail: plus removed",
+    "input": "user+newsletter@gmail.com",
+    "normalized": "user@gmail.com",
+    "sha256_hex": "02ee7bdc4ccf5c94808a0118eb531822f13e7e38e3810ab29ebefb2c2feb8e58"
+  },
+  {
+    "name": "Gmail: plus with long tag",
+    "input": "user+shopping.list.2024@gmail.com",
+    "normalized": "user@gmail.com",
+    "sha256_hex": "02ee7bdc4ccf5c94808a0118eb531822f13e7e38e3810ab29ebefb2c2feb8e58"
+  },
+  {
+    "name": "Gmail: dots AND plus",
+    "input": "jane.doe+promo@gmail.com",
+    "normalized": "janedoe@gmail.com",
+    "sha256_hex": "d6117306485ed0e50afab3ac871e98f81699151f30281527d63ff5f233656c69"
+  },
+  {
+    "name": "Gmail: kitchen sink",
+    "input": "  J.Doe+Work@Gmail.com  ",
+    "normalized": "jdoe@gmail.com",
+    "sha256_hex": "910789803908d9ab8a57b28ff0af7ab81b9607356aef6f18d8499eb1489ed8ab"
+  },
+  {
+    "name": "googlemail.com basic",
+    "input": "user@googlemail.com",
+    "normalized": "user@gmail.com",
+    "sha256_hex": "02ee7bdc4ccf5c94808a0118eb531822f13e7e38e3810ab29ebefb2c2feb8e58"
+  },
+  {
+    "name": "googlemail.com full rules",
+    "input": "j.doe+spam@googlemail.com",
+    "normalized": "jdoe@gmail.com",
+    "sha256_hex": "910789803908d9ab8a57b28ff0af7ab81b9607356aef6f18d8499eb1489ed8ab"
+  },
+  {
+    "name": "Googlemail uppercase",
+    "input": "User@GoogleMail.COM",
+    "normalized": "user@gmail.com",
+    "sha256_hex": "02ee7bdc4ccf5c94808a0118eb531822f13e7e38e3810ab29ebefb2c2feb8e58"
+  },
+  {
+    "name": "Outlook: plus kept",
+    "input": "user+tag@outlook.com",
+    "normalized": "user+tag@outlook.com",
+    "sha256_hex": "bddc75e01282427ddfde413e993165291788e9dec04d4ccbfbd1a44c6b00be14"
+  },
+  {
+    "name": "Yahoo: plus kept",
+    "input": "user+tag@yahoo.com",
+    "normalized": "user+tag@yahoo.com",
+    "sha256_hex": "03045fc55b0c0b9d6da204137b95651ce87fabae45095c5bd6a95bdf5e696e38"
+  },
+  {
+    "name": "Hotmail: plus kept",
+    "input": "user+tag@hotmail.com",
+    "normalized": "user+tag@hotmail.com",
+    "sha256_hex": "677a0c9ee333f48283f9bc77dfe91137583a5ddeee57fa823fa775f4a193f663"
+  },
+  {
+    "name": "iCloud: plus kept",
+    "input": "user+tag@icloud.com",
+    "normalized": "user+tag@icloud.com",
+    "sha256_hex": "6bf6f86bd86e6e6ee2c09e50e27e0962f789990f52b4e8355e13cdd217fb2aa9"
+  },
+  {
+    "name": "Corporate: plus kept",
+    "input": "emp+team@bigcorp.com",
+    "normalized": "emp+team@bigcorp.com",
+    "sha256_hex": "d8c78fb50be68f5538956b14749ac6648a2be6f5bc3d5726b1174dfa687c4780"
+  },
+  {
+    "name": "Outlook: dots kept",
+    "input": "first.last@outlook.com",
+    "normalized": "first.last@outlook.com",
+    "sha256_hex": "a0abd3fe9215d746b3b41b945557993da5fc81d11aec8295abbe80b4c88461b5"
+  },
+  {
+    "name": "Yahoo: dots kept",
+    "input": "first.last@yahoo.com",
+    "normalized": "first.last@yahoo.com",
+    "sha256_hex": "9a259e1cdf4a2ae99738ea302c387a6972e46e0f26b21376f90ffb20428f144e"
+  },
+  {
+    "name": "Corporate: dots kept",
+    "input": "jane.doe@company.com",
+    "normalized": "jane.doe@company.com",
+    "sha256_hex": "2e3ac980f3507b3ee27315d38fbd8271fb2d34d661d94bd6dd79081a1996ecd2"
+  },
+  {
+    "name": "Outlook: case + whitespace only",
+    "input": "  First.Last+Tag@Outlook.COM  ",
+    "normalized": "first.last+tag@outlook.com",
+    "sha256_hex": "0cd51ff6d43a1a77cf1844f2a9e59358cc8b6d738b76d2d893cc63047315ac49"
+  },
+  {
+    "name": "Unicode in local-part",
+    "input": "üser@example.com",
+    "normalized": "üser@example.com",
+    "sha256_hex": "bb2984536940d67bd71817ffd698b1eb6aed6dfe86a3843703b1814414c6e40e"
+  },
+  {
+    "name": "UID2 doc example",
+    "input": "JANESaoirse@gmail.com",
+    "normalized": "janesaoirse@gmail.com",
+    "sha256_hex": "92ee26057ed9dea2535d6c8b141d48373932476599196e00352254896db5888f",
+    "uid2_validated": true
+  }
+]

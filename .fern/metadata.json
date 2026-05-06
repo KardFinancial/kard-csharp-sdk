@@ -12,5 +12,5 @@
     "generate-mock-server-tests": false
   },
   "originGitCommit": "059ef99d6d012fb341828360d6875c704e36ddc2",
-  "sdkVersion": "0.0.3"
+  "sdkVersion": "0.0.4"
 }

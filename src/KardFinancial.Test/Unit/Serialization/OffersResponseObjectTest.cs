@@ -1,0 +1,383 @@
+using global::System.Globalization;
+using KardFinancial;
+using KardFinancial.Core;
+using KardFinancial.Test.Utils;
+using KardFinancial.Users;
+using NUnit.Framework;
+using OneOf;
+
+namespace KardFinancial.Test;
+
+[TestFixture]
+[Parallelizable(ParallelScope.Self)]
+public class OffersResponseObjectTest
+{
+    [NUnit.Framework.Test]
+    public void TestDeserialization()
+    {
+        var json = """
+            {
+              "data": [
+                {
+                  "type": "standardOffer",
+                  "id": "5e27318c9b346f00087fbb5c",
+                  "attributes": {
+                    "name": "Worlds Greatest Chicken",
+                    "terms": "Worlds Greatest Chicken offers are only available within US Locations.",
+                    "purchaseChannel": [
+                      "INSTORE"
+                    ],
+                    "userReward": {
+                      "type": "PERCENT",
+                      "value": 5.7
+                    },
+                    "startDate": "2024-11-17T05:00:00Z",
+                    "expirationDate": "2025-03-17T05:00:00Z",
+                    "minRewardAmount": {
+                      "type": "CENTS",
+                      "value": 500
+                    },
+                    "maxRewardAmount": {
+                      "type": "CENTS",
+                      "value": 2000
+                    },
+                    "minTransactionAmount": {
+                      "type": "CENTS",
+                      "value": 500
+                    },
+                    "maxTransactionAmount": {
+                      "type": "CENTS",
+                      "value": 10000
+                    },
+                    "maxRedemptions": 1,
+                    "isTargeted": true,
+                    "assets": [
+                      {
+                        "url": "http://attribution.getkard.com/logos/breakfastbunny_logo.png?subtype=IMG_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                        "alt": "",
+                        "type": "IMG_VIEW"
+                      },
+                      {
+                        "url": "https://attribution.getkard.com/public/banners/breakfast-bunny-banner.jpg?subtype=BANNER_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                        "alt": "",
+                        "type": "BANNER_VIEW"
+                      }
+                    ],
+                    "websiteUrl": "http://worldsgreatestchickent.test.com",
+                    "description": "Worlds Greatest Chicken brings you the tastiest crispy, double fried spicy chicken in the world."
+                  },
+                  "relationships": {
+                    "category": {
+                      "data": [
+                        {
+                          "type": "category",
+                          "id": "65920081b524d126068de24a"
+                        },
+                        {
+                          "type": "category",
+                          "id": "65920081b524d126068de24c"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "included": [
+                {
+                  "type": "category",
+                  "id": "65920081b524d126068de24a",
+                  "attributes": {
+                    "name": "Food & Beverage"
+                  }
+                },
+                {
+                  "type": "category",
+                  "id": "65920081b524d126068de24c",
+                  "attributes": {
+                    "name": "Department Stores"
+                  }
+                }
+              ],
+              "links": {
+                "self": "/v2/issuers/{organizationId}/users/{userId}/offers?page[size]=1?sort=-startDate",
+                "prev": null,
+                "next": "/v2/issuers/{organizationId}/users/{userId}/offers?page[after]=NDMyNzQyODI3OTQw&page[size]=1?&sort=-startDate"
+              },
+              "meta": {
+                "availableCategories": [
+                  {
+                    "type": "category",
+                    "id": "65920081b524d126068de24a",
+                    "attributes": {
+                      "name": "Food & Beverage"
+                    }
+                  },
+                  {
+                    "type": "category",
+                    "id": "65920081b524d126068de24c",
+                    "attributes": {
+                      "name": "Department Stores"
+                    }
+                  }
+                ]
+              }
+            }
+            """;
+        var expectedObject = new OffersResponseObject
+        {
+            Data = new List<OfferDataUnion>()
+            {
+                new OfferDataUnion(
+                    new OfferDataUnion.StandardOffer(
+                        new StandardOffer
+                        {
+                            Id = "5e27318c9b346f00087fbb5c",
+                            Attributes = new StandardOfferFields
+                            {
+                                Name = "Worlds Greatest Chicken",
+                                Terms =
+                                    "Worlds Greatest Chicken offers are only available within US Locations.",
+                                PurchaseChannel = new List<PurchaseChannel>()
+                                {
+                                    PurchaseChannel.Instore,
+                                },
+                                UserReward = new Commission
+                                {
+                                    Type = CommissionType.Percent,
+                                    Value = 5.7,
+                                },
+                                StartDate = DateTime.Parse(
+                                    "2024-11-17T05:00:00.000Z",
+                                    null,
+                                    DateTimeStyles.AdjustToUniversal
+                                ),
+                                ExpirationDate = DateTime.Parse(
+                                    "2025-03-17T05:00:00.000Z",
+                                    null,
+                                    DateTimeStyles.AdjustToUniversal
+                                ),
+                                MinRewardAmount = new Amount
+                                {
+                                    Type = AmountType.Cents,
+                                    Value = 500,
+                                },
+                                MaxRewardAmount = new Amount
+                                {
+                                    Type = AmountType.Cents,
+                                    Value = 2000,
+                                },
+                                MinTransactionAmount = new Amount
+                                {
+                                    Type = AmountType.Cents,
+                                    Value = 500,
+                                },
+                                MaxTransactionAmount = new Amount
+                                {
+                                    Type = AmountType.Cents,
+                                    Value = 10000,
+                                },
+                                MaxRedemptions = 1,
+                                IsTargeted = true,
+                                Assets = new List<Asset>()
+                                {
+                                    new Asset
+                                    {
+                                        Url =
+                                            "http://attribution.getkard.com/logos/breakfastbunny_logo.png?subtype=IMG_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                                        Alt = "",
+                                        Type = "IMG_VIEW",
+                                    },
+                                    new Asset
+                                    {
+                                        Url =
+                                            "https://attribution.getkard.com/public/banners/breakfast-bunny-banner.jpg?subtype=BANNER_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                                        Alt = "",
+                                        Type = "BANNER_VIEW",
+                                    },
+                                },
+                                WebsiteUrl = "http://worldsgreatestchickent.test.com",
+                                Description =
+                                    "Worlds Greatest Chicken brings you the tastiest crispy, double fried spicy chicken in the world.",
+                            },
+                            Relationships = new CategoryRelationshipObject
+                            {
+                                Category = new CategoryRelationship
+                                {
+                                    Data = new List<CategoryData>()
+                                    {
+                                        new CategoryData
+                                        {
+                                            Type = "category",
+                                            Id = "65920081b524d126068de24a",
+                                        },
+                                        new CategoryData
+                                        {
+                                            Type = "category",
+                                            Id = "65920081b524d126068de24c",
+                                        },
+                                    },
+                                },
+                            },
+                        }
+                    )
+                ),
+            },
+            Included = new List<OneOf<CategoryIncluded>>()
+            {
+                new CategoryIncluded
+                {
+                    Type = "category",
+                    Id = "65920081b524d126068de24a",
+                    Attributes = new CategoryFields { Name = CategoryOption.FoodBeverage },
+                },
+                new CategoryIncluded
+                {
+                    Type = "category",
+                    Id = "65920081b524d126068de24c",
+                    Attributes = new CategoryFields { Name = CategoryOption.DepartmentStores },
+                },
+            },
+            Links = new Links
+            {
+                Self =
+                    "/v2/issuers/{organizationId}/users/{userId}/offers?page[size]=1?sort=-startDate",
+                Next =
+                    "/v2/issuers/{organizationId}/users/{userId}/offers?page[after]=NDMyNzQyODI3OTQw&page[size]=1?&sort=-startDate",
+            },
+            Meta = new OffersMeta
+            {
+                AvailableCategories = new List<CategoryIncluded>()
+                {
+                    new CategoryIncluded
+                    {
+                        Type = "category",
+                        Id = "65920081b524d126068de24a",
+                        Attributes = new CategoryFields { Name = CategoryOption.FoodBeverage },
+                    },
+                    new CategoryIncluded
+                    {
+                        Type = "category",
+                        Id = "65920081b524d126068de24c",
+                        Attributes = new CategoryFields { Name = CategoryOption.DepartmentStores },
+                    },
+                },
+            },
+        };
+        var deserializedObject = JsonUtils.Deserialize<OffersResponseObject>(json);
+        Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
+    }
+
+    [NUnit.Framework.Test]
+    public void TestSerialization()
+    {
+        var inputJson = """
+            {
+              "data": [
+                {
+                  "type": "standardOffer",
+                  "id": "5e27318c9b346f00087fbb5c",
+                  "attributes": {
+                    "name": "Worlds Greatest Chicken",
+                    "terms": "Worlds Greatest Chicken offers are only available within US Locations.",
+                    "purchaseChannel": [
+                      "INSTORE"
+                    ],
+                    "userReward": {
+                      "type": "PERCENT",
+                      "value": 5.7
+                    },
+                    "startDate": "2024-11-17T05:00:00Z",
+                    "expirationDate": "2025-03-17T05:00:00Z",
+                    "minRewardAmount": {
+                      "type": "CENTS",
+                      "value": 500
+                    },
+                    "maxRewardAmount": {
+                      "type": "CENTS",
+                      "value": 2000
+                    },
+                    "minTransactionAmount": {
+                      "type": "CENTS",
+                      "value": 500
+                    },
+                    "maxTransactionAmount": {
+                      "type": "CENTS",
+                      "value": 10000
+                    },
+                    "maxRedemptions": 1,
+                    "isTargeted": true,
+                    "assets": [
+                      {
+                        "url": "http://attribution.getkard.com/logos/breakfastbunny_logo.png?subtype=IMG_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                        "alt": "",
+                        "type": "IMG_VIEW"
+                      },
+                      {
+                        "url": "https://attribution.getkard.com/public/banners/breakfast-bunny-banner.jpg?subtype=BANNER_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                        "alt": "",
+                        "type": "BANNER_VIEW"
+                      }
+                    ],
+                    "websiteUrl": "http://worldsgreatestchickent.test.com",
+                    "description": "Worlds Greatest Chicken brings you the tastiest crispy, double fried spicy chicken in the world."
+                  },
+                  "relationships": {
+                    "category": {
+                      "data": [
+                        {
+                          "type": "category",
+                          "id": "65920081b524d126068de24a"
+                        },
+                        {
+                          "type": "category",
+                          "id": "65920081b524d126068de24c"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "included": [
+                {
+                  "type": "category",
+                  "id": "65920081b524d126068de24a",
+                  "attributes": {
+                    "name": "Food & Beverage"
+                  }
+                },
+                {
+                  "type": "category",
+                  "id": "65920081b524d126068de24c",
+                  "attributes": {
+                    "name": "Department Stores"
+                  }
+                }
+              ],
+              "links": {
+                "self": "/v2/issuers/{organizationId}/users/{userId}/offers?page[size]=1?sort=-startDate",
+                "prev": null,
+                "next": "/v2/issuers/{organizationId}/users/{userId}/offers?page[after]=NDMyNzQyODI3OTQw&page[size]=1?&sort=-startDate"
+              },
+              "meta": {
+                "availableCategories": [
+                  {
+                    "type": "category",
+                    "id": "65920081b524d126068de24a",
+                    "attributes": {
+                      "name": "Food & Beverage"
+                    }
+                  },
+                  {
+                    "type": "category",
+                    "id": "65920081b524d126068de24c",
+                    "attributes": {
+                      "name": "Department Stores"
+                    }
+                  }
+                ]
+              }
+            }
+            """;
+        JsonAssert.Roundtrips<OffersResponseObject>(inputJson);
+    }
+}

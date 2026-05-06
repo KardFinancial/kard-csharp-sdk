@@ -19,7 +19,7 @@ public partial class UsersClient : IUsersClient
 
     public IAttributionsClient Attributions { get; }
 
-    public Users.IAuthClient Auth { get; }
+    public KardFinancial.Users.IAuthClient Auth { get; }
 
     public IRewardsClient Rewards { get; }
 

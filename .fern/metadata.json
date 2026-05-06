@@ -9,8 +9,8 @@
     "environment-class-name": "KardEnvironment",
     "base-api-exception-class-name": "KardApiException",
     "base-exception-class-name": "KardException",
-    "generate-mock-server-tests": false
+    "generate-mock-server-tests": true
   },
   "originGitCommit": "059ef99d6d012fb341828360d6875c704e36ddc2",
-  "sdkVersion": "0.0.5"
+  "sdkVersion": "0.0.6"
 }

@@ -5,7 +5,7 @@ namespace KardFinancial;
 public partial interface IUsersClient
 {
     public IAttributionsClient Attributions { get; }
-    public Users.IAuthClient Auth { get; }
+    public KardFinancial.Users.IAuthClient Auth { get; }
     public IRewardsClient Rewards { get; }
     public IUploadsClient Uploads { get; }
 

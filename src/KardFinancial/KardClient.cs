@@ -27,7 +27,7 @@ public partial class KardClient : IKardClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "KardFinancial" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "KardFinancial/0.0.6" },
+                { "User-Agent", "KardFinancial/1.0.0" },
             }
         );
         foreach (var header in platformHeaders)

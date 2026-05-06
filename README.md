@@ -1,7 +1,7 @@
 # Kard C# Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2FKardFinancial%2Fkard-csharp-sdk)
-[![nuget shield](https://img.shields.io/nuget/v/Kard.Sdk)](https://nuget.org/packages/Kard.Sdk)
+[![nuget shield](https://img.shields.io/nuget/v/KardFinancial)](https://nuget.org/packages/KardFinancial)
 
 The Kard C# library provides convenient access to the Kard APIs from C#.
 
@@ -29,7 +29,7 @@ This SDK requires:
 ## Installation
 
 ```sh
-dotnet add package Kard.Sdk
+dotnet add package KardFinancial
 ```
 
 ## Reference
@@ -41,7 +41,7 @@ A full reference for this library is available [here](https://github.com/KardFin
 Instantiate and use the client with the following:
 
 ```csharp
-using Kard;
+using KardFinancial;
 
 var client = new KardClient("client_id", "client_secret");
 await client.Users.CreateAsync(
@@ -82,7 +82,7 @@ await client.Users.CreateAsync(
 This SDK allows you to configure different environments for API requests.
 
 ```csharp
-using Kard;
+using KardFinancial;
 
 var client = new KardClient(new ClientOptions
 {
@@ -96,7 +96,7 @@ When the API returns a non-success status code (4xx or 5xx response), a subclass
 will be thrown.
 
 ```csharp
-using Kard;
+using KardFinancial;
 
 try {
     var response = await client.Users.CreateAsync(...);
@@ -114,11 +114,19 @@ The SDK is instrumented with automatic retries with exponential backoff. A reque
 as the request is deemed retryable and the number of retry attempts has not grown larger than the configured
 retry limit (default: 2).
 
-A request is deemed retryable when any of the following HTTP status codes is returned:
+Which status codes are retried depends on the `retryStatusCodes` generator configuration:
 
+**`legacy`** (current default): retries on
 - [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
 - [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
-- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500) (Internal Server Errors)
+- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) (All server errors, including 500)
+
+**`recommended`**: retries on
+- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+- [502](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502) (Bad Gateway)
+- [503](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503) (Service Unavailable)
+- [504](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/504) (Gateway Timeout)
 
 Use the `MaxRetries` request option to configure this behavior.
 
@@ -149,7 +157,7 @@ var response = await client.Users.CreateAsync(
 Access raw HTTP response data (status code, headers, URL) alongside parsed response data using the `.WithRawResponse()` method.
 
 ```csharp
-using Kard;
+using KardFinancial;
 
 // Access raw response data (status code, headers, etc.) alongside the parsed response
 var result = await client.Users.CreateAsync(...).WithRawResponse();
@@ -209,7 +217,7 @@ var response = await client.Users.CreateAsync(
 This SDK uses forward-compatible enums that can handle unknown values gracefully.
 
 ```csharp
-using Kard;
+using KardFinancial;
 
 // Using a built-in value
 var cardNetwork = CardNetwork.Visa;

@@ -1,9 +1,9 @@
 {
   "cliVersion": "4.68.2",
   "generatorName": "fernapi/fern-csharp-sdk",
-  "generatorVersion": "2.62.0",
+  "generatorVersion": "2.65.0",
   "generatorConfig": {
-    "namespace": "Kard",
+    "namespace": "KardFinancial",
     "client-class-name": "KardClient",
     "exported-client-class-name": "KardClient",
     "environment-class-name": "KardEnvironment",
@@ -12,5 +12,5 @@
     "generate-mock-server-tests": false
   },
   "originGitCommit": "059ef99d6d012fb341828360d6875c704e36ddc2",
-  "sdkVersion": "0.0.4"
+  "sdkVersion": "0.0.5"
 }

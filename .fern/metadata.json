@@ -11,6 +11,6 @@
     "base-exception-class-name": "KardException",
     "generate-mock-server-tests": false
   },
-  "originGitCommit": "db6a157de9ae512eb61ce26ff0969e2ea7195abf",
-  "sdkVersion": "0.0.2"
+  "originGitCommit": "059ef99d6d012fb341828360d6875c704e36ddc2",
+  "sdkVersion": "0.0.3"
 }

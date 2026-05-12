@@ -93,7 +93,13 @@ public class LocationsTest : BaseMockServerTest
                         "Saturday: Closed",
                         "Sunday: Closed"
                       ]
-                    }
+                    },
+                    "partnerIds": [
+                      {
+                        "type": "google",
+                        "id": "3pafnweri4"
+                      }
+                    ]
                   },
                   "relationships": {
                     "offers": {

@@ -96,7 +96,13 @@ public class LocationsResponseObjectTest
                         "Saturday: Closed",
                         "Sunday: Closed"
                       ]
-                    }
+                    },
+                    "partnerIds": [
+                      {
+                        "type": "google",
+                        "id": "3pafnweri4"
+                      }
+                    ]
                   },
                   "relationships": {
                     "offers": {
@@ -246,6 +252,14 @@ public class LocationsResponseObjectTest
                                 "Friday: 9:00 AM – 5:00 PM",
                                 "Saturday: Closed",
                                 "Sunday: Closed",
+                            },
+                        },
+                        PartnerIds = new List<LocationPartnerId>()
+                        {
+                            new LocationPartnerId
+                            {
+                                Type = LocationPartnerIdType.Google,
+                                Id = "3pafnweri4",
                             },
                         },
                     },
@@ -456,7 +470,13 @@ public class LocationsResponseObjectTest
                         "Saturday: Closed",
                         "Sunday: Closed"
                       ]
-                    }
+                    },
+                    "partnerIds": [
+                      {
+                        "type": "google",
+                        "id": "3pafnweri4"
+                      }
+                    ]
                   },
                   "relationships": {
                     "offers": {

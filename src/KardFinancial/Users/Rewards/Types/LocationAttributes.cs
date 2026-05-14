@@ -28,10 +28,10 @@ public record LocationAttributes : IJsonOnDeserialized
     public required OperationHours OperationHours { get; set; }
 
     /// <summary>
-    /// List of ids associated with the location from third party partners. Only included on LOCAL locations.
+    /// List of ids associated with the location from third party partners. Only applicable for LOCAL locations.
     /// </summary>
     [JsonPropertyName("partnerIds")]
-    public IEnumerable<LocationPartnerId>? PartnerIds { get; set; }
+    public IEnumerable<LocationPartnerId> PartnerIds { get; set; } = new List<LocationPartnerId>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

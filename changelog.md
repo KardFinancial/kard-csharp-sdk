@@ -1,3 +1,7 @@
+## 3.0.0 - 2026-05-14
+### Breaking Changes
+* **`LocationAttributes.PartnerIds`** — property type changed from `IEnumerable<LocationPartnerId>?` (nullable) to `IEnumerable<LocationPartnerId>` (non-nullable, defaults to an empty list); remove any null checks or null-conditional access (`?.`) on this property, and update any code that assigned `null` to it.
+
 ## 2.0.0 - 2026-05-14
 ### Breaking Changes
 * **`EarnedRewardAttributes`** — class has been removed; update any references to use `RewardNotificationAttributes` instead.

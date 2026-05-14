@@ -44,6 +44,24 @@ public record ValidTransactionAttributes : IJsonOnDeserialized
     [JsonPropertyName("cardProductId")]
     public string? CardProductId { get; set; }
 
+    /// <summary>
+    /// The timestamp of the originating transaction in ISO format
+    /// </summary>
+    [JsonPropertyName("transactionTimestamp")]
+    public DateTime? TransactionTimestamp { get; set; }
+
+    /// <summary>
+    /// The transaction ID
+    /// </summary>
+    [JsonPropertyName("transactionId")]
+    public required string TransactionId { get; set; }
+
+    /// <summary>
+    /// The amount of the originating transaction in cents
+    /// </summary>
+    [JsonPropertyName("transactionAmountInCents")]
+    public required int TransactionAmountInCents { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

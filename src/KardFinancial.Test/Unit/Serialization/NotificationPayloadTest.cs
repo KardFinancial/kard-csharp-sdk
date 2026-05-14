@@ -28,7 +28,9 @@ public class NotificationPayloadTest
                   "attributionUrl": "www.attribution.com/token",
                   "surveyUrl": "www.survey.com",
                   "cardProductId": "card_product_123",
-                  "transactionTimestamp": "2024-10-01T14:32:10.000Z"
+                  "transactionTimestamp": "2024-10-01T14:32:10.000Z",
+                  "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
+                  "transactionAmountInCents": 3000
                 },
                 "relationships": {
                   "user": {
@@ -72,6 +74,8 @@ public class NotificationPayloadTest
                                 null,
                                 DateTimeStyles.AdjustToUniversal
                             ),
+                            TransactionId = "019df940-babd-7cd3-acfc-a96de16643e9",
+                            TransactionAmountInCents = 3000,
                         },
                         Relationships = new EarnedRewardRelationships
                         {
@@ -114,7 +118,9 @@ public class NotificationPayloadTest
                   "attributionUrl": "www.attribution.com/token",
                   "surveyUrl": "www.survey.com",
                   "cardProductId": "card_product_123",
-                  "transactionTimestamp": "2024-10-01T14:32:10.000Z"
+                  "transactionTimestamp": "2024-10-01T14:32:10.000Z",
+                  "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
+                  "transactionAmountInCents": 3000
                 },
                 "relationships": {
                   "user": {
@@ -150,7 +156,9 @@ public class NotificationPayloadTest
                   "attributionUrl": "www.attribution.com/token",
                   "surveyUrl": "www.survey.com",
                   "cardProductId": "card_product_123",
-                  "transactionTimestamp": "2024-10-01T14:32:10.000Z"
+                  "transactionTimestamp": "2024-10-01T14:32:10.000Z",
+                  "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
+                  "transactionAmountInCents": 3000
                 },
                 "relationships": {
                   "user": {
@@ -176,7 +184,7 @@ public class NotificationPayloadTest
                     new EarnedRewardApprovedData
                     {
                         Id = "d80a6f28-1b24-4d65-9e42-e1cf3379bc98",
-                        Attributes = new EarnedRewardAttributes
+                        Attributes = new RewardNotificationAttributes
                         {
                             Message =
                                 "Thanks for shopping at McDonald's! We're checking to see if your purchase qualifies for cash back.",
@@ -189,6 +197,8 @@ public class NotificationPayloadTest
                                 null,
                                 DateTimeStyles.AdjustToUniversal
                             ),
+                            TransactionId = "019df940-babd-7cd3-acfc-a96de16643e9",
+                            TransactionAmountInCents = 3000,
                         },
                         Relationships = new EarnedRewardRelationships
                         {
@@ -227,7 +237,9 @@ public class NotificationPayloadTest
                   "attributionUrl": "www.attribution.com/token",
                   "surveyUrl": "www.survey.com",
                   "cardProductId": "card_product_123",
-                  "transactionTimestamp": "2024-10-01T14:32:10.000Z"
+                  "transactionTimestamp": "2024-10-01T14:32:10.000Z",
+                  "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
+                  "transactionAmountInCents": 3000
                 },
                 "relationships": {
                   "user": {
@@ -272,7 +284,9 @@ public class NotificationPayloadTest
                   },
                   "attributionUrl": "www.attribution.com/token",
                   "surveyUrl": "www.survey.com",
-                  "cardProductId": "card_product_123"
+                  "cardProductId": "card_product_123",
+                  "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
+                  "transactionAmountInCents": 3000
                 },
                 "relationships": {
                   "user": {
@@ -324,6 +338,8 @@ public class NotificationPayloadTest
                             AttributionUrl = "www.attribution.com/token",
                             SurveyUrl = "www.survey.com",
                             CardProductId = "card_product_123",
+                            TransactionId = "019df940-babd-7cd3-acfc-a96de16643e9",
+                            TransactionAmountInCents = 3000,
                         },
                         Relationships = new TransactionRelationships
                         {
@@ -375,7 +391,9 @@ public class NotificationPayloadTest
                   },
                   "attributionUrl": "www.attribution.com/token",
                   "surveyUrl": "www.survey.com",
-                  "cardProductId": "card_product_123"
+                  "cardProductId": "card_product_123",
+                  "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
+                  "transactionAmountInCents": 3000
                 },
                 "relationships": {
                   "user": {

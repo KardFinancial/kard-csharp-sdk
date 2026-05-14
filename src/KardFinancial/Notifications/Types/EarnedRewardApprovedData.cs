@@ -18,7 +18,7 @@ public record EarnedRewardApprovedData : IJsonOnDeserialized
     public required string Id { get; set; }
 
     [JsonPropertyName("attributes")]
-    public required EarnedRewardAttributes Attributes { get; set; }
+    public required RewardNotificationAttributes Attributes { get; set; }
 
     [JsonPropertyName("relationships")]
     public required EarnedRewardRelationships Relationships { get; set; }

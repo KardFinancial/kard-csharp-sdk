@@ -12,10 +12,13 @@ public partial class OrganizationsClient : IOrganizationsClient
     {
         _client = client;
         Children = new ChildrenClient(_client);
+        ContentStrategies = new ContentStrategiesClient(_client);
         Placements = new PlacementsClient(_client);
     }
 
     public IChildrenClient Children { get; }
+
+    public IContentStrategiesClient ContentStrategies { get; }
 
     public IPlacementsClient Placements { get; }
 

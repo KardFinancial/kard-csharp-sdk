@@ -5,6 +5,7 @@ namespace KardFinancial;
 public partial interface IOrganizationsClient
 {
     public IChildrenClient Children { get; }
+    public IContentStrategiesClient ContentStrategies { get; }
     public IPlacementsClient Placements { get; }
 
     /// <summary>

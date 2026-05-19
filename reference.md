@@ -739,6 +739,383 @@ await client.Organizations.Children.DeleteAsync("organizationId", "childId");
 </dl>
 </details>
 
+## ContentStrategies
+<details><summary><code>client.Organizations.ContentStrategies.<a href="/src/KardFinancial/Organizations/ContentStrategies/ContentStrategiesClient.cs">CreateAsync</a>(organizationId, CreateContentStrategyRequestBody { ... }) -> WithRawResponseTask&lt;ContentStrategyResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a content strategy for the organization. The strategy name must be unique within the organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organizations.ContentStrategies.CreateAsync(
+    "org-123",
+    new CreateContentStrategyRequestBody
+    {
+        Data = new CreateContentStrategyRequestData
+        {
+            Type = "contentStrategy",
+            Attributes = new CreateContentStrategyAttributes
+            {
+                Name = "Featured Travel",
+                Filters = new List<ContentStrategyFilter>()
+                {
+                    ContentStrategyFilter.HighestCashback,
+                    ContentStrategyFilter.NewlyLive,
+                },
+                Categories = new List<CategoryOption>() { CategoryOption.Travel },
+                CategoryExclusions = new List<CategoryOption>() { CategoryOption.Gas },
+                MerchantExclusions = new List<string>() { "merchant-abc" },
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationId:** `string` — Unique identifier of the organization
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CreateContentStrategyRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organizations.ContentStrategies.<a href="/src/KardFinancial/Organizations/ContentStrategies/ContentStrategiesClient.cs">ListAsync</a>(organizationId, ListContentStrategiesRequest { ... }) -> WithRawResponseTask&lt;ContentStrategyListResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List content strategies belonging to the authenticated organization
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organizations.ContentStrategies.ListAsync(
+    "organizationId",
+    new ListContentStrategiesRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationId:** `string` — Unique identifier of the organization
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListContentStrategiesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organizations.ContentStrategies.<a href="/src/KardFinancial/Organizations/ContentStrategies/ContentStrategiesClient.cs">GetAsync</a>(organizationId, contentStrategyId) -> WithRawResponseTask&lt;ContentStrategyResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a specific content strategy
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organizations.ContentStrategies.GetAsync("organizationId", "contentStrategyId");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationId:** `string` — Unique identifier of the organization
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contentStrategyId:** `string` — Unique identifier of the content strategy (UUID v7)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organizations.ContentStrategies.<a href="/src/KardFinancial/Organizations/ContentStrategies/ContentStrategiesClient.cs">UpdateAsync</a>(organizationId, contentStrategyId, UpdateContentStrategyRequestBody { ... }) -> WithRawResponseTask&lt;ContentStrategyResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replace a content strategy. All fields must be provided; any omitted attribute is treated as cleared.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organizations.ContentStrategies.UpdateAsync(
+    "organizationId",
+    "contentStrategyId",
+    new UpdateContentStrategyRequestBody
+    {
+        Data = new UpdateContentStrategyRequestData
+        {
+            Type = "contentStrategy",
+            Attributes = new UpdateContentStrategyAttributes
+            {
+                Name = "name",
+                Filters = new List<ContentStrategyFilter>()
+                {
+                    ContentStrategyFilter.NewlyLive,
+                    ContentStrategyFilter.NewlyLive,
+                },
+                Categories = new List<CategoryOption>()
+                {
+                    CategoryOption.ArtsEntertainment,
+                    CategoryOption.ArtsEntertainment,
+                },
+                CategoryExclusions = new List<CategoryOption>()
+                {
+                    CategoryOption.ArtsEntertainment,
+                    CategoryOption.ArtsEntertainment,
+                },
+                MerchantExclusions = new List<string>()
+                {
+                    "merchantExclusions",
+                    "merchantExclusions",
+                },
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationId:** `string` — Unique identifier of the organization
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contentStrategyId:** `string` — Unique identifier of the content strategy (UUID v7)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdateContentStrategyRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organizations.ContentStrategies.<a href="/src/KardFinancial/Organizations/ContentStrategies/ContentStrategiesClient.cs">DeleteAsync</a>(organizationId, contentStrategyId) -> WithRawResponseTask&lt;DeleteResourceResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a content strategy. Returns 409 if the strategy is still referenced by another resource.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organizations.ContentStrategies.DeleteAsync("organizationId", "contentStrategyId");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationId:** `string` — Unique identifier of the organization
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contentStrategyId:** `string` — Unique identifier of the content strategy (UUID v7)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Placements
 <details><summary><code>client.Organizations.Placements.<a href="/src/KardFinancial/Organizations/Placements/PlacementsClient.cs">CreateAsync</a>(organizationId, CreatePlacementRequestBody { ... }) -> WithRawResponseTask&lt;PlacementFormatUnion&gt;</code></summary>
 <dl>

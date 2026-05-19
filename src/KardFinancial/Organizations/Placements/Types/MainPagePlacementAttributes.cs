@@ -34,6 +34,12 @@ public record MainPagePlacementAttributes : IJsonOnDeserialized
     public required int AvailableSlots { get; set; }
 
     /// <summary>
+    /// ID of the content strategy linked to this placement, if any
+    /// </summary>
+    [JsonPropertyName("contentStrategyId")]
+    public string? ContentStrategyId { get; set; }
+
+    /// <summary>
     /// When the placement was created (ISO 8601 UTC)
     /// </summary>
     [JsonPropertyName("createdAt")]

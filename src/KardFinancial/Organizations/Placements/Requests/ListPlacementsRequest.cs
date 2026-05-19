@@ -19,6 +19,12 @@ public record ListPlacementsRequest
     public string? FilterName { get; set; }
 
     /// <summary>
+    /// Filter by the ID of the content strategy linked to the placement
+    /// </summary>
+    [JsonIgnore]
+    public string? FilterContentStrategyId { get; set; }
+
+    /// <summary>
     /// Cursor value for the next page of results
     /// </summary>
     [JsonIgnore]

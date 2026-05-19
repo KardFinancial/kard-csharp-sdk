@@ -19,6 +19,7 @@ public class GetTest : BaseMockServerTest
                 "name": "name",
                 "organizationId": "organizationId",
                 "availableSlots": 1,
+                "contentStrategyId": "contentStrategyId",
                 "createdAt": "2024-01-15T09:30:00.000Z",
                 "lastModified": "2024-01-15T09:30:00.000Z"
               }

@@ -27,6 +27,12 @@ public record CreateMainPageAttributes : IJsonOnDeserialized
     [JsonPropertyName("availableSlots")]
     public required int AvailableSlots { get; set; }
 
+    /// <summary>
+    /// ID of the content strategy to link this placement to
+    /// </summary>
+    [JsonPropertyName("contentStrategyId")]
+    public string? ContentStrategyId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

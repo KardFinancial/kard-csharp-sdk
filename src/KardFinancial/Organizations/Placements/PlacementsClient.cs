@@ -120,9 +120,10 @@ public partial class PlacementsClient : IPlacementsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new KardFinancial.Core.QueryStringBuilder.Builder(capacity: 4)
+        var _queryString = new KardFinancial.Core.QueryStringBuilder.Builder(capacity: 5)
             .Add("filter[type]", request.FilterType)
             .Add("filter[name]", request.FilterName)
+            .Add("filter[contentStrategyId]", request.FilterContentStrategyId)
             .Add("page[after]", request.PageAfter)
             .Add("page[size]", request.PageSize)
             .MergeAdditional(options?.AdditionalQueryParameters)

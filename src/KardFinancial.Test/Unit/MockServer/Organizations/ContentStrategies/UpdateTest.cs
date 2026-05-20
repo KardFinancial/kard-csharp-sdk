@@ -19,10 +19,6 @@ public class UpdateTest : BaseMockServerTest
                 "type": "contentStrategy",
                 "attributes": {
                   "name": "name",
-                  "filters": [
-                    "NEWLY_LIVE",
-                    "NEWLY_LIVE"
-                  ],
                   "categories": [
                     "Arts & Entertainment",
                     "Arts & Entertainment"
@@ -47,10 +43,7 @@ public class UpdateTest : BaseMockServerTest
               "attributes": {
                 "name": "name",
                 "organizationId": "organizationId",
-                "filters": [
-                  "NEWLY_LIVE",
-                  "NEWLY_LIVE"
-                ],
+                "filter": "NEWLY_LIVE",
                 "categories": [
                   "Arts & Entertainment",
                   "Arts & Entertainment"
@@ -95,11 +88,6 @@ public class UpdateTest : BaseMockServerTest
                     Attributes = new UpdateContentStrategyAttributes
                     {
                         Name = "name",
-                        Filters = new List<ContentStrategyFilter>()
-                        {
-                            ContentStrategyFilter.NewlyLive,
-                            ContentStrategyFilter.NewlyLive,
-                        },
                         Categories = new List<CategoryOption>()
                         {
                             CategoryOption.ArtsEntertainment,

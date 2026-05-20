@@ -19,10 +19,7 @@ public class CreateTest : BaseMockServerTest
                 "type": "contentStrategy",
                 "attributes": {
                   "name": "Featured Travel",
-                  "filters": [
-                    "HIGHEST_CASHBACK",
-                    "NEWLY_LIVE"
-                  ],
+                  "filter": "HIGHEST_CASHBACK",
                   "categories": [
                     "Travel"
                   ],
@@ -44,10 +41,7 @@ public class CreateTest : BaseMockServerTest
               "attributes": {
                 "name": "Featured Travel",
                 "organizationId": "org-123",
-                "filters": [
-                  "HIGHEST_CASHBACK",
-                  "NEWLY_LIVE"
-                ],
+                "filter": "HIGHEST_CASHBACK",
                 "categories": [
                   "Travel"
                 ],
@@ -88,11 +82,7 @@ public class CreateTest : BaseMockServerTest
                     Attributes = new CreateContentStrategyAttributes
                     {
                         Name = "Featured Travel",
-                        Filters = new List<ContentStrategyFilter>()
-                        {
-                            ContentStrategyFilter.HighestCashback,
-                            ContentStrategyFilter.NewlyLive,
-                        },
+                        Filter = ContentStrategyFilter.HighestCashback,
                         Categories = new List<CategoryOption>() { CategoryOption.Travel },
                         CategoryExclusions = new List<CategoryOption>() { CategoryOption.Gas },
                         MerchantExclusions = new List<string>() { "merchant-abc" },

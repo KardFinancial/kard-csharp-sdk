@@ -22,11 +22,10 @@ public record CreateContentStrategyAttributes : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
-    /// Filters applied when selecting offers for the strategy
+    /// Filter applied when selecting offers for the strategy
     /// </summary>
-    [JsonPropertyName("filters")]
-    public IEnumerable<ContentStrategyFilter> Filters { get; set; } =
-        new List<ContentStrategyFilter>();
+    [JsonPropertyName("filter")]
+    public ContentStrategyFilter? Filter { get; set; }
 
     /// <summary>
     /// Merchant categories to include

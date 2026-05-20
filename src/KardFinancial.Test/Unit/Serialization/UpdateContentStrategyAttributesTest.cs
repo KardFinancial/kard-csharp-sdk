@@ -16,10 +16,7 @@ public class UpdateContentStrategyAttributesTest
         var json = """
             {
               "name": "Updated Travel Strategy",
-              "filters": [
-                "EXPIRING_SOON",
-                "PERSONALIZED"
-              ],
+              "filter": "EXPIRING_SOON",
               "categories": [
                 "Travel",
                 "Food & Beverage"
@@ -33,11 +30,7 @@ public class UpdateContentStrategyAttributesTest
         var expectedObject = new UpdateContentStrategyAttributes
         {
             Name = "Updated Travel Strategy",
-            Filters = new List<ContentStrategyFilter>()
-            {
-                ContentStrategyFilter.ExpiringSoon,
-                ContentStrategyFilter.Personalized,
-            },
+            Filter = ContentStrategyFilter.ExpiringSoon,
             Categories = new List<CategoryOption>()
             {
                 CategoryOption.Travel,
@@ -56,10 +49,7 @@ public class UpdateContentStrategyAttributesTest
         var inputJson = """
             {
               "name": "Updated Travel Strategy",
-              "filters": [
-                "EXPIRING_SOON",
-                "PERSONALIZED"
-              ],
+              "filter": "EXPIRING_SOON",
               "categories": [
                 "Travel",
                 "Food & Beverage"

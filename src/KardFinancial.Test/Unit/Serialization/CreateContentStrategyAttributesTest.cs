@@ -16,10 +16,7 @@ public class CreateContentStrategyAttributesTest
         var json = """
             {
               "name": "Featured Travel",
-              "filters": [
-                "HIGHEST_CASHBACK",
-                "NEWLY_LIVE"
-              ],
+              "filter": "HIGHEST_CASHBACK",
               "categories": [
                 "Travel"
               ],
@@ -34,11 +31,7 @@ public class CreateContentStrategyAttributesTest
         var expectedObject = new CreateContentStrategyAttributes
         {
             Name = "Featured Travel",
-            Filters = new List<ContentStrategyFilter>()
-            {
-                ContentStrategyFilter.HighestCashback,
-                ContentStrategyFilter.NewlyLive,
-            },
+            Filter = ContentStrategyFilter.HighestCashback,
             Categories = new List<CategoryOption>() { CategoryOption.Travel },
             CategoryExclusions = new List<CategoryOption>() { CategoryOption.Gas },
             MerchantExclusions = new List<string>() { "merchant-abc" },
@@ -53,10 +46,7 @@ public class CreateContentStrategyAttributesTest
         var inputJson = """
             {
               "name": "Featured Travel",
-              "filters": [
-                "HIGHEST_CASHBACK",
-                "NEWLY_LIVE"
-              ],
+              "filter": "HIGHEST_CASHBACK",
               "categories": [
                 "Travel"
               ],

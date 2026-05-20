@@ -25,6 +25,12 @@ public record ListPlacementsRequest
     public string? FilterContentStrategyId { get; set; }
 
     /// <summary>
+    /// CSV list of related resources to embed in the `included` array (allowed value is `contentStrategy`).
+    /// </summary>
+    [JsonIgnore]
+    public string? Include { get; set; }
+
+    /// <summary>
     /// Cursor value for the next page of results
     /// </summary>
     [JsonIgnore]

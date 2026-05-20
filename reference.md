@@ -1249,7 +1249,7 @@ await client.Organizations.Placements.ListAsync("organizationId", new ListPlacem
 </dl>
 </details>
 
-<details><summary><code>client.Organizations.Placements.<a href="/src/KardFinancial/Organizations/Placements/PlacementsClient.cs">GetAsync</a>(organizationId, placementId) -> WithRawResponseTask&lt;PlacementFormatUnion&gt;</code></summary>
+<details><summary><code>client.Organizations.Placements.<a href="/src/KardFinancial/Organizations/Placements/PlacementsClient.cs">GetAsync</a>(organizationId, placementId, GetPlacementRequest { ... }) -> WithRawResponseTask&lt;PlacementResource&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1276,7 +1276,11 @@ Retrieve a specific placement
 <dd>
 
 ```csharp
-await client.Organizations.Placements.GetAsync("organizationId", "placementId");
+await client.Organizations.Placements.GetAsync(
+    "organizationId",
+    "placementId",
+    new GetPlacementRequest()
+);
 ```
 </dd>
 </dl>
@@ -1300,6 +1304,14 @@ await client.Organizations.Placements.GetAsync("organizationId", "placementId");
 <dd>
 
 **placementId:** `string` — Unique identifier of the placement (UUID v7)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GetPlacementRequest` 
     
 </dd>
 </dl>

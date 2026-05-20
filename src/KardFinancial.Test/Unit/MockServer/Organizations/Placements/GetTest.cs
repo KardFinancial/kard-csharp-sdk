@@ -1,3 +1,4 @@
+using KardFinancial.Organizations;
 using KardFinancial.Test.Unit.MockServer;
 using KardFinancial.Test.Utils;
 using NUnit.Framework;
@@ -13,16 +14,60 @@ public class GetTest : BaseMockServerTest
     {
         const string mockResponse = """
             {
-              "type": "placementMainPage",
-              "id": "id",
-              "attributes": {
-                "name": "name",
-                "organizationId": "organizationId",
-                "availableSlots": 1,
-                "contentStrategyId": "contentStrategyId",
-                "createdAt": "2024-01-15T09:30:00.000Z",
-                "lastModified": "2024-01-15T09:30:00.000Z"
-              }
+              "data": {
+                "type": "placementMainPage",
+                "id": "id",
+                "attributes": {
+                  "name": "name",
+                  "organizationId": "organizationId",
+                  "availableSlots": 1,
+                  "contentStrategyId": "contentStrategyId"
+                }
+              },
+              "included": [
+                {
+                  "type": "contentStrategy",
+                  "id": "id",
+                  "attributes": {
+                    "name": "name",
+                    "organizationId": "organizationId",
+                    "filter": "NEWLY_LIVE",
+                    "categories": [
+                      "Arts & Entertainment",
+                      "Arts & Entertainment"
+                    ],
+                    "categoryExclusions": [
+                      "Arts & Entertainment",
+                      "Arts & Entertainment"
+                    ],
+                    "merchantExclusions": [
+                      "merchantExclusions",
+                      "merchantExclusions"
+                    ]
+                  }
+                },
+                {
+                  "type": "contentStrategy",
+                  "id": "id",
+                  "attributes": {
+                    "name": "name",
+                    "organizationId": "organizationId",
+                    "filter": "NEWLY_LIVE",
+                    "categories": [
+                      "Arts & Entertainment",
+                      "Arts & Entertainment"
+                    ],
+                    "categoryExclusions": [
+                      "Arts & Entertainment",
+                      "Arts & Entertainment"
+                    ],
+                    "merchantExclusions": [
+                      "merchantExclusions",
+                      "merchantExclusions"
+                    ]
+                  }
+                }
+              ]
             }
             """;
 
@@ -42,7 +87,8 @@ public class GetTest : BaseMockServerTest
 
         var response = await Client.Organizations.Placements.GetAsync(
             "organizationId",
-            "placementId"
+            "placementId",
+            new GetPlacementRequest()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

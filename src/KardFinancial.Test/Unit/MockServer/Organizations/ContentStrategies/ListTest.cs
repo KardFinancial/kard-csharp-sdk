@@ -33,9 +33,7 @@ public class ListTest : BaseMockServerTest
                     "merchantExclusions": [
                       "merchantExclusions",
                       "merchantExclusions"
-                    ],
-                    "createdAt": "2024-01-15T09:30:00.000Z",
-                    "lastModified": "2024-01-15T09:30:00.000Z"
+                    ]
                   }
                 },
                 {
@@ -56,9 +54,7 @@ public class ListTest : BaseMockServerTest
                     "merchantExclusions": [
                       "merchantExclusions",
                       "merchantExclusions"
-                    ],
-                    "createdAt": "2024-01-15T09:30:00.000Z",
-                    "lastModified": "2024-01-15T09:30:00.000Z"
+                    ]
                   }
                 }
               ],

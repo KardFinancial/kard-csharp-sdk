@@ -6,38 +6,26 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Attributes for a push-notification placement
+/// Single placement document, optionally with embedded related resources
 /// </summary>
 [Serializable]
-public record PushNotificationPlacementAttributes : IJsonOnDeserialized
+public record PlacementResource : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Name of the placement
+    /// Placement resource
     /// </summary>
-    [JsonPropertyName("name")]
-    public required string Name { get; set; }
+    [JsonPropertyName("data")]
+    public required PlacementFormatUnion Data { get; set; }
 
     /// <summary>
-    /// ID of the organization this placement belongs to
+    /// Related resources requested via the `include` query parameter. Only populated when `include=contentStrategy` is supplied and the placement is linked to a content strategy.
     /// </summary>
-    [JsonPropertyName("organizationId")]
-    public required string OrganizationId { get; set; }
-
-    /// <summary>
-    /// Delivery cadence for the notification
-    /// </summary>
-    [JsonPropertyName("cadence")]
-    public required Cadence Cadence { get; set; }
-
-    /// <summary>
-    /// ID of the content strategy linked to this placement, if any
-    /// </summary>
-    [JsonPropertyName("contentStrategyId")]
-    public string? ContentStrategyId { get; set; }
+    [JsonPropertyName("included")]
+    public IEnumerable<ContentStrategyResponse>? Included { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

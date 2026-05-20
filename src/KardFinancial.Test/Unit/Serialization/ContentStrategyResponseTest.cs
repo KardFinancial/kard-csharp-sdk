@@ -1,4 +1,3 @@
-using global::System.Globalization;
 using KardFinancial;
 using KardFinancial.Core;
 using KardFinancial.Organizations;
@@ -30,9 +29,7 @@ public class ContentStrategyResponseTest
                 ],
                 "merchantExclusions": [
                   "merchant-abc"
-                ],
-                "createdAt": "2026-04-15T12:00:00Z",
-                "lastModified": "2026-04-15T12:00:00Z"
+                ]
               }
             }
             """;
@@ -48,16 +45,6 @@ public class ContentStrategyResponseTest
                 Categories = new List<CategoryOption>() { CategoryOption.Travel },
                 CategoryExclusions = new List<CategoryOption>() { CategoryOption.Gas },
                 MerchantExclusions = new List<string>() { "merchant-abc" },
-                CreatedAt = DateTime.Parse(
-                    "2026-04-15T12:00:00.000Z",
-                    null,
-                    DateTimeStyles.AdjustToUniversal
-                ),
-                LastModified = DateTime.Parse(
-                    "2026-04-15T12:00:00.000Z",
-                    null,
-                    DateTimeStyles.AdjustToUniversal
-                ),
             },
         };
         var deserializedObject = JsonUtils.Deserialize<ContentStrategyResponse>(json);
@@ -83,9 +70,7 @@ public class ContentStrategyResponseTest
                 ],
                 "merchantExclusions": [
                   "merchant-abc"
-                ],
-                "createdAt": "2026-04-15T12:00:00Z",
-                "lastModified": "2026-04-15T12:00:00Z"
+                ]
               }
             }
             """;

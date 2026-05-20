@@ -27,9 +27,10 @@ public partial interface IPlacementsClient
     /// <summary>
     /// Retrieve a specific placement
     /// </summary>
-    WithRawResponseTask<PlacementFormatUnion> GetAsync(
+    WithRawResponseTask<PlacementResource> GetAsync(
         string organizationId,
         string placementId,
+        GetPlacementRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

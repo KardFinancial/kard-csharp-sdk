@@ -31,9 +31,7 @@ public class CreateTest : BaseMockServerTest
               "attributes": {
                 "name": "Homepage Banner",
                 "organizationId": "org-123",
-                "availableSlots": 5,
-                "createdAt": "2026-04-15T12:00:00.000Z",
-                "lastModified": "2026-04-15T12:00:00.000Z"
+                "availableSlots": 5
               }
             }
             """;
@@ -102,9 +100,7 @@ public class CreateTest : BaseMockServerTest
                 "cadence": {
                   "frequency": "DAILY",
                   "timeOfDay": "09:00"
-                },
-                "createdAt": "2026-04-15T12:00:00.000Z",
-                "lastModified": "2026-04-15T12:00:00.000Z"
+                }
               }
             }
             """;

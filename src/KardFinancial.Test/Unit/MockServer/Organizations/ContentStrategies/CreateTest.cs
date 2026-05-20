@@ -50,9 +50,7 @@ public class CreateTest : BaseMockServerTest
                 ],
                 "merchantExclusions": [
                   "merchant-abc"
-                ],
-                "createdAt": "2026-04-15T12:00:00.000Z",
-                "lastModified": "2026-04-15T12:00:00.000Z"
+                ]
               }
             }
             """;

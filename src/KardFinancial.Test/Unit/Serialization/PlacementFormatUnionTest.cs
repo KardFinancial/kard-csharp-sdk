@@ -1,4 +1,3 @@
-using global::System.Globalization;
 using KardFinancial.Core;
 using KardFinancial.Organizations;
 using KardFinancial.Test.Utils;
@@ -20,9 +19,7 @@ public class PlacementFormatUnionTest
               "attributes": {
                 "name": "Homepage Banner",
                 "organizationId": "org-123",
-                "availableSlots": 5,
-                "createdAt": "2026-04-15T12:00:00Z",
-                "lastModified": "2026-04-15T12:00:00Z"
+                "availableSlots": 5
               }
             }
             """;
@@ -36,16 +33,6 @@ public class PlacementFormatUnionTest
                         Name = "Homepage Banner",
                         OrganizationId = "org-123",
                         AvailableSlots = 5,
-                        CreatedAt = DateTime.Parse(
-                            "2026-04-15T12:00:00.000Z",
-                            null,
-                            DateTimeStyles.AdjustToUniversal
-                        ),
-                        LastModified = DateTime.Parse(
-                            "2026-04-15T12:00:00.000Z",
-                            null,
-                            DateTimeStyles.AdjustToUniversal
-                        ),
                     },
                 }
             )
@@ -64,9 +51,7 @@ public class PlacementFormatUnionTest
               "attributes": {
                 "name": "Homepage Banner",
                 "organizationId": "org-123",
-                "availableSlots": 5,
-                "createdAt": "2026-04-15T12:00:00Z",
-                "lastModified": "2026-04-15T12:00:00Z"
+                "availableSlots": 5
               }
             }
             """;
@@ -86,9 +71,7 @@ public class PlacementFormatUnionTest
                 "cadence": {
                   "frequency": "DAILY",
                   "timeOfDay": "09:00"
-                },
-                "createdAt": "2026-04-15T12:00:00Z",
-                "lastModified": "2026-04-15T12:00:00Z"
+                }
               }
             }
             """;
@@ -106,16 +89,6 @@ public class PlacementFormatUnionTest
                             Frequency = CadenceFrequency.Daily,
                             TimeOfDay = "09:00",
                         },
-                        CreatedAt = DateTime.Parse(
-                            "2026-04-15T12:00:00.000Z",
-                            null,
-                            DateTimeStyles.AdjustToUniversal
-                        ),
-                        LastModified = DateTime.Parse(
-                            "2026-04-15T12:00:00.000Z",
-                            null,
-                            DateTimeStyles.AdjustToUniversal
-                        ),
                     },
                 }
             )
@@ -137,9 +110,7 @@ public class PlacementFormatUnionTest
                 "cadence": {
                   "frequency": "DAILY",
                   "timeOfDay": "09:00"
-                },
-                "createdAt": "2026-04-15T12:00:00Z",
-                "lastModified": "2026-04-15T12:00:00Z"
+                }
               }
             }
             """;

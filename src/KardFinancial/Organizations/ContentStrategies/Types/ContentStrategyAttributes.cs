@@ -52,18 +52,6 @@ public record ContentStrategyAttributes : IJsonOnDeserialized
     [JsonPropertyName("merchantExclusions")]
     public IEnumerable<string> MerchantExclusions { get; set; } = new List<string>();
 
-    /// <summary>
-    /// When the content strategy was created (ISO 8601 UTC)
-    /// </summary>
-    [JsonPropertyName("createdAt")]
-    public required DateTime CreatedAt { get; set; }
-
-    /// <summary>
-    /// When the content strategy was last modified (ISO 8601 UTC)
-    /// </summary>
-    [JsonPropertyName("lastModified")]
-    public required DateTime LastModified { get; set; }
-
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

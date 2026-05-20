@@ -1,5 +1,5 @@
 {
-  "cliVersion": "5.32.1",
+  "cliVersion": "5.33.1",
   "generatorName": "fernapi/fern-csharp-sdk",
   "generatorVersion": "2.65.0",
   "generatorConfig": {
@@ -11,10 +11,10 @@
     "base-exception-class-name": "KardException",
     "generate-mock-server-tests": true
   },
-  "originGitCommit": "6fc92d924e622542d1f85dbb27dfe4c49a91c13b",
+  "originGitCommit": "c7b38e58c06af20807b3e87d335acef4b0f9ae3c",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
   "requestedVersion": "AUTO",
   "ciProvider": "unknown",
-  "sdkVersion": "4.0.0"
+  "sdkVersion": "5.0.0"
 }

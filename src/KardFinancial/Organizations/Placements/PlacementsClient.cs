@@ -120,10 +120,11 @@ public partial class PlacementsClient : IPlacementsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new KardFinancial.Core.QueryStringBuilder.Builder(capacity: 5)
+        var _queryString = new KardFinancial.Core.QueryStringBuilder.Builder(capacity: 6)
             .Add("filter[type]", request.FilterType)
             .Add("filter[name]", request.FilterName)
             .Add("filter[contentStrategyId]", request.FilterContentStrategyId)
+            .Add("include", request.Include)
             .Add("page[after]", request.PageAfter)
             .Add("page[size]", request.PageSize)
             .MergeAdditional(options?.AdditionalQueryParameters)
@@ -221,13 +222,18 @@ public partial class PlacementsClient : IPlacementsClient
         }
     }
 
-    private async Task<WithRawResponse<PlacementFormatUnion>> GetAsyncCore(
+    private async Task<WithRawResponse<PlacementResource>> GetAsyncCore(
         string organizationId,
         string placementId,
+        GetPlacementRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _queryString = new KardFinancial.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("include", request.Include)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
         var _headers = await new KardFinancial.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
             .Add(_client.Options.AdditionalHeaders)
@@ -244,6 +250,7 @@ public partial class PlacementsClient : IPlacementsClient
                         ValueConvert.ToPathParameterString(organizationId),
                         ValueConvert.ToPathParameterString(placementId)
                     ),
+                    QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
                 },
@@ -257,8 +264,8 @@ public partial class PlacementsClient : IPlacementsClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<PlacementFormatUnion>(responseBody)!;
-                return new WithRawResponse<PlacementFormatUnion>()
+                var responseData = JsonUtils.Deserialize<PlacementResource>(responseBody)!;
+                return new WithRawResponse<PlacementResource>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -572,17 +579,22 @@ public partial class PlacementsClient : IPlacementsClient
     /// Retrieve a specific placement
     /// </summary>
     /// <example><code>
-    /// await client.Organizations.Placements.GetAsync("organizationId", "placementId");
+    /// await client.Organizations.Placements.GetAsync(
+    ///     "organizationId",
+    ///     "placementId",
+    ///     new GetPlacementRequest()
+    /// );
     /// </code></example>
-    public WithRawResponseTask<PlacementFormatUnion> GetAsync(
+    public WithRawResponseTask<PlacementResource> GetAsync(
         string organizationId,
         string placementId,
+        GetPlacementRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<PlacementFormatUnion>(
-            GetAsyncCore(organizationId, placementId, options, cancellationToken)
+        return new WithRawResponseTask<PlacementResource>(
+            GetAsyncCore(organizationId, placementId, request, options, cancellationToken)
         );
     }
 

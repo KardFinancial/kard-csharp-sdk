@@ -535,7 +535,7 @@ public partial class ContentStrategiesClient : IContentStrategiesClient
     ///             Attributes = new CreateContentStrategyAttributes
     ///             {
     ///                 Name = "Featured Travel",
-    ///                 Filter = ContentStrategyFilter.HighestCashback,
+    ///                 Sort = ContentStrategySort.HighestCashback,
     ///                 Categories = new List&lt;CategoryOption&gt;() { CategoryOption.Travel },
     ///                 CategoryExclusions = new List&lt;CategoryOption&gt;() { CategoryOption.Gas },
     ///                 MerchantExclusions = new List&lt;string&gt;() { "merchant-abc" },

@@ -4,19 +4,19 @@ using KardFinancial.Core;
 
 namespace KardFinancial.Organizations;
 
-[JsonConverter(typeof(ContentStrategyFilter.ContentStrategyFilterSerializer))]
+[JsonConverter(typeof(ContentStrategySort.ContentStrategySortSerializer))]
 [Serializable]
-public readonly record struct ContentStrategyFilter : IStringEnum
+public readonly record struct ContentStrategySort : IStringEnum
 {
-    public static readonly ContentStrategyFilter NewlyLive = new(Values.NewlyLive);
+    public static readonly ContentStrategySort NewlyLive = new(Values.NewlyLive);
 
-    public static readonly ContentStrategyFilter ExpiringSoon = new(Values.ExpiringSoon);
+    public static readonly ContentStrategySort ExpiringSoon = new(Values.ExpiringSoon);
 
-    public static readonly ContentStrategyFilter HighestCashback = new(Values.HighestCashback);
+    public static readonly ContentStrategySort HighestCashback = new(Values.HighestCashback);
 
-    public static readonly ContentStrategyFilter Personalized = new(Values.Personalized);
+    public static readonly ContentStrategySort Personalized = new(Values.Personalized);
 
-    public ContentStrategyFilter(string value)
+    public ContentStrategySort(string value)
     {
         Value = value;
     }
@@ -29,9 +29,9 @@ public readonly record struct ContentStrategyFilter : IStringEnum
     /// <summary>
     /// Create a string enum with the given value.
     /// </summary>
-    public static ContentStrategyFilter FromCustom(string value)
+    public static ContentStrategySort FromCustom(string value)
     {
-        return new ContentStrategyFilter(value);
+        return new ContentStrategySort(value);
     }
 
     public bool Equals(string? other)
@@ -47,19 +47,19 @@ public readonly record struct ContentStrategyFilter : IStringEnum
         return Value;
     }
 
-    public static bool operator ==(ContentStrategyFilter value1, string value2) =>
+    public static bool operator ==(ContentStrategySort value1, string value2) =>
         value1.Value.Equals(value2);
 
-    public static bool operator !=(ContentStrategyFilter value1, string value2) =>
+    public static bool operator !=(ContentStrategySort value1, string value2) =>
         !value1.Value.Equals(value2);
 
-    public static explicit operator string(ContentStrategyFilter value) => value.Value;
+    public static explicit operator string(ContentStrategySort value) => value.Value;
 
-    public static explicit operator ContentStrategyFilter(string value) => new(value);
+    public static explicit operator ContentStrategySort(string value) => new(value);
 
-    internal class ContentStrategyFilterSerializer : JsonConverter<ContentStrategyFilter>
+    internal class ContentStrategySortSerializer : JsonConverter<ContentStrategySort>
     {
-        public override ContentStrategyFilter Read(
+        public override ContentStrategySort Read(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -70,19 +70,19 @@ public readonly record struct ContentStrategyFilter : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON value could not be read as a string."
                 );
-            return new ContentStrategyFilter(stringValue);
+            return new ContentStrategySort(stringValue);
         }
 
         public override void Write(
             Utf8JsonWriter writer,
-            ContentStrategyFilter value,
+            ContentStrategySort value,
             JsonSerializerOptions options
         )
         {
             writer.WriteStringValue(value.Value);
         }
 
-        public override ContentStrategyFilter ReadAsPropertyName(
+        public override ContentStrategySort ReadAsPropertyName(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -93,12 +93,12 @@ public readonly record struct ContentStrategyFilter : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON property name could not be read as a string."
                 );
-            return new ContentStrategyFilter(stringValue);
+            return new ContentStrategySort(stringValue);
         }
 
         public override void WriteAsPropertyName(
             Utf8JsonWriter writer,
-            ContentStrategyFilter value,
+            ContentStrategySort value,
             JsonSerializerOptions options
         )
         {

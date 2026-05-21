@@ -28,10 +28,10 @@ public record ContentStrategyAttributes : IJsonOnDeserialized
     public required string OrganizationId { get; set; }
 
     /// <summary>
-    /// Filter applied when selecting offers for the strategy
+    /// Sort applied when selecting offers for the strategy
     /// </summary>
-    [JsonPropertyName("filter")]
-    public ContentStrategyFilter? Filter { get; set; }
+    [JsonPropertyName("sort")]
+    public ContentStrategySort? Sort { get; set; }
 
     /// <summary>
     /// Merchant categories to include

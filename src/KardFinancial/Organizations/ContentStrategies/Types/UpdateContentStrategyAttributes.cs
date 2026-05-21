@@ -22,10 +22,10 @@ public record UpdateContentStrategyAttributes : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
-    /// Filter applied when selecting offers for the strategy
+    /// Sort applied when selecting offers for the strategy
     /// </summary>
-    [JsonPropertyName("filter")]
-    public ContentStrategyFilter? Filter { get; set; }
+    [JsonPropertyName("sort")]
+    public ContentStrategySort? Sort { get; set; }
 
     /// <summary>
     /// Merchant categories to include

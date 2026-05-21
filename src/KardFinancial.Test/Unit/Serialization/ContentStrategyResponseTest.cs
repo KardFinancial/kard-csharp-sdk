@@ -20,7 +20,7 @@ public class ContentStrategyResponseTest
               "attributes": {
                 "name": "Featured Travel",
                 "organizationId": "org-123",
-                "filter": "HIGHEST_CASHBACK",
+                "sort": "HIGHEST_CASHBACK",
                 "categories": [
                   "Travel"
                 ],
@@ -41,7 +41,7 @@ public class ContentStrategyResponseTest
             {
                 Name = "Featured Travel",
                 OrganizationId = "org-123",
-                Filter = ContentStrategyFilter.HighestCashback,
+                Sort = ContentStrategySort.HighestCashback,
                 Categories = new List<CategoryOption>() { CategoryOption.Travel },
                 CategoryExclusions = new List<CategoryOption>() { CategoryOption.Gas },
                 MerchantExclusions = new List<string>() { "merchant-abc" },
@@ -61,7 +61,7 @@ public class ContentStrategyResponseTest
               "attributes": {
                 "name": "Featured Travel",
                 "organizationId": "org-123",
-                "filter": "HIGHEST_CASHBACK",
+                "sort": "HIGHEST_CASHBACK",
                 "categories": [
                   "Travel"
                 ],

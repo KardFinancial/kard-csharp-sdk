@@ -18,7 +18,7 @@ public class GetTest : BaseMockServerTest
               "attributes": {
                 "name": "name",
                 "organizationId": "organizationId",
-                "filter": "NEWLY_LIVE",
+                "sort": "NEWLY_LIVE",
                 "categories": [
                   "Arts & Entertainment",
                   "Arts & Entertainment"

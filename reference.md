@@ -777,7 +777,7 @@ await client.Organizations.ContentStrategies.CreateAsync(
             Attributes = new CreateContentStrategyAttributes
             {
                 Name = "Featured Travel",
-                Filter = ContentStrategyFilter.HighestCashback,
+                Sort = ContentStrategySort.HighestCashback,
                 Categories = new List<CategoryOption>() { CategoryOption.Travel },
                 CategoryExclusions = new List<CategoryOption>() { CategoryOption.Gas },
                 MerchantExclusions = new List<string>() { "merchant-abc" },

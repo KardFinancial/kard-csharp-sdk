@@ -21,7 +21,7 @@ public class ListTest : BaseMockServerTest
                   "attributes": {
                     "name": "name",
                     "organizationId": "organizationId",
-                    "filter": "NEWLY_LIVE",
+                    "sort": "NEWLY_LIVE",
                     "categories": [
                       "Arts & Entertainment",
                       "Arts & Entertainment"
@@ -42,7 +42,7 @@ public class ListTest : BaseMockServerTest
                   "attributes": {
                     "name": "name",
                     "organizationId": "organizationId",
-                    "filter": "NEWLY_LIVE",
+                    "sort": "NEWLY_LIVE",
                     "categories": [
                       "Arts & Entertainment",
                       "Arts & Entertainment"

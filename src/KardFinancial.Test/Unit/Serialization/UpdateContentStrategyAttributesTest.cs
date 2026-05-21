@@ -16,7 +16,7 @@ public class UpdateContentStrategyAttributesTest
         var json = """
             {
               "name": "Updated Travel Strategy",
-              "filter": "EXPIRING_SOON",
+              "sort": "EXPIRING_SOON",
               "categories": [
                 "Travel",
                 "Food & Beverage"
@@ -30,7 +30,7 @@ public class UpdateContentStrategyAttributesTest
         var expectedObject = new UpdateContentStrategyAttributes
         {
             Name = "Updated Travel Strategy",
-            Filter = ContentStrategyFilter.ExpiringSoon,
+            Sort = ContentStrategySort.ExpiringSoon,
             Categories = new List<CategoryOption>()
             {
                 CategoryOption.Travel,
@@ -49,7 +49,7 @@ public class UpdateContentStrategyAttributesTest
         var inputJson = """
             {
               "name": "Updated Travel Strategy",
-              "filter": "EXPIRING_SOON",
+              "sort": "EXPIRING_SOON",
               "categories": [
                 "Travel",
                 "Food & Beverage"

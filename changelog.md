@@ -1,3 +1,11 @@
+## 6.1.0 - 2026-05-22
+### Added
+* **`ProgressBarSegment.Separator`** — new optional `ProgressBarSegmentSeparator?` property specifying the separator style rendered between segment nodes.
+* **`ProgressBarSegment.Labels`** — new optional `IEnumerable<ProgressBarSegmentLabel>?` property providing label configuration for each node in the segment.
+* **`ProgressBarSegment.Selection`** — new optional `ProgressBarSegmentSelection?` property indicating which segment nodes the UI should render as selected based on `currentProgress`.
+* **`ProgressBarSegmentLabel`** — new record type with required `Title` and `Description` string properties for labeling individual segment nodes.
+* **`ProgressBarSegmentSeparator`** and **`ProgressBarSegmentSelection`** — new string enum types with values `LINE` and `CURRENT`/`CURRENT_AND_BELOW` respectively.
+
 ## 6.0.0 - 2026-05-21
 ### Breaking Changes
 * **`ContentStrategyFilter`** — renamed to `ContentStrategySort`; replace all references to `ContentStrategyFilter` with `ContentStrategySort` in your code.

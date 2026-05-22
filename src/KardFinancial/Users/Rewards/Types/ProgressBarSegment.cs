@@ -27,6 +27,24 @@ public record ProgressBarSegment : IJsonOnDeserialized
     [JsonPropertyName("position")]
     public required ProgressBarSegmentPosition Position { get; set; }
 
+    /// <summary>
+    /// Separator style to render between segment nodes
+    /// </summary>
+    [JsonPropertyName("separator")]
+    public ProgressBarSegmentSeparator? Separator { get; set; }
+
+    /// <summary>
+    /// Label configuration for each node in the segment
+    /// </summary>
+    [JsonPropertyName("labels")]
+    public IEnumerable<ProgressBarSegmentLabel>? Labels { get; set; }
+
+    /// <summary>
+    /// Which segment nodes the UI should render as selected based on currentProgress
+    /// </summary>
+    [JsonPropertyName("selection")]
+    public ProgressBarSegmentSelection? Selection { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

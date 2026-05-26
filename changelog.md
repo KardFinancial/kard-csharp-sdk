@@ -1,3 +1,10 @@
+## 7.1.0 - 2026-05-26
+### Added
+* **`RewardsClient.PlacementBatchesAsync`** — new method to retrieve batches for a batch-activation placement, returning each slot in slot order with its current offer set, alias, and freshness fields (`IsActive`, `LastActivatedAt`, `ExpiresAt`).
+* **`GetBatchesByPlacementRequest`** — new request record with an optional `SupportedComponents` property for filtering UI component types included in the response.
+* **`BatchesResponseObject`** — new response record containing an ordered `Data` list of `BatchSlotData` items representing each slot in the placement.
+* **`BatchSlotData`** — new record type exposing slot identity (`SlotId`, `Alias`), freshness state (`IsActive`, `LastActivatedAt`, `ExpiresAt`), and the per-slot `Offers` collection.
+
 ## 7.0.0 - 2026-05-26
 ### Breaking Changes
 * **`PlacementFormatUnion.Match`** and **`PlacementFormatUnion.Visit`** — a new required `onPlacementBatchActivation` delegate parameter was added; add a handler for the `placementBatchActivation` case at every call site to fix compile errors.

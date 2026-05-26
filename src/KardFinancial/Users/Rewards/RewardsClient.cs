@@ -233,6 +233,110 @@ public partial class RewardsClient : IRewardsClient
         }
     }
 
+    private async Task<WithRawResponse<BatchesResponseObject>> PlacementBatchesAsyncCore(
+        string organizationId,
+        string userId,
+        string placementId,
+        GetBatchesByPlacementRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new KardFinancial.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("supportedComponents", request.SupportedComponents)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new KardFinancial.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/v2/issuers/{0}/users/{1}/placements/{2}/batches",
+                        ValueConvert.ToPathParameterString(organizationId),
+                        ValueConvert.ToPathParameterString(userId),
+                        ValueConvert.ToPathParameterString(placementId)
+                    ),
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<BatchesResponseObject>(responseBody)!;
+                return new WithRawResponse<BatchesResponseObject>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new KardApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 500:
+                        throw new InternalServerError(
+                            JsonUtils.Deserialize<ErrorResponse>(responseBody)
+                        );
+                    case 400:
+                        throw new InvalidRequest(
+                            JsonUtils.Deserialize<ErrorResponse>(responseBody)
+                        );
+                    case 404:
+                        throw new DoesNotExistError(
+                            JsonUtils.Deserialize<ErrorResponse>(responseBody)
+                        );
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<ErrorResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new KardApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     private async Task<WithRawResponse<LocationsResponseObject>> LocationsAsyncCore(
         string organizationId,
         string userId,
@@ -403,6 +507,46 @@ public partial class RewardsClient : IRewardsClient
     {
         return new WithRawResponseTask<OffersResponseObject>(
             PlacementOffersAsyncCore(
+                organizationId,
+                userId,
+                placementId,
+                request,
+                options,
+                cancellationToken
+            )
+        );
+    }
+
+    /// <summary>
+    /// Retrieve batches for a batch-activation placement. Returns each slot in slot
+    /// order with its current offer set, alias, and freshness fields (`isActive`,
+    /// `lastActivatedAt`, `expiresAt`). Applies the same per-user eligibility and
+    /// per-slot content-strategy filter as Get Offers By Placement, independently
+    /// per slot. A slot only flips to `isActive: false` when its refresh interval
+    /// has elapsed AND its post-eligibility `offers[]` is non-empty; otherwise the
+    /// slot is still returned and stays active so the partner UI does not promote
+    /// "refresh" with nothing to show.<br/>
+    /// <b>Required scopes:</b> `rewards:read`
+    /// </summary>
+    /// <example><code>
+    /// await client.Users.Rewards.PlacementBatchesAsync(
+    ///     "organizationId",
+    ///     "userId",
+    ///     "placementId",
+    ///     new GetBatchesByPlacementRequest()
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<BatchesResponseObject> PlacementBatchesAsync(
+        string organizationId,
+        string userId,
+        string placementId,
+        GetBatchesByPlacementRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<BatchesResponseObject>(
+            PlacementBatchesAsyncCore(
                 organizationId,
                 userId,
                 placementId,

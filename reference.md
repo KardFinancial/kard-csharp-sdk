@@ -2835,6 +2835,97 @@ await client.Users.Rewards.PlacementOffersAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Users.Rewards.<a href="/src/KardFinancial/Users/Rewards/RewardsClient.cs">PlacementBatchesAsync</a>(organizationId, userId, placementId, GetBatchesByPlacementRequest { ... }) -> WithRawResponseTask&lt;BatchesResponseObject&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve batches for a batch-activation placement. Returns each slot in slot
+order with its current offer set, alias, and freshness fields (`isActive`,
+`lastActivatedAt`, `expiresAt`). Applies the same per-user eligibility and
+per-slot content-strategy filter as Get Offers By Placement, independently
+per slot. A slot only flips to `isActive: false` when its refresh interval
+has elapsed AND its post-eligibility `offers[]` is non-empty; otherwise the
+slot is still returned and stays active so the partner UI does not promote
+"refresh" with nothing to show.<br/>
+<b>Required scopes:</b> `rewards:read`
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Users.Rewards.PlacementBatchesAsync(
+    "organizationId",
+    "userId",
+    "placementId",
+    new GetBatchesByPlacementRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**userId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placementId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GetBatchesByPlacementRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Users.Rewards.<a href="/src/KardFinancial/Users/Rewards/RewardsClient.cs">LocationsAsync</a>(organizationId, userId, GetLocationsByUserRequest { ... }) -> WithRawResponseTask&lt;LocationsResponseObject&gt;</code></summary>
 <dl>
 <dd>

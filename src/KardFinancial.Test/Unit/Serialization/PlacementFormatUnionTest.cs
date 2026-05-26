@@ -116,4 +116,76 @@ public class PlacementFormatUnionTest
             """;
         JsonAssert.Roundtrips<PlacementFormatUnion>(inputJson);
     }
+
+    [NUnit.Framework.Test]
+    public void TestDeserialization_3()
+    {
+        var json = """
+            {
+              "type": "placementBatchActivation",
+              "id": "01961e5a-d94e-7c22-ac3f-f8b5a7e92c45",
+              "attributes": {
+                "name": "Weekly Cohort",
+                "organizationId": "org-123",
+                "refreshInterval": "P7D",
+                "slots": [
+                  {
+                    "slotId": "01961e5a-e15f-7d33-bd4f-09c6b8fa3d56",
+                    "contentStrategyId": "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
+                    "alias": "primary"
+                  }
+                ]
+              }
+            }
+            """;
+        var expectedObject = new PlacementFormatUnion(
+            new PlacementFormatUnion.PlacementBatchActivation(
+                new BatchActivationPlacementData
+                {
+                    Id = "01961e5a-d94e-7c22-ac3f-f8b5a7e92c45",
+                    Attributes = new BatchActivationPlacementAttributes
+                    {
+                        Name = "Weekly Cohort",
+                        OrganizationId = "org-123",
+                        RefreshInterval = "P7D",
+                        Slots = new List<BatchActivationSlot>()
+                        {
+                            new BatchActivationSlot
+                            {
+                                SlotId = "01961e5a-e15f-7d33-bd4f-09c6b8fa3d56",
+                                ContentStrategyId = "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
+                                Alias = "primary",
+                            },
+                        },
+                    },
+                }
+            )
+        );
+        var deserializedObject = JsonUtils.Deserialize<PlacementFormatUnion>(json);
+        Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
+    }
+
+    [NUnit.Framework.Test]
+    public void TestSerialization_3()
+    {
+        var inputJson = """
+            {
+              "type": "placementBatchActivation",
+              "id": "01961e5a-d94e-7c22-ac3f-f8b5a7e92c45",
+              "attributes": {
+                "name": "Weekly Cohort",
+                "organizationId": "org-123",
+                "refreshInterval": "P7D",
+                "slots": [
+                  {
+                    "slotId": "01961e5a-e15f-7d33-bd4f-09c6b8fa3d56",
+                    "contentStrategyId": "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
+                    "alias": "primary"
+                  }
+                ]
+              }
+            }
+            """;
+        JsonAssert.Roundtrips<PlacementFormatUnion>(inputJson);
+    }
 }

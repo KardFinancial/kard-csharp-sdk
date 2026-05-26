@@ -14,6 +14,10 @@ public readonly record struct PlacementTypeFilter : IStringEnum
         Values.PlacementPushNotification
     );
 
+    public static readonly PlacementTypeFilter PlacementBatchActivation = new(
+        Values.PlacementBatchActivation
+    );
+
     public PlacementTypeFilter(string value)
     {
         Value = value;
@@ -113,5 +117,7 @@ public readonly record struct PlacementTypeFilter : IStringEnum
         public const string PlacementMainPage = "placementMainPage";
 
         public const string PlacementPushNotification = "placementPushNotification";
+
+        public const string PlacementBatchActivation = "placementBatchActivation";
     }
 }

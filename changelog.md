@@ -1,3 +1,14 @@
+## 7.0.0 - 2026-05-26
+### Breaking Changes
+* **`PlacementFormatUnion.Match`** and **`PlacementFormatUnion.Visit`** — a new required `onPlacementBatchActivation` delegate parameter was added; add a handler for the `placementBatchActivation` case at every call site to fix compile errors.
+* **`CreatePlacementDataUnion.Match`** and **`CreatePlacementDataUnion.Visit`** — same required `onPlacementBatchActivation` delegate parameter added; update all call sites accordingly.
+* **`UpdatePlacementDataUnion.Match`** and **`UpdatePlacementDataUnion.Visit`** — same required `onPlacementBatchActivation` delegate parameter added; add a `Func<UpdateBatchActivationPlacementData, T>` or `Action<UpdateBatchActivationPlacementData>` handler at every call site.
+### Added
+* **`BatchActivationPlacementData`**, **`BatchActivationPlacementAttributes`**, and **`BatchActivationSlot`** — new response record types representing a batch-activation placement returned from the API.
+* **New request record types for batch-activation placements** — `CreateBatchActivationPlacementData`, `CreateBatchActivationAttributes`, `CreateBatchActivationSlot`, `UpdateBatchActivationPlacementData`, `UpdateBatchActivationAttributes`, and `UpdateBatchActivationSlot` added for creating and updating batch-activation placements.
+* **`UpdatePlacementDataUnion.PlacementBatchActivation`** — new discriminated union variant wrapping `UpdateBatchActivationPlacementData`, with companion members `IsPlacementBatchActivation`, `AsPlacementBatchActivation()`, and `TryAsPlacementBatchActivation()`.
+* **`PlacementTypeFilter.PlacementBatchActivation`** — new enum constant for filtering placements by the `placementBatchActivation` type.
+
 ## 6.1.0 - 2026-05-22
 ### Added
 * **`ProgressBarSegment.Separator`** — new optional `ProgressBarSegmentSeparator?` property specifying the separator style rendered between segment nodes.

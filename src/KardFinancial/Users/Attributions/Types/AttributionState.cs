@@ -24,6 +24,18 @@ public record AttributionState : IJsonOnDeserialized
     [JsonPropertyName("filters")]
     public IEnumerable<AttributionFilter>? Filters { get; set; }
 
+    /// <summary>
+    /// Unique identifier of the placement the attribution event originated from
+    /// </summary>
+    [JsonPropertyName("placementId")]
+    public string? PlacementId { get; set; }
+
+    /// <summary>
+    /// Stable identifier for the slot within the placement
+    /// </summary>
+    [JsonPropertyName("slotId")]
+    public string? SlotId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

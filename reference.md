@@ -2604,6 +2604,96 @@ await client.Users.Attributions.BoostAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Users.Attributions.<a href="/src/KardFinancial/Users/Attributions/AttributionsClient.cs">ActivatePlacementSlotAsync</a>(organizationId, userId, placementId, slotId) -> WithRawResponseTask&lt;ActivatePlacementSlotResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Record when a user activates a batch-activation placement slot. Writes a slot-level
+`placementSlotAttribution` ACTIVATE event and fans out a per-offer
+`offerAttribution` ACTIVATE event for every offer resolved by the slot's content
+strategy. The slot-level event id and the resolved `offerIds` are returned so the
+partner can render the batch immediately without an extra `getBatchesByPlacement`
+round-trip.
+
+<b>Required scopes:</b> `attributions:write`
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Users.Attributions.ActivatePlacementSlotAsync(
+    "organization-123",
+    "user-123",
+    "018f8d6b-1abc-7def-9012-345678901234",
+    "slot-a"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**userId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placementId:** `string` — Unique identifier of the placement (UUID v7)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**slotId:** `string` — Stable identifier for the slot within the placement
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## WebView
 <details><summary><code>client.Users.Auth.<a href="/src/KardFinancial/Users/Auth/AuthClient.cs">GetWebViewTokenAsync</a>(organizationId, userId) -> WithRawResponseTask&lt;WebViewTokenResponse&gt;</code></summary>
 <dl>

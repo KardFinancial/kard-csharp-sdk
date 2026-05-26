@@ -1,3 +1,12 @@
+## 8.0.0 - 2026-05-26
+### Breaking Changes
+* **`CreateAttributionRequestUnion.Match`** and **`CreateAttributionRequestUnion.Visit`** — a new required `onPlacementSlotAttribution` delegate parameter was added; add a handler for the `placementSlotAttribution` case at every call site to fix compile errors.
+### Added
+* **`AttributionsClient.ActivatePlacementSlotAsync`** — new method to record a slot-level ACTIVATE event for a batch-activation placement, fanning out per-offer `offerAttribution` ACTIVATE events and returning the slot-level event id and resolved `offerIds`.
+* **`ActivatePlacementSlotResponse`**, **`ActivatePlacementSlotResponseData`**, and **`ActivatePlacementSlotResponseAttributes`** — new response record types representing the acknowledgement payload from a slot activation request.
+* **`PlacementSlotAttributionRequest`** and **`PlacementSlotAttributionAttributes`** — new request record types for submitting a slot-level attribution event via `CreateAttributionRequestUnion`.
+* **`PlacementSlotMedium`** — new string enum type with value `CTA` for specifying the medium on a slot attribution event; **`AttributionState`** also gains optional `PlacementId` and `SlotId` properties.
+
 ## 7.1.0 - 2026-05-26
 ### Added
 * **`RewardsClient.PlacementBatchesAsync`** — new method to retrieve batches for a batch-activation placement, returning each slot in slot order with its current offer set, alias, and freshness fields (`IsActive`, `LastActivatedAt`, `ExpiresAt`).

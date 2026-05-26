@@ -39,6 +39,17 @@ public record CreateAttributionRequestUnion
     }
 
     /// <summary>
+    /// Create an instance of CreateAttributionRequestUnion with <see cref="CreateAttributionRequestUnion.PlacementSlotAttribution"/>.
+    /// </summary>
+    public CreateAttributionRequestUnion(
+        CreateAttributionRequestUnion.PlacementSlotAttribution value
+    )
+    {
+        Type = "placementSlotAttribution";
+        Value = value.Value;
+    }
+
+    /// <summary>
     /// Discriminant value
     /// </summary>
     [JsonPropertyName("type")]
@@ -58,6 +69,11 @@ public record CreateAttributionRequestUnion
     /// Returns true if <see cref="Type"/> is "notificationAttribution"
     /// </summary>
     public bool IsNotificationAttribution => Type == "notificationAttribution";
+
+    /// <summary>
+    /// Returns true if <see cref="Type"/> is "placementSlotAttribution"
+    /// </summary>
+    public bool IsPlacementSlotAttribution => Type == "placementSlotAttribution";
 
     /// <summary>
     /// Returns the value as a <see cref="KardFinancial.Users.OfferAttributionRequest"/> if <see cref="Type"/> is 'offerAttribution', otherwise throws an exception.
@@ -81,9 +97,21 @@ public record CreateAttributionRequestUnion
                 "CreateAttributionRequestUnion.Type is not 'notificationAttribution'"
             );
 
+    /// <summary>
+    /// Returns the value as a <see cref="KardFinancial.Users.PlacementSlotAttributionRequest"/> if <see cref="Type"/> is 'placementSlotAttribution', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placementSlotAttribution'.</exception>
+    public KardFinancial.Users.PlacementSlotAttributionRequest AsPlacementSlotAttribution() =>
+        IsPlacementSlotAttribution
+            ? (KardFinancial.Users.PlacementSlotAttributionRequest)Value!
+            : throw new global::System.Exception(
+                "CreateAttributionRequestUnion.Type is not 'placementSlotAttribution'"
+            );
+
     public T Match<T>(
         Func<KardFinancial.Users.OfferAttributionRequest, T> onOfferAttribution,
         Func<KardFinancial.Users.NotificationAttributionRequest, T> onNotificationAttribution,
+        Func<KardFinancial.Users.PlacementSlotAttributionRequest, T> onPlacementSlotAttribution,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -91,6 +119,7 @@ public record CreateAttributionRequestUnion
         {
             "offerAttribution" => onOfferAttribution(AsOfferAttribution()),
             "notificationAttribution" => onNotificationAttribution(AsNotificationAttribution()),
+            "placementSlotAttribution" => onPlacementSlotAttribution(AsPlacementSlotAttribution()),
             _ => onUnknown_(Type, Value),
         };
     }
@@ -98,6 +127,7 @@ public record CreateAttributionRequestUnion
     public void Visit(
         Action<KardFinancial.Users.OfferAttributionRequest> onOfferAttribution,
         Action<KardFinancial.Users.NotificationAttributionRequest> onNotificationAttribution,
+        Action<KardFinancial.Users.PlacementSlotAttributionRequest> onPlacementSlotAttribution,
         Action<string, object?> onUnknown_
     )
     {
@@ -108,6 +138,9 @@ public record CreateAttributionRequestUnion
                 break;
             case "notificationAttribution":
                 onNotificationAttribution(AsNotificationAttribution());
+                break;
+            case "placementSlotAttribution":
+                onPlacementSlotAttribution(AsPlacementSlotAttribution());
                 break;
             default:
                 onUnknown_(Type, Value);
@@ -145,6 +178,22 @@ public record CreateAttributionRequestUnion
         return false;
     }
 
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="KardFinancial.Users.PlacementSlotAttributionRequest"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsPlacementSlotAttribution(
+        out KardFinancial.Users.PlacementSlotAttributionRequest? value
+    )
+    {
+        if (Type == "placementSlotAttribution")
+        {
+            value = (KardFinancial.Users.PlacementSlotAttributionRequest)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
     public override string ToString() => JsonUtils.Serialize(this);
 
     public static implicit operator CreateAttributionRequestUnion(
@@ -153,6 +202,10 @@ public record CreateAttributionRequestUnion
 
     public static implicit operator CreateAttributionRequestUnion(
         CreateAttributionRequestUnion.NotificationAttribution value
+    ) => new(value);
+
+    public static implicit operator CreateAttributionRequestUnion(
+        CreateAttributionRequestUnion.PlacementSlotAttribution value
     ) => new(value);
 
     [Serializable]
@@ -210,6 +263,13 @@ public record CreateAttributionRequestUnion
                         ?? throw new JsonException(
                             "Failed to deserialize KardFinancial.Users.NotificationAttributionRequest"
                         ),
+                "placementSlotAttribution" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Users.PlacementSlotAttributionRequest?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize KardFinancial.Users.PlacementSlotAttributionRequest"
+                        ),
                 _ => json.Deserialize<object?>(options),
             };
             return new CreateAttributionRequestUnion(discriminator, value);
@@ -226,6 +286,10 @@ public record CreateAttributionRequestUnion
                 {
                     "offerAttribution" => JsonSerializer.SerializeToNode(value.Value, options),
                     "notificationAttribution" => JsonSerializer.SerializeToNode(
+                        value.Value,
+                        options
+                    ),
+                    "placementSlotAttribution" => JsonSerializer.SerializeToNode(
                         value.Value,
                         options
                     ),
@@ -294,6 +358,26 @@ public record CreateAttributionRequestUnion
 
         public static implicit operator CreateAttributionRequestUnion.NotificationAttribution(
             KardFinancial.Users.NotificationAttributionRequest value
+        ) => new(value);
+    }
+
+    /// <summary>
+    /// Discriminated union type for placementSlotAttribution
+    /// </summary>
+    [Serializable]
+    public struct PlacementSlotAttribution
+    {
+        public PlacementSlotAttribution(KardFinancial.Users.PlacementSlotAttributionRequest value)
+        {
+            Value = value;
+        }
+
+        internal KardFinancial.Users.PlacementSlotAttributionRequest Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator CreateAttributionRequestUnion.PlacementSlotAttribution(
+            KardFinancial.Users.PlacementSlotAttributionRequest value
         ) => new(value);
     }
 }

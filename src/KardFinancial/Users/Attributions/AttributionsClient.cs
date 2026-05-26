@@ -309,6 +309,106 @@ public partial class AttributionsClient : IAttributionsClient
         }
     }
 
+    private async Task<
+        WithRawResponse<ActivatePlacementSlotResponse>
+    > ActivatePlacementSlotAsyncCore(
+        string organizationId,
+        string userId,
+        string placementId,
+        string slotId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new KardFinancial.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "/v2/issuers/{0}/users/{1}/placements/{2}/slot/{3}/activate",
+                        ValueConvert.ToPathParameterString(organizationId),
+                        ValueConvert.ToPathParameterString(userId),
+                        ValueConvert.ToPathParameterString(placementId),
+                        ValueConvert.ToPathParameterString(slotId)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<ActivatePlacementSlotResponse>(
+                    responseBody
+                )!;
+                return new WithRawResponse<ActivatePlacementSlotResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new KardApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<ErrorResponse>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(
+                            JsonUtils.Deserialize<ErrorResponse>(responseBody)
+                        );
+                    case 400:
+                        throw new InvalidRequest(
+                            JsonUtils.Deserialize<ErrorResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new KardApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     /// <summary>
     /// Call this endpoint to send attribution events made by a single enrolled user for processing. A maximum of 100 events can be included in a single request.
     ///
@@ -430,6 +530,45 @@ public partial class AttributionsClient : IAttributionsClient
     {
         return new WithRawResponseTask<BoostOfferResponse>(
             BoostAsyncCore(organizationId, userId, offerId, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Record when a user activates a batch-activation placement slot. Writes a slot-level
+    /// `placementSlotAttribution` ACTIVATE event and fans out a per-offer
+    /// `offerAttribution` ACTIVATE event for every offer resolved by the slot's content
+    /// strategy. The slot-level event id and the resolved `offerIds` are returned so the
+    /// partner can render the batch immediately without an extra `getBatchesByPlacement`
+    /// round-trip.
+    ///
+    /// <b>Required scopes:</b> `attributions:write`
+    /// </summary>
+    /// <example><code>
+    /// await client.Users.Attributions.ActivatePlacementSlotAsync(
+    ///     "organization-123",
+    ///     "user-123",
+    ///     "018f8d6b-1abc-7def-9012-345678901234",
+    ///     "slot-a"
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<ActivatePlacementSlotResponse> ActivatePlacementSlotAsync(
+        string organizationId,
+        string userId,
+        string placementId,
+        string slotId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<ActivatePlacementSlotResponse>(
+            ActivatePlacementSlotAsyncCore(
+                organizationId,
+                userId,
+                placementId,
+                slotId,
+                options,
+                cancellationToken
+            )
         );
     }
 }

@@ -44,6 +44,12 @@ public class NotificationPayloadTest
                       "type": "transaction",
                       "id": "0987654321"
                     }
+                  },
+                  "offer": {
+                    "data": {
+                      "type": "offer",
+                      "id": "12309123879"
+                    }
                   }
                 }
               }
@@ -91,6 +97,10 @@ public class NotificationPayloadTest
                                     Id = "0987654321",
                                 },
                             },
+                            Offer = new RelationshipSingle
+                            {
+                                Data = new RelationshipData { Type = "offer", Id = "12309123879" },
+                            },
                         },
                     }
                 )
@@ -134,6 +144,12 @@ public class NotificationPayloadTest
                       "type": "transaction",
                       "id": "0987654321"
                     }
+                  },
+                  "offer": {
+                    "data": {
+                      "type": "offer",
+                      "id": "12309123879"
+                    }
                   }
                 }
               }
@@ -171,6 +187,12 @@ public class NotificationPayloadTest
                     "data": {
                       "type": "transaction",
                       "id": "0987654321"
+                    }
+                  },
+                  "offer": {
+                    "data": {
+                      "type": "offer",
+                      "id": "12309123879"
                     }
                   }
                 }
@@ -214,6 +236,10 @@ public class NotificationPayloadTest
                                     Id = "0987654321",
                                 },
                             },
+                            Offer = new RelationshipSingle
+                            {
+                                Data = new RelationshipData { Type = "offer", Id = "12309123879" },
+                            },
                         },
                     }
                 )
@@ -252,6 +278,12 @@ public class NotificationPayloadTest
                     "data": {
                       "type": "transaction",
                       "id": "0987654321"
+                    }
+                  },
+                  "offer": {
+                    "data": {
+                      "type": "offer",
+                      "id": "12309123879"
                     }
                   }
                 }

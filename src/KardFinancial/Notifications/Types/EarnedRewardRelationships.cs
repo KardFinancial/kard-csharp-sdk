@@ -14,6 +14,9 @@ public record EarnedRewardRelationships : IJsonOnDeserialized
     [JsonPropertyName("user")]
     public required RelationshipSingle User { get; set; }
 
+    [JsonPropertyName("offer")]
+    public required RelationshipSingle Offer { get; set; }
+
     [JsonPropertyName("transaction")]
     public required RelationshipSingle Transaction { get; set; }
 

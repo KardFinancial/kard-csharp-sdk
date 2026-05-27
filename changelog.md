@@ -1,3 +1,7 @@
+## 9.0.0 - 2026-05-27
+### Breaking Changes
+* **`EarnedRewardRelationships`** — a new required `Offer` property (`RelationshipSingle`) has been added; any object initializer that constructs `EarnedRewardRelationships` without supplying `Offer` will produce a compile error. Add `Offer = new RelationshipSingle { Data = new RelationshipData { Type = "offer", Id = "<your-offer-id>" } }` to every construction site to fix the error.
+
 ## 8.0.1 - 2026-05-27
 * chore: update XML doc comment links in UploadsClient
 * Update deprecated API documentation links in UploadsClient and

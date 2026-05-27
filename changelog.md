@@ -1,3 +1,14 @@
+## 8.0.1 - 2026-05-27
+* chore: update XML doc comment links in UploadsClient
+* Update deprecated API documentation links in UploadsClient and
+* IUploadsClient to use versioned URL paths, ensuring references point
+* to the correct 2024-10-01 API documentation endpoints.
+* Key changes:
+* Update "Add Upload Part" link from `/api/uploads/create-upload-part` to `/2024-10-01/api/transactions/uploads/create-part`
+* Update "Create Upload" link from `/api/uploads/create-upload` to `/2024-10-01/api/transactions/uploads/create`
+* Apply same doc link corrections to both `IUploadsClient` interface and `UploadsClient` implementation
+* 🌿 Generated with Fern
+
 ## 8.0.0 - 2026-05-26
 ### Breaking Changes
 * **`CreateAttributionRequestUnion.Match`** and **`CreateAttributionRequestUnion.Visit`** — a new required `onPlacementSlotAttribution` delegate parameter was added; add a handler for the `placementSlotAttribution` case at every call site to fix compile errors.

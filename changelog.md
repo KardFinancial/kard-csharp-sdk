@@ -1,3 +1,14 @@
+## 9.0.1 - 2026-05-28
+* chore: update child organization name validation docs and tests
+* Reflect the relaxed naming rule for child organizations: names no longer
+* need to be uppercase with no spaces — they now require at least one
+* letter and may contain only letters and spaces.
+* Key changes:
+* Update XML doc comments on `ChildOrganizationAttributes`, `CreateChildAttributes`, and `UpdateChildAttributes` to describe the new name constraint
+* Update `IChildrenClient` and `ChildrenClient` summary comments to match the new validation rule
+* Update serialization test fixtures in `CreateChildAttributesTest` and `UpdateChildAttributesTest` to use mixed-case names with spaces (e.g. "Acme Child Bank")
+* 🌿 Generated with Fern
+
 ## 9.0.0 - 2026-05-27
 ### Breaking Changes
 * **`EarnedRewardRelationships`** — a new required `Offer` property (`RelationshipSingle`) has been added; any object initializer that constructs `EarnedRewardRelationships` without supplying `Offer` will produce a compile error. Add `Offer = new RelationshipSingle { Data = new RelationshipData { Type = "offer", Id = "<your-offer-id>" } }` to every construction site to fix the error.

@@ -16,7 +16,7 @@ public record CreateChildAttributes : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Name of the child organization (must be uppercase, no spaces)
+    /// Name of the child organization (at least one letter; letters and spaces only)
     /// </summary>
     [JsonPropertyName("name")]
     public required string Name { get; set; }

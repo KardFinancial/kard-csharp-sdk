@@ -14,10 +14,10 @@ public class UpdateChildAttributesTest
     {
         var json = """
             {
-              "name": "NEWCHILDNAME"
+              "name": "New Child Name"
             }
             """;
-        var expectedObject = new UpdateChildAttributes { Name = "NEWCHILDNAME" };
+        var expectedObject = new UpdateChildAttributes { Name = "New Child Name" };
         var deserializedObject = JsonUtils.Deserialize<UpdateChildAttributes>(json);
         Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
     }
@@ -27,7 +27,7 @@ public class UpdateChildAttributesTest
     {
         var inputJson = """
             {
-              "name": "NEWCHILDNAME"
+              "name": "New Child Name"
             }
             """;
         JsonAssert.Roundtrips<UpdateChildAttributes>(inputJson);

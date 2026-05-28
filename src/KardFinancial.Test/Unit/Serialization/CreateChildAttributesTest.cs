@@ -14,7 +14,7 @@ public class CreateChildAttributesTest
     {
         var json = """
             {
-              "name": "ACMECHILDBANK",
+              "name": "Acme Child Bank",
               "externalId": "ext-123",
               "bins": [
                 "123456",
@@ -24,7 +24,7 @@ public class CreateChildAttributesTest
             """;
         var expectedObject = new CreateChildAttributes
         {
-            Name = "ACMECHILDBANK",
+            Name = "Acme Child Bank",
             ExternalId = "ext-123",
             Bins = new List<string>() { "123456", "789012" },
         };
@@ -37,7 +37,7 @@ public class CreateChildAttributesTest
     {
         var inputJson = """
             {
-              "name": "ACMECHILDBANK",
+              "name": "Acme Child Bank",
               "externalId": "ext-123",
               "bins": [
                 "123456",

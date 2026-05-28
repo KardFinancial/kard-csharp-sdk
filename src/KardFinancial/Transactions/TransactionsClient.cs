@@ -420,11 +420,12 @@ public partial class TransactionsClient : ITransactionsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new KardFinancial.Core.QueryStringBuilder.Builder(capacity: 5)
+        var _queryString = new KardFinancial.Core.QueryStringBuilder.Builder(capacity: 6)
             .Add("page[after]", request.PageAfter)
             .Add("page[before]", request.PageBefore)
             .Add("page[size]", request.PageSize)
             .Add("filter[status]", request.FilterStatus)
+            .Add("filter[paidInFullOnly]", request.FilterPaidInFullOnly)
             .Add("include", request.Include)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
@@ -737,7 +738,7 @@ public partial class TransactionsClient : ITransactionsClient
     }
 
     /// <summary>
-    /// Retrieve rewarded transaction history for a specific user. By default this returns only SETTLED transactions within the last 12 months.
+    /// Retrieve rewarded transaction history for a specific user. By default this returns only SETTLED transactions within the last 12 months regardless of payment status. Pass `filter[paidInFullOnly]=true` to restrict the response to matched transactions that have been paid in full to the issuer (`paidToIssuer` is `PAID_IN_FULL`).
     /// <br/>
     /// <b>Required scopes:</b> `transaction:read`
     /// <br/>

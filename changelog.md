@@ -1,3 +1,7 @@
+## 9.1.0 - 2026-05-28
+### Added
+* **`GetEarnedRewardsRequest.FilterPaidInFullOnly`** — new optional `bool?` property that, when `true`, restricts the `GetEarnedRewards` response to transactions paid in full to the issuer (`paidToIssuer` is `PAID_IN_FULL`) and limits `lifetimeRewardsInCents` to only those transactions.
+
 ## 9.0.1 - 2026-05-28
 * chore: update child organization name validation docs and tests
 * Reflect the relaxed naming rule for child organizations: names no longer

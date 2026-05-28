@@ -21,6 +21,66 @@ public class PlacementBatchesTest : BaseMockServerTest
                   "isActive": true,
                   "lastActivatedAt": "2024-01-15T09:30:00.000Z",
                   "expiresAt": "2024-01-15T09:30:00.000Z",
+                  "components": {
+                    "shortDescription": "shortDescription",
+                    "longDescription": "longDescription",
+                    "baseReward": "baseReward",
+                    "boostedReward": "boostedReward",
+                    "cta": {
+                      "buttonText": "buttonText",
+                      "buttonStyle": "PRIMARY",
+                      "action": {
+                        "url": "url",
+                        "method": "method"
+                      },
+                      "startIcon": "startIcon"
+                    },
+                    "tags": [
+                      "tags",
+                      "tags"
+                    ],
+                    "detailTags": [
+                      "detailTags",
+                      "detailTags"
+                    ],
+                    "logoFlare": {
+                      "borderColor": "PRIMARY",
+                      "badge": {
+                        "icon": "icon",
+                        "position": "TOP_RIGHT"
+                      }
+                    },
+                    "progressBar": {
+                      "total": 1,
+                      "currentProgress": 1,
+                      "label": "label",
+                      "segmented": true,
+                      "segments": {
+                        "default": {
+                          "position": "LEFT"
+                        }
+                      },
+                      "labels": {
+                        "details": {},
+                        "default": {
+                          "left": "left",
+                          "right": "right"
+                        }
+                      }
+                    }
+                  },
+                  "assets": [
+                    {
+                      "type": "type",
+                      "url": "url",
+                      "alt": "alt"
+                    },
+                    {
+                      "type": "type",
+                      "url": "url",
+                      "alt": "alt"
+                    }
+                  ],
                   "offers": [
                     {
                       "type": "standardOffer",
@@ -182,6 +242,66 @@ public class PlacementBatchesTest : BaseMockServerTest
                   "isActive": true,
                   "lastActivatedAt": "2024-01-15T09:30:00.000Z",
                   "expiresAt": "2024-01-15T09:30:00.000Z",
+                  "components": {
+                    "shortDescription": "shortDescription",
+                    "longDescription": "longDescription",
+                    "baseReward": "baseReward",
+                    "boostedReward": "boostedReward",
+                    "cta": {
+                      "buttonText": "buttonText",
+                      "buttonStyle": "PRIMARY",
+                      "action": {
+                        "url": "url",
+                        "method": "method"
+                      },
+                      "startIcon": "startIcon"
+                    },
+                    "tags": [
+                      "tags",
+                      "tags"
+                    ],
+                    "detailTags": [
+                      "detailTags",
+                      "detailTags"
+                    ],
+                    "logoFlare": {
+                      "borderColor": "PRIMARY",
+                      "badge": {
+                        "icon": "icon",
+                        "position": "TOP_RIGHT"
+                      }
+                    },
+                    "progressBar": {
+                      "total": 1,
+                      "currentProgress": 1,
+                      "label": "label",
+                      "segmented": true,
+                      "segments": {
+                        "default": {
+                          "position": "LEFT"
+                        }
+                      },
+                      "labels": {
+                        "details": {},
+                        "default": {
+                          "left": "left",
+                          "right": "right"
+                        }
+                      }
+                    }
+                  },
+                  "assets": [
+                    {
+                      "type": "type",
+                      "url": "url",
+                      "alt": "alt"
+                    },
+                    {
+                      "type": "type",
+                      "url": "url",
+                      "alt": "alt"
+                    }
+                  ],
                   "offers": [
                     {
                       "type": "standardOffer",

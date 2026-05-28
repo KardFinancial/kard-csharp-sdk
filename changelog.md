@@ -1,3 +1,8 @@
+## 9.2.0 - 2026-05-28
+### Added
+* **`BatchSlotData.Components`** — new optional `OfferComponents?` property exposing slot-level UI components, including a `cta` (when the slot has no active activation) or a `logoFlare` decoration (when it does).
+* **`BatchSlotData.Assets`** — new optional `IEnumerable<Asset>?` property exposing slot-level visual assets such as the slot's initials SVG.
+
 ## 9.1.0 - 2026-05-28
 ### Added
 * **`GetEarnedRewardsRequest.FilterPaidInFullOnly`** — new optional `bool?` property that, when `true`, restricts the `GetEarnedRewards` response to transactions paid in full to the issuer (`paidToIssuer` is `PAID_IN_FULL`) and limits `lifetimeRewardsInCents` to only those transactions.

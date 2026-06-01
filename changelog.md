@@ -1,3 +1,8 @@
+## 13.0.0 - 2026-06-01
+### Breaking Changes
+* **`PlacementBatchAttributes.ShortDescription`** — removed; any code that constructs or reads this `required string` property must be updated. The equivalent copy is now available via `PlacementBatchAttributes.Components` (`OfferComponents`), which now carries `shortDescription` derived from the parent placement's `refreshInterval`.
+* **`PlacementBatchAttributes.LongDescription`** — removed; any code that constructs or reads this `required string` property must be updated. The equivalent copy is now available via `PlacementBatchAttributes.Components` (`OfferComponents`), which now carries `longDescription` describing the slot's activation behavior.
+
 ## 12.0.0 - 2026-06-01
 ### Breaking Changes
 * **`PlacementBatchAttributes.ShortDescription`** — new `required string` property added; any code that constructs `PlacementBatchAttributes` directly must now supply a `ShortDescription` value.

@@ -22,18 +22,6 @@ public record PlacementBatchAttributes : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
-    /// Short, human-readable description of how long the slot stays activated after a user taps activate. Derived from the parent placement's `refreshInterval` (e.g. `"Activated for 24 hours"`).
-    /// </summary>
-    [JsonPropertyName("shortDescription")]
-    public required string ShortDescription { get; set; }
-
-    /// <summary>
-    /// Longer, human-readable description of the slot's activation behavior: clarifies that the offers displayed under this slot are the ones that will be activated for the user when they tap activate, and for how long they will remain active.
-    /// </summary>
-    [JsonPropertyName("longDescription")]
-    public required string LongDescription { get; set; }
-
-    /// <summary>
     /// Whether the slot is still considered "fresh" for the user. Set to false only when the slot's `expiresAt` is in the past AND the slot resolves to a non-empty offer set; an empty offer set keeps the slot active so partner UIs do not promote "tap to refresh" with nothing to show.
     /// </summary>
     [JsonPropertyName("isActive")]
@@ -52,7 +40,7 @@ public record PlacementBatchAttributes : IJsonOnDeserialized
     public DateTime? ExpiresAt { get; set; }
 
     /// <summary>
-    /// Slot-level UI components. Carries a `cta` (POST to the slot's activate endpoint) when the slot has no active (non-expired) activation, or a `logoFlare` decoration when it does — mutually exclusive on a single slot.
+    /// Slot-level UI components. Carries `shortDescription` and `longDescription` (activation copy derived from the parent placement's `refreshInterval`), plus either a `cta` (POST to the slot's activate endpoint) when the slot has no active (non-expired) activation, or a `logoFlare` decoration when it does — `cta` and `logoFlare` are mutually exclusive on a single slot.
     /// </summary>
     [JsonPropertyName("components")]
     public OfferComponents? Components { get; set; }

@@ -20,6 +20,8 @@ public class PlacementBatchesTest : BaseMockServerTest
                   "type": "placementBatch",
                   "attributes": {
                     "name": "name",
+                    "shortDescription": "shortDescription",
+                    "longDescription": "longDescription",
                     "isActive": true,
                     "lastActivatedAt": "2024-01-15T09:30:00.000Z",
                     "expiresAt": "2024-01-15T09:30:00.000Z",
@@ -210,6 +212,8 @@ public class PlacementBatchesTest : BaseMockServerTest
                   "type": "placementBatch",
                   "attributes": {
                     "name": "name",
+                    "shortDescription": "shortDescription",
+                    "longDescription": "longDescription",
                     "isActive": true,
                     "lastActivatedAt": "2024-01-15T09:30:00.000Z",
                     "expiresAt": "2024-01-15T09:30:00.000Z",

@@ -1,3 +1,8 @@
+## 12.0.0 - 2026-06-01
+### Breaking Changes
+* **`PlacementBatchAttributes.ShortDescription`** — new `required string` property added; any code that constructs `PlacementBatchAttributes` directly must now supply a `ShortDescription` value.
+* **`PlacementBatchAttributes.LongDescription`** — new `required string` property added; any code that constructs `PlacementBatchAttributes` directly must now supply a `LongDescription` value.
+
 ## 11.0.0 - 2026-06-01
 ### Breaking Changes
 * **`BatchSlotData`** — removed; replace all usages with the new `PlacementBatchData` record, which wraps batch slot data in a JSON:API envelope exposing `Id`, `Type`, and `Attributes`.

@@ -34,7 +34,7 @@ public record MainPagePlacementAttributes : IJsonOnDeserialized
     public required int AvailableSlots { get; set; }
 
     /// <summary>
-    /// ID of the content strategy linked to this placement, if any
+    /// ID of the content strategy linked to this placement, if any. Retained alongside `relationships.contentStrategy` for backward compatibility.
     /// </summary>
     [JsonPropertyName("contentStrategyId")]
     public string? ContentStrategyId { get; set; }

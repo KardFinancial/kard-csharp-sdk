@@ -6,29 +6,20 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Push-notification placement resource data
+/// A JSON:API to-many relationship payload.
 /// </summary>
 [Serializable]
-public record PushNotificationPlacementData : IJsonOnDeserialized
+public record ToManyRelationship : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Unique identifier of the placement (UUID v7)
+    /// The linked resource identifiers.
     /// </summary>
-    [JsonPropertyName("id")]
-    public required string Id { get; set; }
-
-    [JsonPropertyName("attributes")]
-    public required PushNotificationPlacementAttributes Attributes { get; set; }
-
-    /// <summary>
-    /// JSON:API relationships for the placement. Omitted entirely when the placement has no linked resources.
-    /// </summary>
-    [JsonPropertyName("relationships")]
-    public PlacementRelationships? Relationships { get; set; }
+    [JsonPropertyName("data")]
+    public IEnumerable<ResourceIdentifier> Data { get; set; } = new List<ResourceIdentifier>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -24,6 +24,12 @@ public record MainPagePlacementData : IJsonOnDeserialized
     [JsonPropertyName("attributes")]
     public required MainPagePlacementAttributes Attributes { get; set; }
 
+    /// <summary>
+    /// JSON:API relationships for the placement. Omitted entirely when the placement has no linked resources.
+    /// </summary>
+    [JsonPropertyName("relationships")]
+    public PlacementRelationships? Relationships { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

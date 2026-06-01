@@ -6,29 +6,20 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Push-notification placement resource data
+/// Relationship block for non-batch placements. Mirrors the `contentStrategyId` attribute so JSON:API clients can walk the graph.
 /// </summary>
 [Serializable]
-public record PushNotificationPlacementData : IJsonOnDeserialized
+public record PlacementRelationships : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Unique identifier of the placement (UUID v7)
+    /// Relationship to the content strategy that powers this placement. Present whenever the placement has been linked to a content strategy (`data.id` will be set). Omitted entirely when no content strategy is linked.
     /// </summary>
-    [JsonPropertyName("id")]
-    public required string Id { get; set; }
-
-    [JsonPropertyName("attributes")]
-    public required PushNotificationPlacementAttributes Attributes { get; set; }
-
-    /// <summary>
-    /// JSON:API relationships for the placement. Omitted entirely when the placement has no linked resources.
-    /// </summary>
-    [JsonPropertyName("relationships")]
-    public PlacementRelationships? Relationships { get; set; }
+    [JsonPropertyName("contentStrategy")]
+    public ToOneRelationship? ContentStrategy { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

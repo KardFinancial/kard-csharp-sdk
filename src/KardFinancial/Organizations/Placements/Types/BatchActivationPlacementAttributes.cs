@@ -6,7 +6,7 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Attributes for a batch-activation placement
+/// Attributes for a batch-activation placement. Slot detail is exposed via `relationships.slots` (resource identifiers) and the `batchActivationSlot` entries in `included`; request `?include=slots` (or a deeper path) to get the slot details.
 /// </summary>
 [Serializable]
 public record BatchActivationPlacementAttributes : IJsonOnDeserialized
@@ -32,12 +32,6 @@ public record BatchActivationPlacementAttributes : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("refreshInterval")]
     public required string RefreshInterval { get; set; }
-
-    /// <summary>
-    /// Slots that make up the activation cohort
-    /// </summary>
-    [JsonPropertyName("slots")]
-    public IEnumerable<BatchActivationSlot> Slots { get; set; } = new List<BatchActivationSlot>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

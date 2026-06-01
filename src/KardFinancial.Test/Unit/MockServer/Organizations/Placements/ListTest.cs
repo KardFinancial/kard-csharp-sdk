@@ -23,6 +23,14 @@ public class ListTest : BaseMockServerTest
                     "organizationId": "organizationId",
                     "availableSlots": 1,
                     "contentStrategyId": "contentStrategyId"
+                  },
+                  "relationships": {
+                    "contentStrategy": {
+                      "data": {
+                        "type": "type",
+                        "id": "id"
+                      }
+                    }
                   }
                 },
                 {
@@ -33,6 +41,14 @@ public class ListTest : BaseMockServerTest
                     "organizationId": "organizationId",
                     "availableSlots": 1,
                     "contentStrategyId": "contentStrategyId"
+                  },
+                  "relationships": {
+                    "contentStrategy": {
+                      "data": {
+                        "type": "type",
+                        "id": "id"
+                      }
+                    }
                   }
                 }
               ],

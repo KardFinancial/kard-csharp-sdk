@@ -22,6 +22,14 @@ public class GetTest : BaseMockServerTest
                   "organizationId": "organizationId",
                   "availableSlots": 1,
                   "contentStrategyId": "contentStrategyId"
+                },
+                "relationships": {
+                  "contentStrategy": {
+                    "data": {
+                      "type": "type",
+                      "id": "id"
+                    }
+                  }
                 }
               },
               "included": [

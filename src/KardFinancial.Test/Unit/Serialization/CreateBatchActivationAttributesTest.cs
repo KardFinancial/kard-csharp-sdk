@@ -18,8 +18,9 @@ public class CreateBatchActivationAttributesTest
               "refreshInterval": "P7D",
               "slots": [
                 {
-                  "contentStrategyId": "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
-                  "alias": "primary"
+                  "placementId": "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
+                  "alias": "primary",
+                  "shortDescription": "Featured deals refreshed each week"
                 }
               ]
             }
@@ -32,8 +33,9 @@ public class CreateBatchActivationAttributesTest
             {
                 new CreateBatchActivationSlot
                 {
-                    ContentStrategyId = "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
+                    PlacementId = "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
                     Alias = "primary",
+                    ShortDescription = "Featured deals refreshed each week",
                 },
             },
         };
@@ -50,8 +52,9 @@ public class CreateBatchActivationAttributesTest
               "refreshInterval": "P7D",
               "slots": [
                 {
-                  "contentStrategyId": "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
-                  "alias": "primary"
+                  "placementId": "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
+                  "alias": "primary",
+                  "shortDescription": "Featured deals refreshed each week"
                 }
               ]
             }

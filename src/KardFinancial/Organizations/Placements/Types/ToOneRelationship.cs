@@ -6,32 +6,20 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// A slot within a batch-activation placement
+/// A JSON:API to-one relationship payload.
 /// </summary>
 [Serializable]
-public record BatchActivationSlot : IJsonOnDeserialized
+public record ToOneRelationship : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Stable identifier for the slot within the placement
+    /// The linked resource identifier, or null when the relationship is present but unlinked.
     /// </summary>
-    [JsonPropertyName("slotId")]
-    public required string SlotId { get; set; }
-
-    /// <summary>
-    /// ID of the content strategy linked to this slot
-    /// </summary>
-    [JsonPropertyName("contentStrategyId")]
-    public required string ContentStrategyId { get; set; }
-
-    /// <summary>
-    /// Customer-defined alias for the slot, unique within the placement
-    /// </summary>
-    [JsonPropertyName("alias")]
-    public required string Alias { get; set; }
+    [JsonPropertyName("data")]
+    public ResourceIdentifier? Data { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

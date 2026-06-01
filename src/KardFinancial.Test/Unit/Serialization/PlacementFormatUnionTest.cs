@@ -127,14 +127,17 @@ public class PlacementFormatUnionTest
               "attributes": {
                 "name": "Weekly Cohort",
                 "organizationId": "org-123",
-                "refreshInterval": "P7D",
-                "slots": [
-                  {
-                    "slotId": "01961e5a-e15f-7d33-bd4f-09c6b8fa3d56",
-                    "contentStrategyId": "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
-                    "alias": "primary"
-                  }
-                ]
+                "refreshInterval": "P7D"
+              },
+              "relationships": {
+                "slots": {
+                  "data": [
+                    {
+                      "type": "batchActivationSlot",
+                      "id": "01961e5a-e15f-7d33-bd4f-09c6b8fa3d56"
+                    }
+                  ]
+                }
               }
             }
             """;
@@ -148,13 +151,18 @@ public class PlacementFormatUnionTest
                         Name = "Weekly Cohort",
                         OrganizationId = "org-123",
                         RefreshInterval = "P7D",
-                        Slots = new List<BatchActivationSlot>()
+                    },
+                    Relationships = new BatchActivationPlacementRelationships
+                    {
+                        Slots = new ToManyRelationship
                         {
-                            new BatchActivationSlot
+                            Data = new List<ResourceIdentifier>()
                             {
-                                SlotId = "01961e5a-e15f-7d33-bd4f-09c6b8fa3d56",
-                                ContentStrategyId = "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
-                                Alias = "primary",
+                                new ResourceIdentifier
+                                {
+                                    Type = "batchActivationSlot",
+                                    Id = "01961e5a-e15f-7d33-bd4f-09c6b8fa3d56",
+                                },
                             },
                         },
                     },
@@ -175,14 +183,17 @@ public class PlacementFormatUnionTest
               "attributes": {
                 "name": "Weekly Cohort",
                 "organizationId": "org-123",
-                "refreshInterval": "P7D",
-                "slots": [
-                  {
-                    "slotId": "01961e5a-e15f-7d33-bd4f-09c6b8fa3d56",
-                    "contentStrategyId": "01961e5a-f26f-7e44-ce5f-1ad7c9fb4e67",
-                    "alias": "primary"
-                  }
-                ]
+                "refreshInterval": "P7D"
+              },
+              "relationships": {
+                "slots": {
+                  "data": [
+                    {
+                      "type": "batchActivationSlot",
+                      "id": "01961e5a-e15f-7d33-bd4f-09c6b8fa3d56"
+                    }
+                  ]
+                }
               }
             }
             """;

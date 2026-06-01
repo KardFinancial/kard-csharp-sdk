@@ -6,29 +6,26 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Push-notification placement resource data
+/// Attributes block for a `batchActivationSlot` resource.
 /// </summary>
 [Serializable]
-public record PushNotificationPlacementData : IJsonOnDeserialized
+public record BatchActivationSlotAttributes : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Unique identifier of the placement (UUID v7)
+    /// Customer-defined alias for the slot, unique within the placement.
     /// </summary>
-    [JsonPropertyName("id")]
-    public required string Id { get; set; }
-
-    [JsonPropertyName("attributes")]
-    public required PushNotificationPlacementAttributes Attributes { get; set; }
+    [JsonPropertyName("alias")]
+    public required string Alias { get; set; }
 
     /// <summary>
-    /// JSON:API relationships for the placement. Omitted entirely when the placement has no linked resources.
+    /// Optional short description of the slot, limited to 50 characters.
     /// </summary>
-    [JsonPropertyName("relationships")]
-    public PlacementRelationships? Relationships { get; set; }
+    [JsonPropertyName("shortDescription")]
+    public string? ShortDescription { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

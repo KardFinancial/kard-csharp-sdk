@@ -24,6 +24,12 @@ public record BatchActivationPlacementData : IJsonOnDeserialized
     [JsonPropertyName("attributes")]
     public required BatchActivationPlacementAttributes Attributes { get; set; }
 
+    /// <summary>
+    /// JSON:API relationships for the placement. Always present on a batch-activation placement; the `slots` to-many relationship lists the slot resource identifiers.
+    /// </summary>
+    [JsonPropertyName("relationships")]
+    public required BatchActivationPlacementRelationships Relationships { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

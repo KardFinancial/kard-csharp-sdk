@@ -6,29 +6,26 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Push-notification placement resource data
+/// A reference to another resource by type and id.
 /// </summary>
 [Serializable]
-public record PushNotificationPlacementData : IJsonOnDeserialized
+public record ResourceIdentifier : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Unique identifier of the placement (UUID v7)
+    /// Discriminant of the referenced resource (e.g. `contentStrategy`).
+    /// </summary>
+    [JsonPropertyName("type")]
+    public required string Type { get; set; }
+
+    /// <summary>
+    /// Identifier of the referenced resource.
     /// </summary>
     [JsonPropertyName("id")]
     public required string Id { get; set; }
-
-    [JsonPropertyName("attributes")]
-    public required PushNotificationPlacementAttributes Attributes { get; set; }
-
-    /// <summary>
-    /// JSON:API relationships for the placement. Omitted entirely when the placement has no linked resources.
-    /// </summary>
-    [JsonPropertyName("relationships")]
-    public PlacementRelationships? Relationships { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

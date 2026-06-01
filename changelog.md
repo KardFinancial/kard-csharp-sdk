@@ -1,3 +1,11 @@
+## 10.0.0 - 2026-06-01
+### Added
+* **`IncludedResource`** — new discriminated union representing every resource type that can appear in a JSON:API `included` array, with `Match`, `Visit`, `TryAs*`, and `As*` accessor methods for `contentStrategy`, `batchActivationSlot`, `placementMainPage`, and `placementPushNotification` variants.
+* **`PlacementRelationships`** — new record exposing the JSON:API relationship block on non-batch placements, including an optional `ContentStrategy` (`ToOneRelationship?`) link.
+* **`ToOneRelationship`** and **`ToManyRelationship`** — new JSON:API relationship payload records carrying a `ResourceIdentifier` (or list thereof) to the linked resource.
+* **`ResourceIdentifier`** — new record representing a JSON:API resource reference by `Type` and `Id`.
+* **`MainPagePlacementData.Relationships`** and **`PushNotificationPlacementData.Relationships`** — new optional `PlacementRelationships?` properties exposing linked resources for each placement type.
+
 ## 9.2.0 - 2026-05-28
 ### Added
 * **`BatchSlotData.Components`** — new optional `OfferComponents?` property exposing slot-level UI components, including a `cta` (when the slot has no active activation) or a `logoFlare` decoration (when it does).

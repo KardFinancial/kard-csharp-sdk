@@ -22,10 +22,10 @@ public record PlacementListResponse : IJsonOnDeserialized
     public IEnumerable<PlacementFormatUnion> Data { get; set; } = new List<PlacementFormatUnion>();
 
     /// <summary>
-    /// Related resources requested via the `include` query parameter. Only populated when `include=contentStrategy` is supplied and at least one placement in `data` is linked to a content strategy.
+    /// Related resources requested via the `include` query parameter. Each entry is keyed by its `type` discriminant (`contentStrategy`, `batchActivationSlot`, `placementMainPage`, `placementPushNotification`).
     /// </summary>
     [JsonPropertyName("included")]
-    public IEnumerable<ContentStrategyResponse>? Included { get; set; }
+    public IEnumerable<IncludedResource>? Included { get; set; }
 
     [JsonPropertyName("links")]
     public Links? Links { get; set; }

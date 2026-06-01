@@ -1,3 +1,12 @@
+## 11.0.0 - 2026-06-01
+### Breaking Changes
+* **`BatchSlotData`** — removed; replace all usages with the new `PlacementBatchData` record, which wraps batch slot data in a JSON:API envelope exposing `Id`, `Type`, and `Attributes`.
+* **`BatchesResponseObject.Data`** — element type changed from `IEnumerable<BatchSlotData>` to `IEnumerable<PlacementBatchData>`; update any code that iterates or assigns this collection.
+* **`BatchSlotData.SlotId`** and **`BatchSlotData.Alias`** — removed; the equivalent data is now available as `PlacementBatchAttributes.Name` (accessible via `PlacementBatchData.Attributes.Name`).
+### Added
+* **`PlacementBatchData`** — new JSON:API-shaped record representing one slot in a batch-activation placement, with required `Id`, `Type`, and `Attributes` properties.
+* **`PlacementBatchAttributes`** — new record (replacing `BatchSlotData`) carrying slot-level attributes including the new `Name` field plus all existing freshness, component, asset, and offer fields.
+
 ## 10.0.0 - 2026-06-01
 ### Added
 * **`IncludedResource`** — new discriminated union representing every resource type that can appear in a JSON:API `included` array, with `Match`, `Visit`, `TryAs*`, and `As*` accessor methods for `contentStrategy`, `batchActivationSlot`, `placementMainPage`, and `placementPushNotification` variants.

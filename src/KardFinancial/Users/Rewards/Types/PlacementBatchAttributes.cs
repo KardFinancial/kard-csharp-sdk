@@ -6,26 +6,20 @@ using KardFinancial.Core;
 namespace KardFinancial.Users;
 
 /// <summary>
-/// One slot in a batch-activation placement, with freshness fields and the offers that resolve under the slot's content strategy.
+/// Attributes of a placement batch slot.
 /// </summary>
 [Serializable]
-public record BatchSlotData : IJsonOnDeserialized
+public record PlacementBatchAttributes : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Stable identifier for the slot within the placement
+    /// Display name for the slot. Falls back to the slot's customer-defined alias, or — when the alias is absent — the name of the placement referenced by the slot.
     /// </summary>
-    [JsonPropertyName("slotId")]
-    public required string SlotId { get; set; }
-
-    /// <summary>
-    /// Customer-defined alias for the slot, unique within the placement
-    /// </summary>
-    [JsonPropertyName("alias")]
-    public required string Alias { get; set; }
+    [JsonPropertyName("name")]
+    public required string Name { get; set; }
 
     /// <summary>
     /// Whether the slot is still considered "fresh" for the user. Set to false only when the slot's `expiresAt` is in the past AND the slot resolves to a non-empty offer set; an empty offer set keeps the slot active so partner UIs do not promote "tap to refresh" with nothing to show.

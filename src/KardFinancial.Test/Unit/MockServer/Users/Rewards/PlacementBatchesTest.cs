@@ -16,446 +16,384 @@ public class PlacementBatchesTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "slotId": "slotId",
-                  "alias": "alias",
-                  "isActive": true,
-                  "lastActivatedAt": "2024-01-15T09:30:00.000Z",
-                  "expiresAt": "2024-01-15T09:30:00.000Z",
-                  "components": {
-                    "shortDescription": "shortDescription",
-                    "longDescription": "longDescription",
-                    "baseReward": "baseReward",
-                    "boostedReward": "boostedReward",
-                    "cta": {
-                      "buttonText": "buttonText",
-                      "buttonStyle": "PRIMARY",
-                      "action": {
+                  "id": "id",
+                  "type": "placementBatch",
+                  "attributes": {
+                    "name": "name",
+                    "isActive": true,
+                    "lastActivatedAt": "2024-01-15T09:30:00.000Z",
+                    "expiresAt": "2024-01-15T09:30:00.000Z",
+                    "components": {
+                      "shortDescription": "shortDescription",
+                      "longDescription": "longDescription",
+                      "baseReward": "baseReward",
+                      "boostedReward": "boostedReward",
+                      "cta": {
+                        "buttonText": "buttonText",
+                        "buttonStyle": "PRIMARY",
+                        "action": {
+                          "url": "url",
+                          "method": "method"
+                        },
+                        "startIcon": "startIcon"
+                      },
+                      "tags": [
+                        "tags",
+                        "tags"
+                      ],
+                      "detailTags": [
+                        "detailTags",
+                        "detailTags"
+                      ],
+                      "logoFlare": {
+                        "borderColor": "PRIMARY",
+                        "badge": {
+                          "icon": "icon",
+                          "position": "TOP_RIGHT"
+                        }
+                      },
+                      "progressBar": {
+                        "total": 1,
+                        "currentProgress": 1,
+                        "label": "label",
+                        "segmented": true,
+                        "labels": {
+                          "details": {},
+                          "default": {}
+                        }
+                      }
+                    },
+                    "assets": [
+                      {
+                        "type": "type",
                         "url": "url",
-                        "method": "method"
+                        "alt": "alt"
                       },
-                      "startIcon": "startIcon"
-                    },
-                    "tags": [
-                      "tags",
-                      "tags"
+                      {
+                        "type": "type",
+                        "url": "url",
+                        "alt": "alt"
+                      }
                     ],
-                    "detailTags": [
-                      "detailTags",
-                      "detailTags"
-                    ],
-                    "logoFlare": {
-                      "borderColor": "PRIMARY",
-                      "badge": {
-                        "icon": "icon",
-                        "position": "TOP_RIGHT"
-                      }
-                    },
-                    "progressBar": {
-                      "total": 1,
-                      "currentProgress": 1,
-                      "label": "label",
-                      "segmented": true,
-                      "segments": {
-                        "default": {
-                          "position": "LEFT"
+                    "offers": [
+                      {
+                        "type": "standardOffer",
+                        "relationships": {
+                          "category": {
+                            "data": []
+                          }
+                        },
+                        "id": "id",
+                        "attributes": {
+                          "terms": "terms",
+                          "maxRedemptions": 1,
+                          "name": "name",
+                          "purchaseChannel": [
+                            "INSTORE",
+                            "INSTORE"
+                          ],
+                          "userReward": {
+                            "type": "FLAT",
+                            "value": 1.1
+                          },
+                          "assets": [
+                            {
+                              "type": "type",
+                              "url": "url",
+                              "alt": "alt"
+                            },
+                            {
+                              "type": "type",
+                              "url": "url",
+                              "alt": "alt"
+                            }
+                          ],
+                          "startDate": "2024-01-15T09:30:00.000Z",
+                          "expirationDate": "2024-01-15T09:30:00.000Z",
+                          "isTargeted": true,
+                          "minTransactionAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "maxTransactionAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "minRewardAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "maxRewardAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "websiteUrl": "websiteUrl",
+                          "description": "description",
+                          "components": {
+                            "shortDescription": "shortDescription",
+                            "longDescription": "longDescription",
+                            "baseReward": "baseReward",
+                            "boostedReward": "boostedReward",
+                            "tags": [],
+                            "detailTags": []
+                          }
                         }
                       },
-                      "labels": {
-                        "details": {},
-                        "default": {
-                          "left": "left",
-                          "right": "right"
-                        }
-                      }
-                    }
-                  },
-                  "assets": [
-                    {
-                      "type": "type",
-                      "url": "url",
-                      "alt": "alt"
-                    },
-                    {
-                      "type": "type",
-                      "url": "url",
-                      "alt": "alt"
-                    }
-                  ],
-                  "offers": [
-                    {
-                      "type": "standardOffer",
-                      "relationships": {
-                        "category": {
-                          "data": []
-                        }
-                      },
-                      "id": "id",
-                      "attributes": {
-                        "terms": "terms",
-                        "maxRedemptions": 1,
-                        "name": "name",
-                        "purchaseChannel": [
-                          "INSTORE",
-                          "INSTORE"
-                        ],
-                        "userReward": {
-                          "type": "FLAT",
-                          "value": 1.1
-                        },
-                        "assets": [
-                          {
-                            "type": "type",
-                            "url": "url",
-                            "alt": "alt"
-                          },
-                          {
-                            "type": "type",
-                            "url": "url",
-                            "alt": "alt"
+                      {
+                        "type": "standardOffer",
+                        "relationships": {
+                          "category": {
+                            "data": []
                           }
-                        ],
-                        "startDate": "2024-01-15T09:30:00.000Z",
-                        "expirationDate": "2024-01-15T09:30:00.000Z",
-                        "isTargeted": true,
-                        "minTransactionAmount": {
-                          "type": "CENTS",
-                          "value": 1
                         },
-                        "maxTransactionAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "minRewardAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "maxRewardAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "websiteUrl": "websiteUrl",
-                        "description": "description",
-                        "components": {
-                          "shortDescription": "shortDescription",
-                          "longDescription": "longDescription",
-                          "baseReward": "baseReward",
-                          "boostedReward": "boostedReward",
-                          "cta": {
-                            "buttonText": "buttonText",
-                            "buttonStyle": "PRIMARY"
+                        "id": "id",
+                        "attributes": {
+                          "terms": "terms",
+                          "maxRedemptions": 1,
+                          "name": "name",
+                          "purchaseChannel": [
+                            "INSTORE",
+                            "INSTORE"
+                          ],
+                          "userReward": {
+                            "type": "FLAT",
+                            "value": 1.1
                           },
-                          "tags": [
-                            "tags",
-                            "tags"
+                          "assets": [
+                            {
+                              "type": "type",
+                              "url": "url",
+                              "alt": "alt"
+                            },
+                            {
+                              "type": "type",
+                              "url": "url",
+                              "alt": "alt"
+                            }
                           ],
-                          "detailTags": [
-                            "detailTags",
-                            "detailTags"
-                          ],
-                          "logoFlare": {
-                            "borderColor": "PRIMARY"
+                          "startDate": "2024-01-15T09:30:00.000Z",
+                          "expirationDate": "2024-01-15T09:30:00.000Z",
+                          "isTargeted": true,
+                          "minTransactionAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "maxTransactionAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "minRewardAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "maxRewardAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "websiteUrl": "websiteUrl",
+                          "description": "description",
+                          "components": {
+                            "shortDescription": "shortDescription",
+                            "longDescription": "longDescription",
+                            "baseReward": "baseReward",
+                            "boostedReward": "boostedReward",
+                            "tags": [],
+                            "detailTags": []
                           }
                         }
                       }
-                    },
-                    {
-                      "type": "standardOffer",
-                      "relationships": {
-                        "category": {
-                          "data": []
-                        }
-                      },
-                      "id": "id",
-                      "attributes": {
-                        "terms": "terms",
-                        "maxRedemptions": 1,
-                        "name": "name",
-                        "purchaseChannel": [
-                          "INSTORE",
-                          "INSTORE"
-                        ],
-                        "userReward": {
-                          "type": "FLAT",
-                          "value": 1.1
-                        },
-                        "assets": [
-                          {
-                            "type": "type",
-                            "url": "url",
-                            "alt": "alt"
-                          },
-                          {
-                            "type": "type",
-                            "url": "url",
-                            "alt": "alt"
-                          }
-                        ],
-                        "startDate": "2024-01-15T09:30:00.000Z",
-                        "expirationDate": "2024-01-15T09:30:00.000Z",
-                        "isTargeted": true,
-                        "minTransactionAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "maxTransactionAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "minRewardAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "maxRewardAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "websiteUrl": "websiteUrl",
-                        "description": "description",
-                        "components": {
-                          "shortDescription": "shortDescription",
-                          "longDescription": "longDescription",
-                          "baseReward": "baseReward",
-                          "boostedReward": "boostedReward",
-                          "cta": {
-                            "buttonText": "buttonText",
-                            "buttonStyle": "PRIMARY"
-                          },
-                          "tags": [
-                            "tags",
-                            "tags"
-                          ],
-                          "detailTags": [
-                            "detailTags",
-                            "detailTags"
-                          ],
-                          "logoFlare": {
-                            "borderColor": "PRIMARY"
-                          }
-                        }
-                      }
-                    }
-                  ]
+                    ]
+                  }
                 },
                 {
-                  "slotId": "slotId",
-                  "alias": "alias",
-                  "isActive": true,
-                  "lastActivatedAt": "2024-01-15T09:30:00.000Z",
-                  "expiresAt": "2024-01-15T09:30:00.000Z",
-                  "components": {
-                    "shortDescription": "shortDescription",
-                    "longDescription": "longDescription",
-                    "baseReward": "baseReward",
-                    "boostedReward": "boostedReward",
-                    "cta": {
-                      "buttonText": "buttonText",
-                      "buttonStyle": "PRIMARY",
-                      "action": {
+                  "id": "id",
+                  "type": "placementBatch",
+                  "attributes": {
+                    "name": "name",
+                    "isActive": true,
+                    "lastActivatedAt": "2024-01-15T09:30:00.000Z",
+                    "expiresAt": "2024-01-15T09:30:00.000Z",
+                    "components": {
+                      "shortDescription": "shortDescription",
+                      "longDescription": "longDescription",
+                      "baseReward": "baseReward",
+                      "boostedReward": "boostedReward",
+                      "cta": {
+                        "buttonText": "buttonText",
+                        "buttonStyle": "PRIMARY",
+                        "action": {
+                          "url": "url",
+                          "method": "method"
+                        },
+                        "startIcon": "startIcon"
+                      },
+                      "tags": [
+                        "tags",
+                        "tags"
+                      ],
+                      "detailTags": [
+                        "detailTags",
+                        "detailTags"
+                      ],
+                      "logoFlare": {
+                        "borderColor": "PRIMARY",
+                        "badge": {
+                          "icon": "icon",
+                          "position": "TOP_RIGHT"
+                        }
+                      },
+                      "progressBar": {
+                        "total": 1,
+                        "currentProgress": 1,
+                        "label": "label",
+                        "segmented": true,
+                        "labels": {
+                          "details": {},
+                          "default": {}
+                        }
+                      }
+                    },
+                    "assets": [
+                      {
+                        "type": "type",
                         "url": "url",
-                        "method": "method"
+                        "alt": "alt"
                       },
-                      "startIcon": "startIcon"
-                    },
-                    "tags": [
-                      "tags",
-                      "tags"
+                      {
+                        "type": "type",
+                        "url": "url",
+                        "alt": "alt"
+                      }
                     ],
-                    "detailTags": [
-                      "detailTags",
-                      "detailTags"
-                    ],
-                    "logoFlare": {
-                      "borderColor": "PRIMARY",
-                      "badge": {
-                        "icon": "icon",
-                        "position": "TOP_RIGHT"
-                      }
-                    },
-                    "progressBar": {
-                      "total": 1,
-                      "currentProgress": 1,
-                      "label": "label",
-                      "segmented": true,
-                      "segments": {
-                        "default": {
-                          "position": "LEFT"
+                    "offers": [
+                      {
+                        "type": "standardOffer",
+                        "relationships": {
+                          "category": {
+                            "data": []
+                          }
+                        },
+                        "id": "id",
+                        "attributes": {
+                          "terms": "terms",
+                          "maxRedemptions": 1,
+                          "name": "name",
+                          "purchaseChannel": [
+                            "INSTORE",
+                            "INSTORE"
+                          ],
+                          "userReward": {
+                            "type": "FLAT",
+                            "value": 1.1
+                          },
+                          "assets": [
+                            {
+                              "type": "type",
+                              "url": "url",
+                              "alt": "alt"
+                            },
+                            {
+                              "type": "type",
+                              "url": "url",
+                              "alt": "alt"
+                            }
+                          ],
+                          "startDate": "2024-01-15T09:30:00.000Z",
+                          "expirationDate": "2024-01-15T09:30:00.000Z",
+                          "isTargeted": true,
+                          "minTransactionAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "maxTransactionAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "minRewardAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "maxRewardAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "websiteUrl": "websiteUrl",
+                          "description": "description",
+                          "components": {
+                            "shortDescription": "shortDescription",
+                            "longDescription": "longDescription",
+                            "baseReward": "baseReward",
+                            "boostedReward": "boostedReward",
+                            "tags": [],
+                            "detailTags": []
+                          }
                         }
                       },
-                      "labels": {
-                        "details": {},
-                        "default": {
-                          "left": "left",
-                          "right": "right"
-                        }
-                      }
-                    }
-                  },
-                  "assets": [
-                    {
-                      "type": "type",
-                      "url": "url",
-                      "alt": "alt"
-                    },
-                    {
-                      "type": "type",
-                      "url": "url",
-                      "alt": "alt"
-                    }
-                  ],
-                  "offers": [
-                    {
-                      "type": "standardOffer",
-                      "relationships": {
-                        "category": {
-                          "data": []
-                        }
-                      },
-                      "id": "id",
-                      "attributes": {
-                        "terms": "terms",
-                        "maxRedemptions": 1,
-                        "name": "name",
-                        "purchaseChannel": [
-                          "INSTORE",
-                          "INSTORE"
-                        ],
-                        "userReward": {
-                          "type": "FLAT",
-                          "value": 1.1
-                        },
-                        "assets": [
-                          {
-                            "type": "type",
-                            "url": "url",
-                            "alt": "alt"
-                          },
-                          {
-                            "type": "type",
-                            "url": "url",
-                            "alt": "alt"
+                      {
+                        "type": "standardOffer",
+                        "relationships": {
+                          "category": {
+                            "data": []
                           }
-                        ],
-                        "startDate": "2024-01-15T09:30:00.000Z",
-                        "expirationDate": "2024-01-15T09:30:00.000Z",
-                        "isTargeted": true,
-                        "minTransactionAmount": {
-                          "type": "CENTS",
-                          "value": 1
                         },
-                        "maxTransactionAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "minRewardAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "maxRewardAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "websiteUrl": "websiteUrl",
-                        "description": "description",
-                        "components": {
-                          "shortDescription": "shortDescription",
-                          "longDescription": "longDescription",
-                          "baseReward": "baseReward",
-                          "boostedReward": "boostedReward",
-                          "cta": {
-                            "buttonText": "buttonText",
-                            "buttonStyle": "PRIMARY"
+                        "id": "id",
+                        "attributes": {
+                          "terms": "terms",
+                          "maxRedemptions": 1,
+                          "name": "name",
+                          "purchaseChannel": [
+                            "INSTORE",
+                            "INSTORE"
+                          ],
+                          "userReward": {
+                            "type": "FLAT",
+                            "value": 1.1
                           },
-                          "tags": [
-                            "tags",
-                            "tags"
+                          "assets": [
+                            {
+                              "type": "type",
+                              "url": "url",
+                              "alt": "alt"
+                            },
+                            {
+                              "type": "type",
+                              "url": "url",
+                              "alt": "alt"
+                            }
                           ],
-                          "detailTags": [
-                            "detailTags",
-                            "detailTags"
-                          ],
-                          "logoFlare": {
-                            "borderColor": "PRIMARY"
+                          "startDate": "2024-01-15T09:30:00.000Z",
+                          "expirationDate": "2024-01-15T09:30:00.000Z",
+                          "isTargeted": true,
+                          "minTransactionAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "maxTransactionAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "minRewardAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "maxRewardAmount": {
+                            "type": "CENTS",
+                            "value": 1
+                          },
+                          "websiteUrl": "websiteUrl",
+                          "description": "description",
+                          "components": {
+                            "shortDescription": "shortDescription",
+                            "longDescription": "longDescription",
+                            "baseReward": "baseReward",
+                            "boostedReward": "boostedReward",
+                            "tags": [],
+                            "detailTags": []
                           }
                         }
                       }
-                    },
-                    {
-                      "type": "standardOffer",
-                      "relationships": {
-                        "category": {
-                          "data": []
-                        }
-                      },
-                      "id": "id",
-                      "attributes": {
-                        "terms": "terms",
-                        "maxRedemptions": 1,
-                        "name": "name",
-                        "purchaseChannel": [
-                          "INSTORE",
-                          "INSTORE"
-                        ],
-                        "userReward": {
-                          "type": "FLAT",
-                          "value": 1.1
-                        },
-                        "assets": [
-                          {
-                            "type": "type",
-                            "url": "url",
-                            "alt": "alt"
-                          },
-                          {
-                            "type": "type",
-                            "url": "url",
-                            "alt": "alt"
-                          }
-                        ],
-                        "startDate": "2024-01-15T09:30:00.000Z",
-                        "expirationDate": "2024-01-15T09:30:00.000Z",
-                        "isTargeted": true,
-                        "minTransactionAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "maxTransactionAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "minRewardAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "maxRewardAmount": {
-                          "type": "CENTS",
-                          "value": 1
-                        },
-                        "websiteUrl": "websiteUrl",
-                        "description": "description",
-                        "components": {
-                          "shortDescription": "shortDescription",
-                          "longDescription": "longDescription",
-                          "baseReward": "baseReward",
-                          "boostedReward": "boostedReward",
-                          "cta": {
-                            "buttonText": "buttonText",
-                            "buttonStyle": "PRIMARY"
-                          },
-                          "tags": [
-                            "tags",
-                            "tags"
-                          ],
-                          "detailTags": [
-                            "detailTags",
-                            "detailTags"
-                          ],
-                          "logoFlare": {
-                            "borderColor": "PRIMARY"
-                          }
-                        }
-                      }
-                    }
-                  ]
+                    ]
+                  }
                 }
               ]
             }

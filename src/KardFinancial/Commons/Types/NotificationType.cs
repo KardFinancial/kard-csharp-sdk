@@ -22,6 +22,14 @@ public readonly record struct NotificationType : IStringEnum
 
     public static readonly NotificationType FileProcessingResult = new(Values.FileProcessingResult);
 
+    public static readonly NotificationType PushNotificationPlacementFile = new(
+        Values.PushNotificationPlacementFile
+    );
+
+    public static readonly NotificationType EmailNotificationPlacementFile = new(
+        Values.EmailNotificationPlacementFile
+    );
+
     public NotificationType(string value)
     {
         Value = value;
@@ -131,5 +139,9 @@ public readonly record struct NotificationType : IStringEnum
         public const string AuditUpdate = "auditUpdate";
 
         public const string FileProcessingResult = "fileProcessingResult";
+
+        public const string PushNotificationPlacementFile = "pushNotificationPlacementFile";
+
+        public const string EmailNotificationPlacementFile = "emailNotificationPlacementFile";
     }
 }

@@ -972,4 +972,221 @@ public class NotificationPayloadTest
             """;
         JsonAssert.Roundtrips<NotificationPayload>(inputJson);
     }
+
+    [NUnit.Framework.Test]
+    public void TestDeserialization_9()
+    {
+        var json = """
+            {
+              "data": {
+                "id": "669e3823-1688-4d6e-b46e-cf1999d4a25d",
+                "type": "pushNotificationPlacementFile",
+                "attributes": {
+                  "placementName": "Top gas cashback",
+                  "availableSlots": 3,
+                  "cadence": "WEEKLY",
+                  "downloadUrl": "https://example.com/placements/669e3823-1688-4d6e-b46e-cf1999d4a25d.jsonl.gz"
+                },
+                "relationships": {
+                  "placement": {
+                    "data": {
+                      "type": "placement",
+                      "id": "669e3823-1688-4d6e-b46e-cf1999d4a25d"
+                    }
+                  },
+                  "contentStrategy": {
+                    "data": {
+                      "type": "contentStrategy",
+                      "id": "8df56d4f-0dbf-47ab-b081-0c6534dddd34"
+                    }
+                  }
+                }
+              }
+            }
+            """;
+        var expectedObject = new NotificationPayload
+        {
+            Data = new NotificationDataUnion(
+                new NotificationDataUnion.PushNotificationPlacementFile(
+                    new PushNotificationPlacementFileData
+                    {
+                        Id = "669e3823-1688-4d6e-b46e-cf1999d4a25d",
+                        Attributes = new PushNotificationPlacementFileAttributes
+                        {
+                            PlacementName = "Top gas cashback",
+                            AvailableSlots = 3,
+                            Cadence = "WEEKLY",
+                            DownloadUrl =
+                                "https://example.com/placements/669e3823-1688-4d6e-b46e-cf1999d4a25d.jsonl.gz",
+                        },
+                        Relationships = new PushNotificationPlacementFileRelationships
+                        {
+                            Placement = new RelationshipSingle
+                            {
+                                Data = new RelationshipData
+                                {
+                                    Type = "placement",
+                                    Id = "669e3823-1688-4d6e-b46e-cf1999d4a25d",
+                                },
+                            },
+                            ContentStrategy = new RelationshipSingle
+                            {
+                                Data = new RelationshipData
+                                {
+                                    Type = "contentStrategy",
+                                    Id = "8df56d4f-0dbf-47ab-b081-0c6534dddd34",
+                                },
+                            },
+                        },
+                    }
+                )
+            ),
+        };
+        var deserializedObject = JsonUtils.Deserialize<NotificationPayload>(json);
+        Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
+    }
+
+    [NUnit.Framework.Test]
+    public void TestSerialization_9()
+    {
+        var inputJson = """
+            {
+              "data": {
+                "id": "669e3823-1688-4d6e-b46e-cf1999d4a25d",
+                "type": "pushNotificationPlacementFile",
+                "attributes": {
+                  "placementName": "Top gas cashback",
+                  "availableSlots": 3,
+                  "cadence": "WEEKLY",
+                  "downloadUrl": "https://example.com/placements/669e3823-1688-4d6e-b46e-cf1999d4a25d.jsonl.gz"
+                },
+                "relationships": {
+                  "placement": {
+                    "data": {
+                      "type": "placement",
+                      "id": "669e3823-1688-4d6e-b46e-cf1999d4a25d"
+                    }
+                  },
+                  "contentStrategy": {
+                    "data": {
+                      "type": "contentStrategy",
+                      "id": "8df56d4f-0dbf-47ab-b081-0c6534dddd34"
+                    }
+                  }
+                }
+              }
+            }
+            """;
+        JsonAssert.Roundtrips<NotificationPayload>(inputJson);
+    }
+
+    [NUnit.Framework.Test]
+    public void TestDeserialization_10()
+    {
+        var json = """
+            {
+              "data": {
+                "id": "0192a1b2-c3d4-7e8f-9012-3456789abc01",
+                "type": "emailNotificationPlacementFile",
+                "attributes": {
+                  "name": "Monthly Top Cashback Email",
+                  "organizationId": "00004321",
+                  "availableSlots": 3,
+                  "cadence": "MONTHLY",
+                  "downloadUrl": "https://example.com/placements/0192a1b2-c3d4-7e8f-9012-3456789abc01.jsonl.gz"
+                },
+                "relationships": {
+                  "placement": {
+                    "data": {
+                      "type": "placement",
+                      "id": "0192a1b2-c3d4-7e8f-9012-aaaa5678cccc"
+                    }
+                  },
+                  "contentStrategy": {
+                    "data": {
+                      "type": "contentStrategy",
+                      "id": "8df56d4f-0dbf-47ab-b081-0c6534dddd34"
+                    }
+                  }
+                }
+              }
+            }
+            """;
+        var expectedObject = new NotificationPayload
+        {
+            Data = new NotificationDataUnion(
+                new NotificationDataUnion.EmailNotificationPlacementFile(
+                    new EmailNotificationPlacementFileData
+                    {
+                        Id = "0192a1b2-c3d4-7e8f-9012-3456789abc01",
+                        Attributes = new EmailNotificationPlacementFileAttributes
+                        {
+                            Name = "Monthly Top Cashback Email",
+                            OrganizationId = "00004321",
+                            AvailableSlots = 3,
+                            Cadence = "MONTHLY",
+                            DownloadUrl =
+                                "https://example.com/placements/0192a1b2-c3d4-7e8f-9012-3456789abc01.jsonl.gz",
+                        },
+                        Relationships = new EmailNotificationPlacementFileRelationships
+                        {
+                            Placement = new RelationshipSingle
+                            {
+                                Data = new RelationshipData
+                                {
+                                    Type = "placement",
+                                    Id = "0192a1b2-c3d4-7e8f-9012-aaaa5678cccc",
+                                },
+                            },
+                            ContentStrategy = new RelationshipSingle
+                            {
+                                Data = new RelationshipData
+                                {
+                                    Type = "contentStrategy",
+                                    Id = "8df56d4f-0dbf-47ab-b081-0c6534dddd34",
+                                },
+                            },
+                        },
+                    }
+                )
+            ),
+        };
+        var deserializedObject = JsonUtils.Deserialize<NotificationPayload>(json);
+        Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
+    }
+
+    [NUnit.Framework.Test]
+    public void TestSerialization_10()
+    {
+        var inputJson = """
+            {
+              "data": {
+                "id": "0192a1b2-c3d4-7e8f-9012-3456789abc01",
+                "type": "emailNotificationPlacementFile",
+                "attributes": {
+                  "name": "Monthly Top Cashback Email",
+                  "organizationId": "00004321",
+                  "availableSlots": 3,
+                  "cadence": "MONTHLY",
+                  "downloadUrl": "https://example.com/placements/0192a1b2-c3d4-7e8f-9012-3456789abc01.jsonl.gz"
+                },
+                "relationships": {
+                  "placement": {
+                    "data": {
+                      "type": "placement",
+                      "id": "0192a1b2-c3d4-7e8f-9012-aaaa5678cccc"
+                    }
+                  },
+                  "contentStrategy": {
+                    "data": {
+                      "type": "contentStrategy",
+                      "id": "8df56d4f-0dbf-47ab-b081-0c6534dddd34"
+                    }
+                  }
+                }
+              }
+            }
+            """;
+        JsonAssert.Roundtrips<NotificationPayload>(inputJson);
+    }
 }

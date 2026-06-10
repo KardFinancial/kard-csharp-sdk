@@ -1,3 +1,10 @@
+## 13.2.0 - 2026-06-10
+### Added
+* **`PushNotificationPlacementFileData`** — new record type representing a push-channel placement file notification, with `PushNotificationPlacementFileAttributes` (placement name, available slots, cadence, download URL) and `PushNotificationPlacementFileRelationships`.
+* **`EmailNotificationPlacementFileData`** — new record type representing an email-channel placement file notification, with `EmailNotificationPlacementFileAttributes` (name, organization ID, available slots, cadence, download URL) and `EmailNotificationPlacementFileRelationships`.
+* **`NotificationDataUnion`** — extended with constructors, `IsPushNotificationPlacementFile`, `IsEmailNotificationPlacementFile`, `AsPushNotificationPlacementFile()`, `AsEmailNotificationPlacementFile()`, `TryAsPushNotificationPlacementFile()`, `TryAsEmailNotificationPlacementFile()`, and updated `Match`/`Visit` overloads for both new union members.
+* **`NotificationType.PushNotificationPlacementFile`** and **`NotificationType.EmailNotificationPlacementFile`** — new string enum constants for the two new notification type discriminants.
+
 ## 13.1.0 - 2026-06-10
 ### Added
 * **`UpdateUserRequestAttributes.HistoricalTransactionsSent`** — new optional `bool?` property that confirms historical transactions have been sent for a user; once set to `true` it cannot be reverted to `false`.

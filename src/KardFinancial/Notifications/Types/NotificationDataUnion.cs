@@ -82,6 +82,24 @@ public record NotificationDataUnion
     }
 
     /// <summary>
+    /// Create an instance of NotificationDataUnion with <see cref="NotificationDataUnion.PushNotificationPlacementFile"/>.
+    /// </summary>
+    public NotificationDataUnion(NotificationDataUnion.PushNotificationPlacementFile value)
+    {
+        Type = "pushNotificationPlacementFile";
+        Value = value.Value;
+    }
+
+    /// <summary>
+    /// Create an instance of NotificationDataUnion with <see cref="NotificationDataUnion.EmailNotificationPlacementFile"/>.
+    /// </summary>
+    public NotificationDataUnion(NotificationDataUnion.EmailNotificationPlacementFile value)
+    {
+        Type = "emailNotificationPlacementFile";
+        Value = value.Value;
+    }
+
+    /// <summary>
     /// Discriminant value
     /// </summary>
     [JsonPropertyName("type")]
@@ -126,6 +144,16 @@ public record NotificationDataUnion
     /// Returns true if <see cref="Type"/> is "fileProcessingResult"
     /// </summary>
     public bool IsFileProcessingResult => Type == "fileProcessingResult";
+
+    /// <summary>
+    /// Returns true if <see cref="Type"/> is "pushNotificationPlacementFile"
+    /// </summary>
+    public bool IsPushNotificationPlacementFile => Type == "pushNotificationPlacementFile";
+
+    /// <summary>
+    /// Returns true if <see cref="Type"/> is "emailNotificationPlacementFile"
+    /// </summary>
+    public bool IsEmailNotificationPlacementFile => Type == "emailNotificationPlacementFile";
 
     /// <summary>
     /// Returns the value as a <see cref="KardFinancial.EarnedRewardApprovedData"/> if <see cref="Type"/> is 'earnedRewardApproved', otherwise throws an exception.
@@ -200,6 +228,28 @@ public record NotificationDataUnion
                 "NotificationDataUnion.Type is not 'fileProcessingResult'"
             );
 
+    /// <summary>
+    /// Returns the value as a <see cref="KardFinancial.PushNotificationPlacementFileData"/> if <see cref="Type"/> is 'pushNotificationPlacementFile', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'pushNotificationPlacementFile'.</exception>
+    public KardFinancial.PushNotificationPlacementFileData AsPushNotificationPlacementFile() =>
+        IsPushNotificationPlacementFile
+            ? (KardFinancial.PushNotificationPlacementFileData)Value!
+            : throw new global::System.Exception(
+                "NotificationDataUnion.Type is not 'pushNotificationPlacementFile'"
+            );
+
+    /// <summary>
+    /// Returns the value as a <see cref="KardFinancial.EmailNotificationPlacementFileData"/> if <see cref="Type"/> is 'emailNotificationPlacementFile', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'emailNotificationPlacementFile'.</exception>
+    public KardFinancial.EmailNotificationPlacementFileData AsEmailNotificationPlacementFile() =>
+        IsEmailNotificationPlacementFile
+            ? (KardFinancial.EmailNotificationPlacementFileData)Value!
+            : throw new global::System.Exception(
+                "NotificationDataUnion.Type is not 'emailNotificationPlacementFile'"
+            );
+
     public T Match<T>(
         Func<KardFinancial.EarnedRewardApprovedData, T> onEarnedRewardApproved,
         Func<KardFinancial.EarnedRewardSettledData, T> onEarnedRewardSettled,
@@ -208,6 +258,8 @@ public record NotificationDataUnion
         Func<KardFinancial.ClawbackData, T> onClawback,
         Func<KardFinancial.AuditUpdateData, T> onAuditUpdate,
         Func<KardFinancial.FileResultData, T> onFileProcessingResult,
+        Func<KardFinancial.PushNotificationPlacementFileData, T> onPushNotificationPlacementFile,
+        Func<KardFinancial.EmailNotificationPlacementFileData, T> onEmailNotificationPlacementFile,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -220,6 +272,12 @@ public record NotificationDataUnion
             "clawback" => onClawback(AsClawback()),
             "auditUpdate" => onAuditUpdate(AsAuditUpdate()),
             "fileProcessingResult" => onFileProcessingResult(AsFileProcessingResult()),
+            "pushNotificationPlacementFile" => onPushNotificationPlacementFile(
+                AsPushNotificationPlacementFile()
+            ),
+            "emailNotificationPlacementFile" => onEmailNotificationPlacementFile(
+                AsEmailNotificationPlacementFile()
+            ),
             _ => onUnknown_(Type, Value),
         };
     }
@@ -232,6 +290,8 @@ public record NotificationDataUnion
         Action<KardFinancial.ClawbackData> onClawback,
         Action<KardFinancial.AuditUpdateData> onAuditUpdate,
         Action<KardFinancial.FileResultData> onFileProcessingResult,
+        Action<KardFinancial.PushNotificationPlacementFileData> onPushNotificationPlacementFile,
+        Action<KardFinancial.EmailNotificationPlacementFileData> onEmailNotificationPlacementFile,
         Action<string, object?> onUnknown_
     )
     {
@@ -257,6 +317,12 @@ public record NotificationDataUnion
                 break;
             case "fileProcessingResult":
                 onFileProcessingResult(AsFileProcessingResult());
+                break;
+            case "pushNotificationPlacementFile":
+                onPushNotificationPlacementFile(AsPushNotificationPlacementFile());
+                break;
+            case "emailNotificationPlacementFile":
+                onEmailNotificationPlacementFile(AsEmailNotificationPlacementFile());
                 break;
             default:
                 onUnknown_(Type, Value);
@@ -362,6 +428,38 @@ public record NotificationDataUnion
         return false;
     }
 
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="KardFinancial.PushNotificationPlacementFileData"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsPushNotificationPlacementFile(
+        out KardFinancial.PushNotificationPlacementFileData? value
+    )
+    {
+        if (Type == "pushNotificationPlacementFile")
+        {
+            value = (KardFinancial.PushNotificationPlacementFileData)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="KardFinancial.EmailNotificationPlacementFileData"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsEmailNotificationPlacementFile(
+        out KardFinancial.EmailNotificationPlacementFileData? value
+    )
+    {
+        if (Type == "emailNotificationPlacementFile")
+        {
+            value = (KardFinancial.EmailNotificationPlacementFileData)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
     public override string ToString() => JsonUtils.Serialize(this);
 
     public static implicit operator NotificationDataUnion(
@@ -389,6 +487,14 @@ public record NotificationDataUnion
 
     public static implicit operator NotificationDataUnion(
         NotificationDataUnion.FileProcessingResult value
+    ) => new(value);
+
+    public static implicit operator NotificationDataUnion(
+        NotificationDataUnion.PushNotificationPlacementFile value
+    ) => new(value);
+
+    public static implicit operator NotificationDataUnion(
+        NotificationDataUnion.EmailNotificationPlacementFile value
     ) => new(value);
 
     [Serializable]
@@ -473,6 +579,20 @@ public record NotificationDataUnion
                         ?? throw new JsonException(
                             "Failed to deserialize KardFinancial.FileResultData"
                         ),
+                "pushNotificationPlacementFile" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.PushNotificationPlacementFileData?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize KardFinancial.PushNotificationPlacementFileData"
+                        ),
+                "emailNotificationPlacementFile" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.EmailNotificationPlacementFileData?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize KardFinancial.EmailNotificationPlacementFileData"
+                        ),
                 _ => json.Deserialize<object?>(options),
             };
             return new NotificationDataUnion(discriminator, value);
@@ -494,6 +614,14 @@ public record NotificationDataUnion
                     "clawback" => JsonSerializer.SerializeToNode(value.Value, options),
                     "auditUpdate" => JsonSerializer.SerializeToNode(value.Value, options),
                     "fileProcessingResult" => JsonSerializer.SerializeToNode(value.Value, options),
+                    "pushNotificationPlacementFile" => JsonSerializer.SerializeToNode(
+                        value.Value,
+                        options
+                    ),
+                    "emailNotificationPlacementFile" => JsonSerializer.SerializeToNode(
+                        value.Value,
+                        options
+                    ),
                     _ => JsonSerializer.SerializeToNode(value.Value, options),
                 } ?? new JsonObject();
             json["type"] = value.Type;
@@ -659,6 +787,48 @@ public record NotificationDataUnion
 
         public static implicit operator NotificationDataUnion.FileProcessingResult(
             KardFinancial.FileResultData value
+        ) => new(value);
+    }
+
+    /// <summary>
+    /// Discriminated union type for pushNotificationPlacementFile
+    /// </summary>
+    [Serializable]
+    public struct PushNotificationPlacementFile
+    {
+        public PushNotificationPlacementFile(KardFinancial.PushNotificationPlacementFileData value)
+        {
+            Value = value;
+        }
+
+        internal KardFinancial.PushNotificationPlacementFileData Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator NotificationDataUnion.PushNotificationPlacementFile(
+            KardFinancial.PushNotificationPlacementFileData value
+        ) => new(value);
+    }
+
+    /// <summary>
+    /// Discriminated union type for emailNotificationPlacementFile
+    /// </summary>
+    [Serializable]
+    public struct EmailNotificationPlacementFile
+    {
+        public EmailNotificationPlacementFile(
+            KardFinancial.EmailNotificationPlacementFileData value
+        )
+        {
+            Value = value;
+        }
+
+        internal KardFinancial.EmailNotificationPlacementFileData Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator NotificationDataUnion.EmailNotificationPlacementFile(
+            KardFinancial.EmailNotificationPlacementFileData value
         ) => new(value);
     }
 }

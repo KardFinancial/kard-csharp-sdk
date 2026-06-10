@@ -1,0 +1,49 @@
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
+using KardFinancial.Core;
+
+namespace KardFinancial;
+
+[Serializable]
+public record PushNotificationPlacementFileAttributes : IJsonOnDeserialized
+{
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// The display name of the placement
+    /// </summary>
+    [JsonPropertyName("placementName")]
+    public required string PlacementName { get; set; }
+
+    /// <summary>
+    /// The number of offer slots available in the placement
+    /// </summary>
+    [JsonPropertyName("availableSlots")]
+    public required int AvailableSlots { get; set; }
+
+    /// <summary>
+    /// The delivery cadence of the placement (e.g. WEEKLY)
+    /// </summary>
+    [JsonPropertyName("cadence")]
+    public required string Cadence { get; set; }
+
+    /// <summary>
+    /// Presigned URL to download the generated placement file (gzipped JSONL)
+    /// </summary>
+    [JsonPropertyName("downloadUrl")]
+    public required string DownloadUrl { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}

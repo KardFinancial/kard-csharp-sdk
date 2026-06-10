@@ -1,3 +1,7 @@
+## 13.1.0 - 2026-06-10
+### Added
+* **`UpdateUserRequestAttributes.HistoricalTransactionsSent`** — new optional `bool?` property that confirms historical transactions have been sent for a user; once set to `true` it cannot be reverted to `false`.
+
 ## 13.0.0 - 2026-06-01
 ### Breaking Changes
 * **`PlacementBatchAttributes.ShortDescription`** — removed; any code that constructs or reads this `required string` property must be updated. The equivalent copy is now available via `PlacementBatchAttributes.Components` (`OfferComponents`), which now carries `shortDescription` derived from the parent placement's `refreshInterval`.

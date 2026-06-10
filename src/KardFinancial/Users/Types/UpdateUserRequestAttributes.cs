@@ -48,6 +48,12 @@ public record UpdateUserRequestAttributes : IJsonOnDeserialized
     [JsonPropertyName("birthYear")]
     public string? BirthYear { get; set; }
 
+    /// <summary>
+    /// Set to `true` to confirm that historical transactions have been sent for this user. This is a one-way flag: once `true` it cannot be set back to `false`, and a request attempting to do so is rejected.
+    /// </summary>
+    [JsonPropertyName("historicalTransactionsSent")]
+    public bool? HistoricalTransactionsSent { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

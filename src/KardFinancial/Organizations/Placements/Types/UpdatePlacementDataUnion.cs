@@ -22,11 +22,11 @@ public record UpdatePlacementDataUnion
     }
 
     /// <summary>
-    /// Create an instance of UpdatePlacementDataUnion with <see cref="UpdatePlacementDataUnion.PlacementMainPage"/>.
+    /// Create an instance of UpdatePlacementDataUnion with <see cref="UpdatePlacementDataUnion.Placement"/>.
     /// </summary>
-    public UpdatePlacementDataUnion(UpdatePlacementDataUnion.PlacementMainPage value)
+    public UpdatePlacementDataUnion(UpdatePlacementDataUnion.Placement value)
     {
-        Type = "placementMainPage";
+        Type = "placement";
         Value = value.Value;
     }
 
@@ -40,11 +40,29 @@ public record UpdatePlacementDataUnion
     }
 
     /// <summary>
+    /// Create an instance of UpdatePlacementDataUnion with <see cref="UpdatePlacementDataUnion.PlacementEmail"/>.
+    /// </summary>
+    public UpdatePlacementDataUnion(UpdatePlacementDataUnion.PlacementEmail value)
+    {
+        Type = "placementEmail";
+        Value = value.Value;
+    }
+
+    /// <summary>
     /// Create an instance of UpdatePlacementDataUnion with <see cref="UpdatePlacementDataUnion.PlacementBatchActivation"/>.
     /// </summary>
     public UpdatePlacementDataUnion(UpdatePlacementDataUnion.PlacementBatchActivation value)
     {
         Type = "placementBatchActivation";
+        Value = value.Value;
+    }
+
+    /// <summary>
+    /// Create an instance of UpdatePlacementDataUnion with <see cref="UpdatePlacementDataUnion.PlacementGroup"/>.
+    /// </summary>
+    public UpdatePlacementDataUnion(UpdatePlacementDataUnion.PlacementGroup value)
+    {
+        Type = "placementGroup";
         Value = value.Value;
     }
 
@@ -60,9 +78,9 @@ public record UpdatePlacementDataUnion
     public object? Value { get; internal set; }
 
     /// <summary>
-    /// Returns true if <see cref="Type"/> is "placementMainPage"
+    /// Returns true if <see cref="Type"/> is "placement"
     /// </summary>
-    public bool IsPlacementMainPage => Type == "placementMainPage";
+    public bool IsPlacement => Type == "placement";
 
     /// <summary>
     /// Returns true if <see cref="Type"/> is "placementPushNotification"
@@ -70,19 +88,29 @@ public record UpdatePlacementDataUnion
     public bool IsPlacementPushNotification => Type == "placementPushNotification";
 
     /// <summary>
+    /// Returns true if <see cref="Type"/> is "placementEmail"
+    /// </summary>
+    public bool IsPlacementEmail => Type == "placementEmail";
+
+    /// <summary>
     /// Returns true if <see cref="Type"/> is "placementBatchActivation"
     /// </summary>
     public bool IsPlacementBatchActivation => Type == "placementBatchActivation";
 
     /// <summary>
-    /// Returns the value as a <see cref="KardFinancial.Organizations.UpdateMainPagePlacementData"/> if <see cref="Type"/> is 'placementMainPage', otherwise throws an exception.
+    /// Returns true if <see cref="Type"/> is "placementGroup"
     /// </summary>
-    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placementMainPage'.</exception>
-    public KardFinancial.Organizations.UpdateMainPagePlacementData AsPlacementMainPage() =>
-        IsPlacementMainPage
-            ? (KardFinancial.Organizations.UpdateMainPagePlacementData)Value!
+    public bool IsPlacementGroup => Type == "placementGroup";
+
+    /// <summary>
+    /// Returns the value as a <see cref="KardFinancial.Organizations.UpdateStandardPlacementData"/> if <see cref="Type"/> is 'placement', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placement'.</exception>
+    public KardFinancial.Organizations.UpdateStandardPlacementData AsPlacement() =>
+        IsPlacement
+            ? (KardFinancial.Organizations.UpdateStandardPlacementData)Value!
             : throw new global::System.Exception(
-                "UpdatePlacementDataUnion.Type is not 'placementMainPage'"
+                "UpdatePlacementDataUnion.Type is not 'placement'"
             );
 
     /// <summary>
@@ -97,6 +125,17 @@ public record UpdatePlacementDataUnion
             );
 
     /// <summary>
+    /// Returns the value as a <see cref="KardFinancial.Organizations.UpdateEmailPlacementData"/> if <see cref="Type"/> is 'placementEmail', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placementEmail'.</exception>
+    public KardFinancial.Organizations.UpdateEmailPlacementData AsPlacementEmail() =>
+        IsPlacementEmail
+            ? (KardFinancial.Organizations.UpdateEmailPlacementData)Value!
+            : throw new global::System.Exception(
+                "UpdatePlacementDataUnion.Type is not 'placementEmail'"
+            );
+
+    /// <summary>
     /// Returns the value as a <see cref="KardFinancial.Organizations.UpdateBatchActivationPlacementData"/> if <see cref="Type"/> is 'placementBatchActivation', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placementBatchActivation'.</exception>
@@ -107,47 +146,70 @@ public record UpdatePlacementDataUnion
                 "UpdatePlacementDataUnion.Type is not 'placementBatchActivation'"
             );
 
+    /// <summary>
+    /// Returns the value as a <see cref="KardFinancial.Organizations.UpdateGroupPlacementData"/> if <see cref="Type"/> is 'placementGroup', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placementGroup'.</exception>
+    public KardFinancial.Organizations.UpdateGroupPlacementData AsPlacementGroup() =>
+        IsPlacementGroup
+            ? (KardFinancial.Organizations.UpdateGroupPlacementData)Value!
+            : throw new global::System.Exception(
+                "UpdatePlacementDataUnion.Type is not 'placementGroup'"
+            );
+
     public T Match<T>(
-        Func<KardFinancial.Organizations.UpdateMainPagePlacementData, T> onPlacementMainPage,
+        Func<KardFinancial.Organizations.UpdateStandardPlacementData, T> onPlacement,
         Func<
             KardFinancial.Organizations.UpdatePushNotificationPlacementData,
             T
         > onPlacementPushNotification,
+        Func<KardFinancial.Organizations.UpdateEmailPlacementData, T> onPlacementEmail,
         Func<
             KardFinancial.Organizations.UpdateBatchActivationPlacementData,
             T
         > onPlacementBatchActivation,
+        Func<KardFinancial.Organizations.UpdateGroupPlacementData, T> onPlacementGroup,
         Func<string, object?, T> onUnknown_
     )
     {
         return Type switch
         {
-            "placementMainPage" => onPlacementMainPage(AsPlacementMainPage()),
+            "placement" => onPlacement(AsPlacement()),
             "placementPushNotification" => onPlacementPushNotification(
                 AsPlacementPushNotification()
             ),
+            "placementEmail" => onPlacementEmail(AsPlacementEmail()),
             "placementBatchActivation" => onPlacementBatchActivation(AsPlacementBatchActivation()),
+            "placementGroup" => onPlacementGroup(AsPlacementGroup()),
             _ => onUnknown_(Type, Value),
         };
     }
 
     public void Visit(
-        Action<KardFinancial.Organizations.UpdateMainPagePlacementData> onPlacementMainPage,
+        Action<KardFinancial.Organizations.UpdateStandardPlacementData> onPlacement,
         Action<KardFinancial.Organizations.UpdatePushNotificationPlacementData> onPlacementPushNotification,
+        Action<KardFinancial.Organizations.UpdateEmailPlacementData> onPlacementEmail,
         Action<KardFinancial.Organizations.UpdateBatchActivationPlacementData> onPlacementBatchActivation,
+        Action<KardFinancial.Organizations.UpdateGroupPlacementData> onPlacementGroup,
         Action<string, object?> onUnknown_
     )
     {
         switch (Type)
         {
-            case "placementMainPage":
-                onPlacementMainPage(AsPlacementMainPage());
+            case "placement":
+                onPlacement(AsPlacement());
                 break;
             case "placementPushNotification":
                 onPlacementPushNotification(AsPlacementPushNotification());
                 break;
+            case "placementEmail":
+                onPlacementEmail(AsPlacementEmail());
+                break;
             case "placementBatchActivation":
                 onPlacementBatchActivation(AsPlacementBatchActivation());
+                break;
+            case "placementGroup":
+                onPlacementGroup(AsPlacementGroup());
                 break;
             default:
                 onUnknown_(Type, Value);
@@ -156,15 +218,13 @@ public record UpdatePlacementDataUnion
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.UpdateMainPagePlacementData"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.UpdateStandardPlacementData"/> and returns true if successful.
     /// </summary>
-    public bool TryAsPlacementMainPage(
-        out KardFinancial.Organizations.UpdateMainPagePlacementData? value
-    )
+    public bool TryAsPlacement(out KardFinancial.Organizations.UpdateStandardPlacementData? value)
     {
-        if (Type == "placementMainPage")
+        if (Type == "placement")
         {
-            value = (KardFinancial.Organizations.UpdateMainPagePlacementData)Value!;
+            value = (KardFinancial.Organizations.UpdateStandardPlacementData)Value!;
             return true;
         }
         value = null;
@@ -188,6 +248,20 @@ public record UpdatePlacementDataUnion
     }
 
     /// <summary>
+    /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.UpdateEmailPlacementData"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsPlacementEmail(out KardFinancial.Organizations.UpdateEmailPlacementData? value)
+    {
+        if (Type == "placementEmail")
+        {
+            value = (KardFinancial.Organizations.UpdateEmailPlacementData)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
+    /// <summary>
     /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.UpdateBatchActivationPlacementData"/> and returns true if successful.
     /// </summary>
     public bool TryAsPlacementBatchActivation(
@@ -203,10 +277,24 @@ public record UpdatePlacementDataUnion
         return false;
     }
 
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.UpdateGroupPlacementData"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsPlacementGroup(out KardFinancial.Organizations.UpdateGroupPlacementData? value)
+    {
+        if (Type == "placementGroup")
+        {
+            value = (KardFinancial.Organizations.UpdateGroupPlacementData)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
     public override string ToString() => JsonUtils.Serialize(this);
 
     public static implicit operator UpdatePlacementDataUnion(
-        UpdatePlacementDataUnion.PlacementMainPage value
+        UpdatePlacementDataUnion.Placement value
     ) => new(value);
 
     public static implicit operator UpdatePlacementDataUnion(
@@ -214,7 +302,15 @@ public record UpdatePlacementDataUnion
     ) => new(value);
 
     public static implicit operator UpdatePlacementDataUnion(
+        UpdatePlacementDataUnion.PlacementEmail value
+    ) => new(value);
+
+    public static implicit operator UpdatePlacementDataUnion(
         UpdatePlacementDataUnion.PlacementBatchActivation value
+    ) => new(value);
+
+    public static implicit operator UpdatePlacementDataUnion(
+        UpdatePlacementDataUnion.PlacementGroup value
     ) => new(value);
 
     [Serializable]
@@ -258,12 +354,12 @@ public record UpdatePlacementDataUnion
 
             var value = discriminator switch
             {
-                "placementMainPage" =>
-                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.UpdateMainPagePlacementData?>(
+                "placement" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.UpdateStandardPlacementData?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize KardFinancial.Organizations.UpdateMainPagePlacementData"
+                            "Failed to deserialize KardFinancial.Organizations.UpdateStandardPlacementData"
                         ),
                 "placementPushNotification" =>
                     jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.UpdatePushNotificationPlacementData?>(
@@ -272,12 +368,26 @@ public record UpdatePlacementDataUnion
                         ?? throw new JsonException(
                             "Failed to deserialize KardFinancial.Organizations.UpdatePushNotificationPlacementData"
                         ),
+                "placementEmail" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.UpdateEmailPlacementData?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize KardFinancial.Organizations.UpdateEmailPlacementData"
+                        ),
                 "placementBatchActivation" =>
                     jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.UpdateBatchActivationPlacementData?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize KardFinancial.Organizations.UpdateBatchActivationPlacementData"
+                        ),
+                "placementGroup" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.UpdateGroupPlacementData?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize KardFinancial.Organizations.UpdateGroupPlacementData"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -293,15 +403,17 @@ public record UpdatePlacementDataUnion
             JsonNode json =
                 value.Type switch
                 {
-                    "placementMainPage" => JsonSerializer.SerializeToNode(value.Value, options),
+                    "placement" => JsonSerializer.SerializeToNode(value.Value, options),
                     "placementPushNotification" => JsonSerializer.SerializeToNode(
                         value.Value,
                         options
                     ),
+                    "placementEmail" => JsonSerializer.SerializeToNode(value.Value, options),
                     "placementBatchActivation" => JsonSerializer.SerializeToNode(
                         value.Value,
                         options
                     ),
+                    "placementGroup" => JsonSerializer.SerializeToNode(value.Value, options),
                     _ => JsonSerializer.SerializeToNode(value.Value, options),
                 } ?? new JsonObject();
             json["type"] = value.Type;
@@ -331,22 +443,22 @@ public record UpdatePlacementDataUnion
     }
 
     /// <summary>
-    /// Discriminated union type for placementMainPage
+    /// Discriminated union type for placement
     /// </summary>
     [Serializable]
-    public struct PlacementMainPage
+    public struct Placement
     {
-        public PlacementMainPage(KardFinancial.Organizations.UpdateMainPagePlacementData value)
+        public Placement(KardFinancial.Organizations.UpdateStandardPlacementData value)
         {
             Value = value;
         }
 
-        internal KardFinancial.Organizations.UpdateMainPagePlacementData Value { get; set; }
+        internal KardFinancial.Organizations.UpdateStandardPlacementData Value { get; set; }
 
         public override string ToString() => Value.ToString() ?? "null";
 
-        public static implicit operator UpdatePlacementDataUnion.PlacementMainPage(
-            KardFinancial.Organizations.UpdateMainPagePlacementData value
+        public static implicit operator UpdatePlacementDataUnion.Placement(
+            KardFinancial.Organizations.UpdateStandardPlacementData value
         ) => new(value);
     }
 
@@ -373,6 +485,26 @@ public record UpdatePlacementDataUnion
     }
 
     /// <summary>
+    /// Discriminated union type for placementEmail
+    /// </summary>
+    [Serializable]
+    public struct PlacementEmail
+    {
+        public PlacementEmail(KardFinancial.Organizations.UpdateEmailPlacementData value)
+        {
+            Value = value;
+        }
+
+        internal KardFinancial.Organizations.UpdateEmailPlacementData Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator UpdatePlacementDataUnion.PlacementEmail(
+            KardFinancial.Organizations.UpdateEmailPlacementData value
+        ) => new(value);
+    }
+
+    /// <summary>
     /// Discriminated union type for placementBatchActivation
     /// </summary>
     [Serializable]
@@ -391,6 +523,26 @@ public record UpdatePlacementDataUnion
 
         public static implicit operator UpdatePlacementDataUnion.PlacementBatchActivation(
             KardFinancial.Organizations.UpdateBatchActivationPlacementData value
+        ) => new(value);
+    }
+
+    /// <summary>
+    /// Discriminated union type for placementGroup
+    /// </summary>
+    [Serializable]
+    public struct PlacementGroup
+    {
+        public PlacementGroup(KardFinancial.Organizations.UpdateGroupPlacementData value)
+        {
+            Value = value;
+        }
+
+        internal KardFinancial.Organizations.UpdateGroupPlacementData Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator UpdatePlacementDataUnion.PlacementGroup(
+            KardFinancial.Organizations.UpdateGroupPlacementData value
         ) => new(value);
     }
 }

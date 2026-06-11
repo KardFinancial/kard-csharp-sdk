@@ -6,32 +6,29 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Attributes for updating a main-page placement. All fields are required.
+/// Email placement resource data
 /// </summary>
 [Serializable]
-public record UpdateMainPageAttributes : IJsonOnDeserialized
+public record EmailPlacementData : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Name of the placement
+    /// Unique identifier of the placement (UUID v7)
     /// </summary>
-    [JsonPropertyName("name")]
-    public required string Name { get; set; }
+    [JsonPropertyName("id")]
+    public required string Id { get; set; }
+
+    [JsonPropertyName("attributes")]
+    public required EmailPlacementAttributes Attributes { get; set; }
 
     /// <summary>
-    /// Number of available slots (minimum 1)
+    /// JSON:API relationships for the placement. Omitted entirely when the placement has no linked resources.
     /// </summary>
-    [JsonPropertyName("availableSlots")]
-    public required int AvailableSlots { get; set; }
-
-    /// <summary>
-    /// ID of the content strategy to link this placement to. Omit to clear any existing link (PUT requires the full attribute set, so a missing value unlinks the placement).
-    /// </summary>
-    [JsonPropertyName("contentStrategyId")]
-    public string? ContentStrategyId { get; set; }
+    [JsonPropertyName("relationships")]
+    public PlacementRelationships? Relationships { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

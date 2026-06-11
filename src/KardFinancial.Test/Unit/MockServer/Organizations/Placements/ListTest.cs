@@ -16,7 +16,7 @@ public class ListTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "type": "placementMainPage",
+                  "type": "placement",
                   "id": "id",
                   "attributes": {
                     "name": "name",
@@ -34,7 +34,7 @@ public class ListTest : BaseMockServerTest
                   }
                 },
                 {
-                  "type": "placementMainPage",
+                  "type": "placement",
                   "id": "id",
                   "attributes": {
                     "name": "name",

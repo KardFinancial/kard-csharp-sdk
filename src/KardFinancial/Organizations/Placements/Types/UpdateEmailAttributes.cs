@@ -6,32 +6,38 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// A slot in a batch-activation or group placement at creation time
+/// Attributes for updating an email placement. All fields are required.
 /// </summary>
 [Serializable]
-public record CreateBatchActivationSlot : IJsonOnDeserialized
+public record UpdateEmailAttributes : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// ID of another placement that fills this slot. The referenced placement provides both the content strategy and the limit on the number of offers available to the slot.
+    /// Name of the placement
     /// </summary>
-    [JsonPropertyName("placementId")]
-    public required string PlacementId { get; set; }
+    [JsonPropertyName("name")]
+    public required string Name { get; set; }
 
     /// <summary>
-    /// Customer-defined alias for the slot, unique within the placement
+    /// Number of available slots (minimum 1)
     /// </summary>
-    [JsonPropertyName("alias")]
-    public required string Alias { get; set; }
+    [JsonPropertyName("availableSlots")]
+    public required int AvailableSlots { get; set; }
 
     /// <summary>
-    /// Optional short description of the slot, limited to 50 characters
+    /// Delivery cadence for the email
     /// </summary>
-    [JsonPropertyName("shortDescription")]
-    public string? ShortDescription { get; set; }
+    [JsonPropertyName("cadence")]
+    public required Cadence Cadence { get; set; }
+
+    /// <summary>
+    /// ID of the content strategy to link this placement to. Omit to clear any existing link (PUT requires the full attribute set, so a missing value unlinks the placement).
+    /// </summary>
+    [JsonPropertyName("contentStrategyId")]
+    public string? ContentStrategyId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

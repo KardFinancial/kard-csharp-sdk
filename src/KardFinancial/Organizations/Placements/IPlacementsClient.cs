@@ -5,7 +5,7 @@ namespace KardFinancial.Organizations;
 public partial interface IPlacementsClient
 {
     /// <summary>
-    /// Create a placement for the organization. Use type "placementMainPage" for main-page placements (requires name and availableSlots) or "placementPushNotification" for push-notification placements (requires name and cadence; availableSlots is automatically set to 1).
+    /// Create a placement for the organization. Use type "placement" for standard placements (requires name and availableSlots), "placementPushNotification" for push-notification placements (requires name and cadence; availableSlots is automatically set to 1), "placementEmail" for email placements (requires name, cadence, and availableSlots), "placementBatchActivation" for batch-activation placements (requires name, refreshInterval, and slots), or "placementGroup" for group placements (requires name and slots).
     /// </summary>
     WithRawResponseTask<PlacementFormatUnion> CreateAsync(
         string organizationId,
@@ -36,7 +36,7 @@ public partial interface IPlacementsClient
     );
 
     /// <summary>
-    /// Replace a placement. All fields must be provided. Use type "placementMainPage" or "placementPushNotification" to set the placement kind. If the type is "placementPushNotification", availableSlots is automatically set to 1.
+    /// Replace a placement. All fields must be provided. Use type "placement", "placementPushNotification", "placementEmail", "placementBatchActivation", or "placementGroup" to set the placement kind. If the type is "placementPushNotification", availableSlots is automatically set to 1.
     /// </summary>
     WithRawResponseTask<PlacementFormatUnion> UpdateAsync(
         string organizationId,

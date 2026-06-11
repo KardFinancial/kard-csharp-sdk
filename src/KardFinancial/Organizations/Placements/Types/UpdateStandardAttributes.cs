@@ -6,29 +6,32 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Batch-activation placement resource data
+/// Attributes for updating a standard placement. All fields are required.
 /// </summary>
 [Serializable]
-public record BatchActivationPlacementData : IJsonOnDeserialized
+public record UpdateStandardAttributes : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Unique identifier of the placement (UUID v7)
+    /// Name of the placement
     /// </summary>
-    [JsonPropertyName("id")]
-    public required string Id { get; set; }
-
-    [JsonPropertyName("attributes")]
-    public required BatchActivationPlacementAttributes Attributes { get; set; }
+    [JsonPropertyName("name")]
+    public required string Name { get; set; }
 
     /// <summary>
-    /// JSON:API relationships for the placement. Always present on a batch-activation placement; the `slots` to-many relationship lists the slot resource identifiers.
+    /// Number of available slots (minimum 1)
     /// </summary>
-    [JsonPropertyName("relationships")]
-    public required SlottedPlacementRelationships Relationships { get; set; }
+    [JsonPropertyName("availableSlots")]
+    public required int AvailableSlots { get; set; }
+
+    /// <summary>
+    /// ID of the content strategy to link this placement to. Omit to clear any existing link (PUT requires the full attribute set, so a missing value unlinks the placement).
+    /// </summary>
+    [JsonPropertyName("contentStrategyId")]
+    public string? ContentStrategyId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

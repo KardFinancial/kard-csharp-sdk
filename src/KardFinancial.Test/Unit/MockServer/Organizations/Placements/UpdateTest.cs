@@ -15,7 +15,7 @@ public class UpdateTest : BaseMockServerTest
         const string requestJson = """
             {
               "data": {
-                "type": "placementMainPage",
+                "type": "placement",
                 "attributes": {
                   "name": "name",
                   "availableSlots": 1
@@ -26,7 +26,7 @@ public class UpdateTest : BaseMockServerTest
 
         const string mockResponse = """
             {
-              "type": "placementMainPage",
+              "type": "placement",
               "id": "id",
               "attributes": {
                 "name": "name",
@@ -66,10 +66,10 @@ public class UpdateTest : BaseMockServerTest
             new UpdatePlacementRequestBody
             {
                 Data = new UpdatePlacementDataUnion(
-                    new UpdatePlacementDataUnion.PlacementMainPage(
-                        new UpdateMainPagePlacementData
+                    new UpdatePlacementDataUnion.Placement(
+                        new UpdateStandardPlacementData
                         {
-                            Attributes = new UpdateMainPageAttributes
+                            Attributes = new UpdateStandardAttributes
                             {
                                 Name = "name",
                                 AvailableSlots = 1,

@@ -6,29 +6,20 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Batch-activation placement resource data
+/// Data for creating a standard placement
 /// </summary>
 [Serializable]
-public record BatchActivationPlacementData : IJsonOnDeserialized
+public record CreateStandardPlacementData : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Unique identifier of the placement (UUID v7)
+    /// Standard placement attributes for creation
     /// </summary>
-    [JsonPropertyName("id")]
-    public required string Id { get; set; }
-
     [JsonPropertyName("attributes")]
-    public required BatchActivationPlacementAttributes Attributes { get; set; }
-
-    /// <summary>
-    /// JSON:API relationships for the placement. Always present on a batch-activation placement; the `slots` to-many relationship lists the slot resource identifiers.
-    /// </summary>
-    [JsonPropertyName("relationships")]
-    public required SlottedPlacementRelationships Relationships { get; set; }
+    public required CreateStandardAttributes Attributes { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -6,10 +6,10 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Batch-activation placement resource data
+/// Standard placement resource data
 /// </summary>
 [Serializable]
-public record BatchActivationPlacementData : IJsonOnDeserialized
+public record PlacementData : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
@@ -22,13 +22,13 @@ public record BatchActivationPlacementData : IJsonOnDeserialized
     public required string Id { get; set; }
 
     [JsonPropertyName("attributes")]
-    public required BatchActivationPlacementAttributes Attributes { get; set; }
+    public required PlacementAttributes Attributes { get; set; }
 
     /// <summary>
-    /// JSON:API relationships for the placement. Always present on a batch-activation placement; the `slots` to-many relationship lists the slot resource identifiers.
+    /// JSON:API relationships for the placement. Omitted entirely when the placement has no linked resources.
     /// </summary>
     [JsonPropertyName("relationships")]
-    public required SlottedPlacementRelationships Relationships { get; set; }
+    public PlacementRelationships? Relationships { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

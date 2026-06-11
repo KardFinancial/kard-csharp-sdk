@@ -8,15 +8,19 @@ namespace KardFinancial.Organizations;
 [Serializable]
 public readonly record struct PlacementTypeFilter : IStringEnum
 {
-    public static readonly PlacementTypeFilter PlacementMainPage = new(Values.PlacementMainPage);
+    public static readonly PlacementTypeFilter Placement = new(Values.Placement);
 
     public static readonly PlacementTypeFilter PlacementPushNotification = new(
         Values.PlacementPushNotification
     );
 
+    public static readonly PlacementTypeFilter PlacementEmail = new(Values.PlacementEmail);
+
     public static readonly PlacementTypeFilter PlacementBatchActivation = new(
         Values.PlacementBatchActivation
     );
+
+    public static readonly PlacementTypeFilter PlacementGroup = new(Values.PlacementGroup);
 
     public PlacementTypeFilter(string value)
     {
@@ -114,10 +118,14 @@ public readonly record struct PlacementTypeFilter : IStringEnum
     [Serializable]
     public static class Values
     {
-        public const string PlacementMainPage = "placementMainPage";
+        public const string Placement = "placement";
 
         public const string PlacementPushNotification = "placementPushNotification";
 
+        public const string PlacementEmail = "placementEmail";
+
         public const string PlacementBatchActivation = "placementBatchActivation";
+
+        public const string PlacementGroup = "placementGroup";
     }
 }

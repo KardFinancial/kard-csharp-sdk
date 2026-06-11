@@ -6,7 +6,7 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Cadence schedule for push notification placements
+/// Cadence schedule for push notification and email placements
 /// </summary>
 [Serializable]
 public record Cadence : IJsonOnDeserialized

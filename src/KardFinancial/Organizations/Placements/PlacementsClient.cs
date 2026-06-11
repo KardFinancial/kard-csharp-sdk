@@ -523,7 +523,7 @@ public partial class PlacementsClient : IPlacementsClient
     }
 
     /// <summary>
-    /// Create a placement for the organization. Use type "placementMainPage" for main-page placements (requires name and availableSlots) or "placementPushNotification" for push-notification placements (requires name and cadence; availableSlots is automatically set to 1).
+    /// Create a placement for the organization. Use type "placement" for standard placements (requires name and availableSlots), "placementPushNotification" for push-notification placements (requires name and cadence; availableSlots is automatically set to 1), "placementEmail" for email placements (requires name, cadence, and availableSlots), "placementBatchActivation" for batch-activation placements (requires name, refreshInterval, and slots), or "placementGroup" for group placements (requires name and slots).
     /// </summary>
     /// <example><code>
     /// await client.Organizations.Placements.CreateAsync(
@@ -531,10 +531,10 @@ public partial class PlacementsClient : IPlacementsClient
     ///     new CreatePlacementRequestBody
     ///     {
     ///         Data = new CreatePlacementDataUnion(
-    ///             new CreatePlacementDataUnion.PlacementMainPage(
-    ///                 new CreateMainPagePlacementData
+    ///             new CreatePlacementDataUnion.Placement(
+    ///                 new CreateStandardPlacementData
     ///                 {
-    ///                     Attributes = new CreateMainPageAttributes
+    ///                     Attributes = new CreateStandardAttributes
     ///                     {
     ///                         Name = "Homepage Banner",
     ///                         AvailableSlots = 5,
@@ -599,7 +599,7 @@ public partial class PlacementsClient : IPlacementsClient
     }
 
     /// <summary>
-    /// Replace a placement. All fields must be provided. Use type "placementMainPage" or "placementPushNotification" to set the placement kind. If the type is "placementPushNotification", availableSlots is automatically set to 1.
+    /// Replace a placement. All fields must be provided. Use type "placement", "placementPushNotification", "placementEmail", "placementBatchActivation", or "placementGroup" to set the placement kind. If the type is "placementPushNotification", availableSlots is automatically set to 1.
     /// </summary>
     /// <example><code>
     /// await client.Organizations.Placements.UpdateAsync(
@@ -608,10 +608,10 @@ public partial class PlacementsClient : IPlacementsClient
     ///     new UpdatePlacementRequestBody
     ///     {
     ///         Data = new UpdatePlacementDataUnion(
-    ///             new UpdatePlacementDataUnion.PlacementMainPage(
-    ///                 new UpdateMainPagePlacementData
+    ///             new UpdatePlacementDataUnion.Placement(
+    ///                 new UpdateStandardPlacementData
     ///                 {
-    ///                     Attributes = new UpdateMainPageAttributes { Name = "name", AvailableSlots = 1 },
+    ///                     Attributes = new UpdateStandardAttributes { Name = "name", AvailableSlots = 1 },
     ///                 }
     ///             )
     ///         ),

@@ -6,20 +6,20 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Relationship block for a batch-activation placement.
+/// Data for creating an email placement
 /// </summary>
 [Serializable]
-public record BatchActivationPlacementRelationships : IJsonOnDeserialized
+public record CreateEmailPlacementData : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Resource identifiers for the slots that make up the activation cohort. Each entry corresponds to a `batchActivationSlot` resource that appears in `included` when the request asks for `slots` (or any deeper path that implies it).
+    /// Email placement attributes for creation
     /// </summary>
-    [JsonPropertyName("slots")]
-    public required ToManyRelationship Slots { get; set; }
+    [JsonPropertyName("attributes")]
+    public required CreateEmailAttributes Attributes { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

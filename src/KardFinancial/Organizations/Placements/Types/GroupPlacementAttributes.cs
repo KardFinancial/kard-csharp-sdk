@@ -6,10 +6,10 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Attributes for creating a main-page placement
+/// Attributes for a group placement. A group is configured like a batch-activation placement but has no refreshInterval. Slot detail is exposed via `relationships.slots` (resource identifiers) and the `batchActivationSlot` entries in `included`; request `?include=slots` (or a deeper path) to get the slot details.
 /// </summary>
 [Serializable]
-public record CreateMainPageAttributes : IJsonOnDeserialized
+public record GroupPlacementAttributes : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
@@ -22,16 +22,10 @@ public record CreateMainPageAttributes : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
-    /// Number of available slots (minimum 1)
+    /// ID of the organization this placement belongs to
     /// </summary>
-    [JsonPropertyName("availableSlots")]
-    public required int AvailableSlots { get; set; }
-
-    /// <summary>
-    /// ID of the content strategy to link this placement to
-    /// </summary>
-    [JsonPropertyName("contentStrategyId")]
-    public string? ContentStrategyId { get; set; }
+    [JsonPropertyName("organizationId")]
+    public required string OrganizationId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

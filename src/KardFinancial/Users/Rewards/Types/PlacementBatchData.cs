@@ -6,7 +6,7 @@ using KardFinancial.Core;
 namespace KardFinancial.Users;
 
 /// <summary>
-/// One slot in a batch-activation placement, with freshness fields and the offers that resolve under the slot's content strategy.
+/// One slot in a batch-activation or group placement, with freshness fields and the offers that resolve under the slot's content strategy.
 /// </summary>
 [Serializable]
 public record PlacementBatchData : IJsonOnDeserialized

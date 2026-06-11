@@ -6,7 +6,7 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// A slot in a batch-activation placement at update time
+/// A slot in a batch-activation or group placement at update time
 /// </summary>
 [Serializable]
 public record UpdateBatchActivationSlot : IJsonOnDeserialized

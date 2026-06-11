@@ -15,7 +15,7 @@ public class GetTest : BaseMockServerTest
         const string mockResponse = """
             {
               "data": {
-                "type": "placementMainPage",
+                "type": "placement",
                 "id": "id",
                 "attributes": {
                   "name": "name",

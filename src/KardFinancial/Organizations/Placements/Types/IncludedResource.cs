@@ -40,11 +40,11 @@ public record IncludedResource
     }
 
     /// <summary>
-    /// Create an instance of IncludedResource with <see cref="IncludedResource.PlacementMainPage"/>.
+    /// Create an instance of IncludedResource with <see cref="IncludedResource.Placement"/>.
     /// </summary>
-    public IncludedResource(IncludedResource.PlacementMainPage value)
+    public IncludedResource(IncludedResource.Placement value)
     {
-        Type = "placementMainPage";
+        Type = "placement";
         Value = value.Value;
     }
 
@@ -54,6 +54,15 @@ public record IncludedResource
     public IncludedResource(IncludedResource.PlacementPushNotification value)
     {
         Type = "placementPushNotification";
+        Value = value.Value;
+    }
+
+    /// <summary>
+    /// Create an instance of IncludedResource with <see cref="IncludedResource.PlacementEmail"/>.
+    /// </summary>
+    public IncludedResource(IncludedResource.PlacementEmail value)
+    {
+        Type = "placementEmail";
         Value = value.Value;
     }
 
@@ -79,14 +88,19 @@ public record IncludedResource
     public bool IsBatchActivationSlot => Type == "batchActivationSlot";
 
     /// <summary>
-    /// Returns true if <see cref="Type"/> is "placementMainPage"
+    /// Returns true if <see cref="Type"/> is "placement"
     /// </summary>
-    public bool IsPlacementMainPage => Type == "placementMainPage";
+    public bool IsPlacement => Type == "placement";
 
     /// <summary>
     /// Returns true if <see cref="Type"/> is "placementPushNotification"
     /// </summary>
     public bool IsPlacementPushNotification => Type == "placementPushNotification";
+
+    /// <summary>
+    /// Returns true if <see cref="Type"/> is "placementEmail"
+    /// </summary>
+    public bool IsPlacementEmail => Type == "placementEmail";
 
     /// <summary>
     /// Returns the value as a <see cref="KardFinancial.Organizations.ContentStrategyInclusion"/> if <see cref="Type"/> is 'contentStrategy', otherwise throws an exception.
@@ -109,15 +123,13 @@ public record IncludedResource
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="KardFinancial.Organizations.MainPagePlacementData"/> if <see cref="Type"/> is 'placementMainPage', otherwise throws an exception.
+    /// Returns the value as a <see cref="KardFinancial.Organizations.PlacementData"/> if <see cref="Type"/> is 'placement', otherwise throws an exception.
     /// </summary>
-    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placementMainPage'.</exception>
-    public KardFinancial.Organizations.MainPagePlacementData AsPlacementMainPage() =>
-        IsPlacementMainPage
-            ? (KardFinancial.Organizations.MainPagePlacementData)Value!
-            : throw new global::System.Exception(
-                "IncludedResource.Type is not 'placementMainPage'"
-            );
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placement'.</exception>
+    public KardFinancial.Organizations.PlacementData AsPlacement() =>
+        IsPlacement
+            ? (KardFinancial.Organizations.PlacementData)Value!
+            : throw new global::System.Exception("IncludedResource.Type is not 'placement'");
 
     /// <summary>
     /// Returns the value as a <see cref="KardFinancial.Organizations.PushNotificationPlacementData"/> if <see cref="Type"/> is 'placementPushNotification', otherwise throws an exception.
@@ -130,14 +142,24 @@ public record IncludedResource
                 "IncludedResource.Type is not 'placementPushNotification'"
             );
 
+    /// <summary>
+    /// Returns the value as a <see cref="KardFinancial.Organizations.EmailPlacementData"/> if <see cref="Type"/> is 'placementEmail', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placementEmail'.</exception>
+    public KardFinancial.Organizations.EmailPlacementData AsPlacementEmail() =>
+        IsPlacementEmail
+            ? (KardFinancial.Organizations.EmailPlacementData)Value!
+            : throw new global::System.Exception("IncludedResource.Type is not 'placementEmail'");
+
     public T Match<T>(
         Func<KardFinancial.Organizations.ContentStrategyInclusion, T> onContentStrategy,
         Func<KardFinancial.Organizations.BatchActivationSlotInclusion, T> onBatchActivationSlot,
-        Func<KardFinancial.Organizations.MainPagePlacementData, T> onPlacementMainPage,
+        Func<KardFinancial.Organizations.PlacementData, T> onPlacement,
         Func<
             KardFinancial.Organizations.PushNotificationPlacementData,
             T
         > onPlacementPushNotification,
+        Func<KardFinancial.Organizations.EmailPlacementData, T> onPlacementEmail,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -145,10 +167,11 @@ public record IncludedResource
         {
             "contentStrategy" => onContentStrategy(AsContentStrategy()),
             "batchActivationSlot" => onBatchActivationSlot(AsBatchActivationSlot()),
-            "placementMainPage" => onPlacementMainPage(AsPlacementMainPage()),
+            "placement" => onPlacement(AsPlacement()),
             "placementPushNotification" => onPlacementPushNotification(
                 AsPlacementPushNotification()
             ),
+            "placementEmail" => onPlacementEmail(AsPlacementEmail()),
             _ => onUnknown_(Type, Value),
         };
     }
@@ -156,8 +179,9 @@ public record IncludedResource
     public void Visit(
         Action<KardFinancial.Organizations.ContentStrategyInclusion> onContentStrategy,
         Action<KardFinancial.Organizations.BatchActivationSlotInclusion> onBatchActivationSlot,
-        Action<KardFinancial.Organizations.MainPagePlacementData> onPlacementMainPage,
+        Action<KardFinancial.Organizations.PlacementData> onPlacement,
         Action<KardFinancial.Organizations.PushNotificationPlacementData> onPlacementPushNotification,
+        Action<KardFinancial.Organizations.EmailPlacementData> onPlacementEmail,
         Action<string, object?> onUnknown_
     )
     {
@@ -169,11 +193,14 @@ public record IncludedResource
             case "batchActivationSlot":
                 onBatchActivationSlot(AsBatchActivationSlot());
                 break;
-            case "placementMainPage":
-                onPlacementMainPage(AsPlacementMainPage());
+            case "placement":
+                onPlacement(AsPlacement());
                 break;
             case "placementPushNotification":
                 onPlacementPushNotification(AsPlacementPushNotification());
+                break;
+            case "placementEmail":
+                onPlacementEmail(AsPlacementEmail());
                 break;
             default:
                 onUnknown_(Type, Value);
@@ -214,13 +241,13 @@ public record IncludedResource
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.MainPagePlacementData"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.PlacementData"/> and returns true if successful.
     /// </summary>
-    public bool TryAsPlacementMainPage(out KardFinancial.Organizations.MainPagePlacementData? value)
+    public bool TryAsPlacement(out KardFinancial.Organizations.PlacementData? value)
     {
-        if (Type == "placementMainPage")
+        if (Type == "placement")
         {
-            value = (KardFinancial.Organizations.MainPagePlacementData)Value!;
+            value = (KardFinancial.Organizations.PlacementData)Value!;
             return true;
         }
         value = null;
@@ -243,6 +270,20 @@ public record IncludedResource
         return false;
     }
 
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.EmailPlacementData"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsPlacementEmail(out KardFinancial.Organizations.EmailPlacementData? value)
+    {
+        if (Type == "placementEmail")
+        {
+            value = (KardFinancial.Organizations.EmailPlacementData)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
     public override string ToString() => JsonUtils.Serialize(this);
 
     public static implicit operator IncludedResource(IncludedResource.ContentStrategy value) =>
@@ -251,12 +292,15 @@ public record IncludedResource
     public static implicit operator IncludedResource(IncludedResource.BatchActivationSlot value) =>
         new(value);
 
-    public static implicit operator IncludedResource(IncludedResource.PlacementMainPage value) =>
+    public static implicit operator IncludedResource(IncludedResource.Placement value) =>
         new(value);
 
     public static implicit operator IncludedResource(
         IncludedResource.PlacementPushNotification value
     ) => new(value);
+
+    public static implicit operator IncludedResource(IncludedResource.PlacementEmail value) =>
+        new(value);
 
     [Serializable]
     internal sealed class JsonConverter : JsonConverter<IncludedResource>
@@ -313,12 +357,12 @@ public record IncludedResource
                         ?? throw new JsonException(
                             "Failed to deserialize KardFinancial.Organizations.BatchActivationSlotInclusion"
                         ),
-                "placementMainPage" =>
-                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.MainPagePlacementData?>(
+                "placement" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.PlacementData?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize KardFinancial.Organizations.MainPagePlacementData"
+                            "Failed to deserialize KardFinancial.Organizations.PlacementData"
                         ),
                 "placementPushNotification" =>
                     jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.PushNotificationPlacementData?>(
@@ -326,6 +370,13 @@ public record IncludedResource
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize KardFinancial.Organizations.PushNotificationPlacementData"
+                        ),
+                "placementEmail" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.EmailPlacementData?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize KardFinancial.Organizations.EmailPlacementData"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -343,11 +394,12 @@ public record IncludedResource
                 {
                     "contentStrategy" => JsonSerializer.SerializeToNode(value.Value, options),
                     "batchActivationSlot" => JsonSerializer.SerializeToNode(value.Value, options),
-                    "placementMainPage" => JsonSerializer.SerializeToNode(value.Value, options),
+                    "placement" => JsonSerializer.SerializeToNode(value.Value, options),
                     "placementPushNotification" => JsonSerializer.SerializeToNode(
                         value.Value,
                         options
                     ),
+                    "placementEmail" => JsonSerializer.SerializeToNode(value.Value, options),
                     _ => JsonSerializer.SerializeToNode(value.Value, options),
                 } ?? new JsonObject();
             json["type"] = value.Type;
@@ -417,22 +469,22 @@ public record IncludedResource
     }
 
     /// <summary>
-    /// Discriminated union type for placementMainPage
+    /// Discriminated union type for placement
     /// </summary>
     [Serializable]
-    public struct PlacementMainPage
+    public struct Placement
     {
-        public PlacementMainPage(KardFinancial.Organizations.MainPagePlacementData value)
+        public Placement(KardFinancial.Organizations.PlacementData value)
         {
             Value = value;
         }
 
-        internal KardFinancial.Organizations.MainPagePlacementData Value { get; set; }
+        internal KardFinancial.Organizations.PlacementData Value { get; set; }
 
         public override string ToString() => Value.ToString() ?? "null";
 
-        public static implicit operator IncludedResource.PlacementMainPage(
-            KardFinancial.Organizations.MainPagePlacementData value
+        public static implicit operator IncludedResource.Placement(
+            KardFinancial.Organizations.PlacementData value
         ) => new(value);
     }
 
@@ -455,6 +507,26 @@ public record IncludedResource
 
         public static implicit operator IncludedResource.PlacementPushNotification(
             KardFinancial.Organizations.PushNotificationPlacementData value
+        ) => new(value);
+    }
+
+    /// <summary>
+    /// Discriminated union type for placementEmail
+    /// </summary>
+    [Serializable]
+    public struct PlacementEmail
+    {
+        public PlacementEmail(KardFinancial.Organizations.EmailPlacementData value)
+        {
+            Value = value;
+        }
+
+        internal KardFinancial.Organizations.EmailPlacementData Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator IncludedResource.PlacementEmail(
+            KardFinancial.Organizations.EmailPlacementData value
         ) => new(value);
     }
 }

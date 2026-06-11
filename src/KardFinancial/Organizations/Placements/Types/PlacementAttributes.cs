@@ -6,10 +6,10 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Attributes for a main-page placement
+/// Attributes for a standard placement
 /// </summary>
 [Serializable]
-public record MainPagePlacementAttributes : IJsonOnDeserialized
+public record PlacementAttributes : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =

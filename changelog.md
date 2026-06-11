@@ -1,3 +1,17 @@
+## 14.0.0 - 2026-06-11
+### Breaking Changes
+* **`UpdatePlacementDataUnion.PlacementMainPage`** — renamed to `Placement` (discriminant changed from `"placementMainPage"` to `"placement"`); replace `PlacementMainPage`, `IsPlacementMainPage`, `AsPlacementMainPage()`, and `TryAsPlacementMainPage()` with their `Placement`-prefixed equivalents.
+* **`UpdateMainPagePlacementData`** — renamed to `UpdateStandardPlacementData`; update all construction and type references.
+* **`UpdateMainPageAttributes`** — renamed to `UpdateStandardAttributes`; update all construction and type references.
+* **`UpdatePlacementDataUnion.Match<T>` and `Visit`** — now require two additional handler parameters (`onPlacementEmail`, `onPlacementGroup`); all existing call sites must be updated to supply these handlers.
+### Added
+* **`UpdatePlacementDataUnion.PlacementEmail` and `PlacementGroup`** — two new union members with full accessor, `TryAs*`, and implicit-conversion support, backed by new **`UpdateEmailPlacementData`** and **`UpdateGroupPlacementData`** types.
+* **`CreateGroupAttributes`**, **`CreateGroupPlacementData`**, **`UpdateGroupAttributes`**, **`UpdateGroupPlacementData`**, **`GroupPlacementAttributes`**, and **`GroupPlacementData`** — new record types for creating, updating, and reading group placements, including `Name`, `Slots`, and `SlottedPlacementRelationships`.
+* **`CreateEmailAttributes`**, **`CreateEmailPlacementData`**, **`UpdateEmailAttributes`**, **`EmailPlacementAttributes`** — new record types for creating, updating, and reading email placements with `Name`, `AvailableSlots`, `Cadence`, and optional `ContentStrategyId`.
+* **`PlacementData`** — new record type representing a standard placement resource with optional `PlacementRelationships`.
+### Changed
+* **`BatchesResponseObject`**, **`PlacementBatchData`**, and **`PlacementBatchAttributes`** — documentation updated to reflect applicability to group placements; `isActive` is always `true` for group placement slots and `components` is omitted for group placements.
+
 ## 13.2.0 - 2026-06-10
 ### Added
 * **`PushNotificationPlacementFileData`** — new record type representing a push-channel placement file notification, with `PushNotificationPlacementFileAttributes` (placement name, available slots, cadence, download URL) and `PushNotificationPlacementFileRelationships`.

@@ -22,11 +22,11 @@ public record PlacementFormatUnion
     }
 
     /// <summary>
-    /// Create an instance of PlacementFormatUnion with <see cref="PlacementFormatUnion.PlacementMainPage"/>.
+    /// Create an instance of PlacementFormatUnion with <see cref="PlacementFormatUnion.Placement"/>.
     /// </summary>
-    public PlacementFormatUnion(PlacementFormatUnion.PlacementMainPage value)
+    public PlacementFormatUnion(PlacementFormatUnion.Placement value)
     {
-        Type = "placementMainPage";
+        Type = "placement";
         Value = value.Value;
     }
 
@@ -40,11 +40,29 @@ public record PlacementFormatUnion
     }
 
     /// <summary>
+    /// Create an instance of PlacementFormatUnion with <see cref="PlacementFormatUnion.PlacementEmail"/>.
+    /// </summary>
+    public PlacementFormatUnion(PlacementFormatUnion.PlacementEmail value)
+    {
+        Type = "placementEmail";
+        Value = value.Value;
+    }
+
+    /// <summary>
     /// Create an instance of PlacementFormatUnion with <see cref="PlacementFormatUnion.PlacementBatchActivation"/>.
     /// </summary>
     public PlacementFormatUnion(PlacementFormatUnion.PlacementBatchActivation value)
     {
         Type = "placementBatchActivation";
+        Value = value.Value;
+    }
+
+    /// <summary>
+    /// Create an instance of PlacementFormatUnion with <see cref="PlacementFormatUnion.PlacementGroup"/>.
+    /// </summary>
+    public PlacementFormatUnion(PlacementFormatUnion.PlacementGroup value)
+    {
+        Type = "placementGroup";
         Value = value.Value;
     }
 
@@ -60,9 +78,9 @@ public record PlacementFormatUnion
     public object? Value { get; internal set; }
 
     /// <summary>
-    /// Returns true if <see cref="Type"/> is "placementMainPage"
+    /// Returns true if <see cref="Type"/> is "placement"
     /// </summary>
-    public bool IsPlacementMainPage => Type == "placementMainPage";
+    public bool IsPlacement => Type == "placement";
 
     /// <summary>
     /// Returns true if <see cref="Type"/> is "placementPushNotification"
@@ -70,20 +88,28 @@ public record PlacementFormatUnion
     public bool IsPlacementPushNotification => Type == "placementPushNotification";
 
     /// <summary>
+    /// Returns true if <see cref="Type"/> is "placementEmail"
+    /// </summary>
+    public bool IsPlacementEmail => Type == "placementEmail";
+
+    /// <summary>
     /// Returns true if <see cref="Type"/> is "placementBatchActivation"
     /// </summary>
     public bool IsPlacementBatchActivation => Type == "placementBatchActivation";
 
     /// <summary>
-    /// Returns the value as a <see cref="KardFinancial.Organizations.MainPagePlacementData"/> if <see cref="Type"/> is 'placementMainPage', otherwise throws an exception.
+    /// Returns true if <see cref="Type"/> is "placementGroup"
     /// </summary>
-    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placementMainPage'.</exception>
-    public KardFinancial.Organizations.MainPagePlacementData AsPlacementMainPage() =>
-        IsPlacementMainPage
-            ? (KardFinancial.Organizations.MainPagePlacementData)Value!
-            : throw new global::System.Exception(
-                "PlacementFormatUnion.Type is not 'placementMainPage'"
-            );
+    public bool IsPlacementGroup => Type == "placementGroup";
+
+    /// <summary>
+    /// Returns the value as a <see cref="KardFinancial.Organizations.PlacementData"/> if <see cref="Type"/> is 'placement', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placement'.</exception>
+    public KardFinancial.Organizations.PlacementData AsPlacement() =>
+        IsPlacement
+            ? (KardFinancial.Organizations.PlacementData)Value!
+            : throw new global::System.Exception("PlacementFormatUnion.Type is not 'placement'");
 
     /// <summary>
     /// Returns the value as a <see cref="KardFinancial.Organizations.PushNotificationPlacementData"/> if <see cref="Type"/> is 'placementPushNotification', otherwise throws an exception.
@@ -97,6 +123,17 @@ public record PlacementFormatUnion
             );
 
     /// <summary>
+    /// Returns the value as a <see cref="KardFinancial.Organizations.EmailPlacementData"/> if <see cref="Type"/> is 'placementEmail', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placementEmail'.</exception>
+    public KardFinancial.Organizations.EmailPlacementData AsPlacementEmail() =>
+        IsPlacementEmail
+            ? (KardFinancial.Organizations.EmailPlacementData)Value!
+            : throw new global::System.Exception(
+                "PlacementFormatUnion.Type is not 'placementEmail'"
+            );
+
+    /// <summary>
     /// Returns the value as a <see cref="KardFinancial.Organizations.BatchActivationPlacementData"/> if <see cref="Type"/> is 'placementBatchActivation', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placementBatchActivation'.</exception>
@@ -107,47 +144,70 @@ public record PlacementFormatUnion
                 "PlacementFormatUnion.Type is not 'placementBatchActivation'"
             );
 
+    /// <summary>
+    /// Returns the value as a <see cref="KardFinancial.Organizations.GroupPlacementData"/> if <see cref="Type"/> is 'placementGroup', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'placementGroup'.</exception>
+    public KardFinancial.Organizations.GroupPlacementData AsPlacementGroup() =>
+        IsPlacementGroup
+            ? (KardFinancial.Organizations.GroupPlacementData)Value!
+            : throw new global::System.Exception(
+                "PlacementFormatUnion.Type is not 'placementGroup'"
+            );
+
     public T Match<T>(
-        Func<KardFinancial.Organizations.MainPagePlacementData, T> onPlacementMainPage,
+        Func<KardFinancial.Organizations.PlacementData, T> onPlacement,
         Func<
             KardFinancial.Organizations.PushNotificationPlacementData,
             T
         > onPlacementPushNotification,
+        Func<KardFinancial.Organizations.EmailPlacementData, T> onPlacementEmail,
         Func<
             KardFinancial.Organizations.BatchActivationPlacementData,
             T
         > onPlacementBatchActivation,
+        Func<KardFinancial.Organizations.GroupPlacementData, T> onPlacementGroup,
         Func<string, object?, T> onUnknown_
     )
     {
         return Type switch
         {
-            "placementMainPage" => onPlacementMainPage(AsPlacementMainPage()),
+            "placement" => onPlacement(AsPlacement()),
             "placementPushNotification" => onPlacementPushNotification(
                 AsPlacementPushNotification()
             ),
+            "placementEmail" => onPlacementEmail(AsPlacementEmail()),
             "placementBatchActivation" => onPlacementBatchActivation(AsPlacementBatchActivation()),
+            "placementGroup" => onPlacementGroup(AsPlacementGroup()),
             _ => onUnknown_(Type, Value),
         };
     }
 
     public void Visit(
-        Action<KardFinancial.Organizations.MainPagePlacementData> onPlacementMainPage,
+        Action<KardFinancial.Organizations.PlacementData> onPlacement,
         Action<KardFinancial.Organizations.PushNotificationPlacementData> onPlacementPushNotification,
+        Action<KardFinancial.Organizations.EmailPlacementData> onPlacementEmail,
         Action<KardFinancial.Organizations.BatchActivationPlacementData> onPlacementBatchActivation,
+        Action<KardFinancial.Organizations.GroupPlacementData> onPlacementGroup,
         Action<string, object?> onUnknown_
     )
     {
         switch (Type)
         {
-            case "placementMainPage":
-                onPlacementMainPage(AsPlacementMainPage());
+            case "placement":
+                onPlacement(AsPlacement());
                 break;
             case "placementPushNotification":
                 onPlacementPushNotification(AsPlacementPushNotification());
                 break;
+            case "placementEmail":
+                onPlacementEmail(AsPlacementEmail());
+                break;
             case "placementBatchActivation":
                 onPlacementBatchActivation(AsPlacementBatchActivation());
+                break;
+            case "placementGroup":
+                onPlacementGroup(AsPlacementGroup());
                 break;
             default:
                 onUnknown_(Type, Value);
@@ -156,13 +216,13 @@ public record PlacementFormatUnion
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.MainPagePlacementData"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.PlacementData"/> and returns true if successful.
     /// </summary>
-    public bool TryAsPlacementMainPage(out KardFinancial.Organizations.MainPagePlacementData? value)
+    public bool TryAsPlacement(out KardFinancial.Organizations.PlacementData? value)
     {
-        if (Type == "placementMainPage")
+        if (Type == "placement")
         {
-            value = (KardFinancial.Organizations.MainPagePlacementData)Value!;
+            value = (KardFinancial.Organizations.PlacementData)Value!;
             return true;
         }
         value = null;
@@ -186,6 +246,20 @@ public record PlacementFormatUnion
     }
 
     /// <summary>
+    /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.EmailPlacementData"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsPlacementEmail(out KardFinancial.Organizations.EmailPlacementData? value)
+    {
+        if (Type == "placementEmail")
+        {
+            value = (KardFinancial.Organizations.EmailPlacementData)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
+    /// <summary>
     /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.BatchActivationPlacementData"/> and returns true if successful.
     /// </summary>
     public bool TryAsPlacementBatchActivation(
@@ -201,18 +275,39 @@ public record PlacementFormatUnion
         return false;
     }
 
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="KardFinancial.Organizations.GroupPlacementData"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsPlacementGroup(out KardFinancial.Organizations.GroupPlacementData? value)
+    {
+        if (Type == "placementGroup")
+        {
+            value = (KardFinancial.Organizations.GroupPlacementData)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
     public override string ToString() => JsonUtils.Serialize(this);
 
-    public static implicit operator PlacementFormatUnion(
-        PlacementFormatUnion.PlacementMainPage value
-    ) => new(value);
+    public static implicit operator PlacementFormatUnion(PlacementFormatUnion.Placement value) =>
+        new(value);
 
     public static implicit operator PlacementFormatUnion(
         PlacementFormatUnion.PlacementPushNotification value
     ) => new(value);
 
     public static implicit operator PlacementFormatUnion(
+        PlacementFormatUnion.PlacementEmail value
+    ) => new(value);
+
+    public static implicit operator PlacementFormatUnion(
         PlacementFormatUnion.PlacementBatchActivation value
+    ) => new(value);
+
+    public static implicit operator PlacementFormatUnion(
+        PlacementFormatUnion.PlacementGroup value
     ) => new(value);
 
     [Serializable]
@@ -256,12 +351,12 @@ public record PlacementFormatUnion
 
             var value = discriminator switch
             {
-                "placementMainPage" =>
-                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.MainPagePlacementData?>(
+                "placement" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.PlacementData?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize KardFinancial.Organizations.MainPagePlacementData"
+                            "Failed to deserialize KardFinancial.Organizations.PlacementData"
                         ),
                 "placementPushNotification" =>
                     jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.PushNotificationPlacementData?>(
@@ -270,12 +365,26 @@ public record PlacementFormatUnion
                         ?? throw new JsonException(
                             "Failed to deserialize KardFinancial.Organizations.PushNotificationPlacementData"
                         ),
+                "placementEmail" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.EmailPlacementData?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize KardFinancial.Organizations.EmailPlacementData"
+                        ),
                 "placementBatchActivation" =>
                     jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.BatchActivationPlacementData?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize KardFinancial.Organizations.BatchActivationPlacementData"
+                        ),
+                "placementGroup" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.Organizations.GroupPlacementData?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize KardFinancial.Organizations.GroupPlacementData"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -291,15 +400,17 @@ public record PlacementFormatUnion
             JsonNode json =
                 value.Type switch
                 {
-                    "placementMainPage" => JsonSerializer.SerializeToNode(value.Value, options),
+                    "placement" => JsonSerializer.SerializeToNode(value.Value, options),
                     "placementPushNotification" => JsonSerializer.SerializeToNode(
                         value.Value,
                         options
                     ),
+                    "placementEmail" => JsonSerializer.SerializeToNode(value.Value, options),
                     "placementBatchActivation" => JsonSerializer.SerializeToNode(
                         value.Value,
                         options
                     ),
+                    "placementGroup" => JsonSerializer.SerializeToNode(value.Value, options),
                     _ => JsonSerializer.SerializeToNode(value.Value, options),
                 } ?? new JsonObject();
             json["type"] = value.Type;
@@ -329,22 +440,22 @@ public record PlacementFormatUnion
     }
 
     /// <summary>
-    /// Discriminated union type for placementMainPage
+    /// Discriminated union type for placement
     /// </summary>
     [Serializable]
-    public struct PlacementMainPage
+    public struct Placement
     {
-        public PlacementMainPage(KardFinancial.Organizations.MainPagePlacementData value)
+        public Placement(KardFinancial.Organizations.PlacementData value)
         {
             Value = value;
         }
 
-        internal KardFinancial.Organizations.MainPagePlacementData Value { get; set; }
+        internal KardFinancial.Organizations.PlacementData Value { get; set; }
 
         public override string ToString() => Value.ToString() ?? "null";
 
-        public static implicit operator PlacementFormatUnion.PlacementMainPage(
-            KardFinancial.Organizations.MainPagePlacementData value
+        public static implicit operator PlacementFormatUnion.Placement(
+            KardFinancial.Organizations.PlacementData value
         ) => new(value);
     }
 
@@ -371,6 +482,26 @@ public record PlacementFormatUnion
     }
 
     /// <summary>
+    /// Discriminated union type for placementEmail
+    /// </summary>
+    [Serializable]
+    public struct PlacementEmail
+    {
+        public PlacementEmail(KardFinancial.Organizations.EmailPlacementData value)
+        {
+            Value = value;
+        }
+
+        internal KardFinancial.Organizations.EmailPlacementData Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator PlacementFormatUnion.PlacementEmail(
+            KardFinancial.Organizations.EmailPlacementData value
+        ) => new(value);
+    }
+
+    /// <summary>
     /// Discriminated union type for placementBatchActivation
     /// </summary>
     [Serializable]
@@ -389,6 +520,26 @@ public record PlacementFormatUnion
 
         public static implicit operator PlacementFormatUnion.PlacementBatchActivation(
             KardFinancial.Organizations.BatchActivationPlacementData value
+        ) => new(value);
+    }
+
+    /// <summary>
+    /// Discriminated union type for placementGroup
+    /// </summary>
+    [Serializable]
+    public struct PlacementGroup
+    {
+        public PlacementGroup(KardFinancial.Organizations.GroupPlacementData value)
+        {
+            Value = value;
+        }
+
+        internal KardFinancial.Organizations.GroupPlacementData Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator PlacementFormatUnion.PlacementGroup(
+            KardFinancial.Organizations.GroupPlacementData value
         ) => new(value);
     }
 }

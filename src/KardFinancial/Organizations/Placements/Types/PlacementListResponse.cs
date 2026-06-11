@@ -22,7 +22,7 @@ public record PlacementListResponse : IJsonOnDeserialized
     public IEnumerable<PlacementFormatUnion> Data { get; set; } = new List<PlacementFormatUnion>();
 
     /// <summary>
-    /// Related resources requested via the `include` query parameter. Each entry is keyed by its `type` discriminant (`contentStrategy`, `batchActivationSlot`, `placementMainPage`, `placementPushNotification`).
+    /// Related resources requested via the `include` query parameter. Each entry is keyed by its `type` discriminant (`contentStrategy`, `batchActivationSlot`, `placement`, `placementPushNotification`, `placementEmail`).
     /// </summary>
     [JsonPropertyName("included")]
     public IEnumerable<IncludedResource>? Included { get; set; }

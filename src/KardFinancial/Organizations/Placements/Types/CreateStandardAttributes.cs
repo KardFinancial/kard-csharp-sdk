@@ -6,20 +6,32 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Data for updating a main-page placement
+/// Attributes for creating a standard placement
 /// </summary>
 [Serializable]
-public record UpdateMainPagePlacementData : IJsonOnDeserialized
+public record CreateStandardAttributes : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Main-page placement attributes for update
+    /// Name of the placement
     /// </summary>
-    [JsonPropertyName("attributes")]
-    public required UpdateMainPageAttributes Attributes { get; set; }
+    [JsonPropertyName("name")]
+    public required string Name { get; set; }
+
+    /// <summary>
+    /// Number of available slots (minimum 1)
+    /// </summary>
+    [JsonPropertyName("availableSlots")]
+    public required int AvailableSlots { get; set; }
+
+    /// <summary>
+    /// ID of the content strategy to link this placement to
+    /// </summary>
+    [JsonPropertyName("contentStrategyId")]
+    public string? ContentStrategyId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

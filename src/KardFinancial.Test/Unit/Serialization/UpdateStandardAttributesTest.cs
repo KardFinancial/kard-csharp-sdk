@@ -7,7 +7,7 @@ namespace KardFinancial.Test;
 
 [TestFixture]
 [Parallelizable(ParallelScope.Self)]
-public class UpdateMainPageAttributesTest
+public class UpdateStandardAttributesTest
 {
     [NUnit.Framework.Test]
     public void TestDeserialization()
@@ -18,12 +18,12 @@ public class UpdateMainPageAttributesTest
               "availableSlots": 10
             }
             """;
-        var expectedObject = new UpdateMainPageAttributes
+        var expectedObject = new UpdateStandardAttributes
         {
             Name = "Updated Banner",
             AvailableSlots = 10,
         };
-        var deserializedObject = JsonUtils.Deserialize<UpdateMainPageAttributes>(json);
+        var deserializedObject = JsonUtils.Deserialize<UpdateStandardAttributes>(json);
         Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
     }
 
@@ -36,6 +36,6 @@ public class UpdateMainPageAttributesTest
               "availableSlots": 10
             }
             """;
-        JsonAssert.Roundtrips<UpdateMainPageAttributes>(inputJson);
+        JsonAssert.Roundtrips<UpdateStandardAttributes>(inputJson);
     }
 }

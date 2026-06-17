@@ -179,6 +179,12 @@ public record TransactionsAttributes : IJsonOnDeserialized
     [JsonPropertyName("processorMids")]
     public ProcessorMid? ProcessorMids { get; set; }
 
+    /// <summary>
+    /// An account identifier associated to transaction
+    /// </summary>
+    [JsonPropertyName("accountId")]
+    public string? AccountId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

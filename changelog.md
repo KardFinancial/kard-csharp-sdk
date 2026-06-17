@@ -1,3 +1,7 @@
+## 14.1.0 - 2026-06-17
+### Added
+* **`TransactionsAttributes.AccountId`** — new optional `string?` property that exposes the account identifier associated with a transaction, deserialized from the `accountId` JSON field.
+
 ## 14.0.0 - 2026-06-11
 ### Breaking Changes
 * **`UpdatePlacementDataUnion.PlacementMainPage`** — renamed to `Placement` (discriminant changed from `"placementMainPage"` to `"placement"`); replace `PlacementMainPage`, `IsPlacementMainPage`, `AsPlacementMainPage()`, and `TryAsPlacementMainPage()` with their `Placement`-prefixed equivalents.

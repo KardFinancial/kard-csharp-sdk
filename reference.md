@@ -3020,6 +3020,99 @@ await client.Users.Rewards.PlacementBatchesAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Users.Rewards.<a href="/src/KardFinancial/Users/Rewards/RewardsClient.cs">PlacementContentAsync</a>(organizationId, userId, placementId, GetPlacementContentRequest { ... }) -> WithRawResponseTask&lt;PlacementContentResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the content for a placement. The placement type is resolved
+server-side so callers no longer pick an endpoint by placement type.
+Returns a JSON:API document whose `data` resources are self-describing
+by `type`: a standard placement returns `standardOffer` resources (the
+same payload as Get Offers By Placement — with `links`, optional
+`included` categories, and `meta`); a batch-activation or group
+placement returns `placementBatch` slot resources (the same payload as
+Get Batches By Placement). Distinguish the two by each resource's
+`type`. Email and push-notification placements are not servable through
+this endpoint and respond with a `400`.<br/>
+<b>Required scopes:</b> `rewards:read`
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Users.Rewards.PlacementContentAsync(
+    "organization-123",
+    "user-123",
+    "placement-homepage-banner",
+    new GetPlacementContentRequest { Include = ["categories"] }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**userId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**placementId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GetPlacementContentRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Users.Rewards.<a href="/src/KardFinancial/Users/Rewards/RewardsClient.cs">LocationsAsync</a>(organizationId, userId, GetLocationsByUserRequest { ... }) -> WithRawResponseTask&lt;LocationsResponseObject&gt;</code></summary>
 <dl>
 <dd>

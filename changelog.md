@@ -1,3 +1,9 @@
+## 14.2.0 - 2026-06-22
+### Added
+* **`RewardsClient.PlacementContentAsync`** — new method that retrieves content for any placement by ID; the server resolves the placement type and returns either `standardOffer` or `placementBatch` resources in a unified JSON:API document.
+* **`GetPlacementContentRequest`** — new request record with optional `Include` (e.g. `"categories"`) and `SupportedComponents` (`ComponentType` values) query parameters for filtering the response.
+* **`PlacementContentResponse`** — new response record representing the combined JSON:API document, with `Data` typed as `IEnumerable<OneOf<OfferDataUnion, PlacementBatchData>>` plus optional `Links`, `Included`, and `Meta` properties.
+
 ## 14.1.0 - 2026-06-17
 ### Added
 * **`TransactionsAttributes.AccountId`** — new optional `string?` property that exposes the account identifier associated with a transaction, deserialized from the `accountId` JSON field.

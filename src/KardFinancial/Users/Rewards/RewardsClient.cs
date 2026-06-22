@@ -337,6 +337,111 @@ public partial class RewardsClient : IRewardsClient
         }
     }
 
+    private async Task<WithRawResponse<PlacementContentResponse>> PlacementContentAsyncCore(
+        string organizationId,
+        string userId,
+        string placementId,
+        GetPlacementContentRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new KardFinancial.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("include", request.Include)
+            .Add("supportedComponents", request.SupportedComponents)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new KardFinancial.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/v2/issuers/{0}/users/{1}/placements/{2}/content",
+                        ValueConvert.ToPathParameterString(organizationId),
+                        ValueConvert.ToPathParameterString(userId),
+                        ValueConvert.ToPathParameterString(placementId)
+                    ),
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PlacementContentResponse>(responseBody)!;
+                return new WithRawResponse<PlacementContentResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new KardApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 500:
+                        throw new InternalServerError(
+                            JsonUtils.Deserialize<ErrorResponse>(responseBody)
+                        );
+                    case 400:
+                        throw new InvalidRequest(
+                            JsonUtils.Deserialize<ErrorResponse>(responseBody)
+                        );
+                    case 404:
+                        throw new DoesNotExistError(
+                            JsonUtils.Deserialize<ErrorResponse>(responseBody)
+                        );
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<ErrorResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new KardApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     private async Task<WithRawResponse<LocationsResponseObject>> LocationsAsyncCore(
         string organizationId,
         string userId,
@@ -551,6 +656,48 @@ public partial class RewardsClient : IRewardsClient
     {
         return new WithRawResponseTask<BatchesResponseObject>(
             PlacementBatchesAsyncCore(
+                organizationId,
+                userId,
+                placementId,
+                request,
+                options,
+                cancellationToken
+            )
+        );
+    }
+
+    /// <summary>
+    /// Retrieve the content for a placement. The placement type is resolved
+    /// server-side so callers no longer pick an endpoint by placement type.
+    /// Returns a JSON:API document whose `data` resources are self-describing
+    /// by `type`: a standard placement returns `standardOffer` resources (the
+    /// same payload as Get Offers By Placement — with `links`, optional
+    /// `included` categories, and `meta`); a batch-activation or group
+    /// placement returns `placementBatch` slot resources (the same payload as
+    /// Get Batches By Placement). Distinguish the two by each resource's
+    /// `type`. Email and push-notification placements are not servable through
+    /// this endpoint and respond with a `400`.<br/>
+    /// <b>Required scopes:</b> `rewards:read`
+    /// </summary>
+    /// <example><code>
+    /// await client.Users.Rewards.PlacementContentAsync(
+    ///     "organization-123",
+    ///     "user-123",
+    ///     "placement-homepage-banner",
+    ///     new GetPlacementContentRequest { Include = ["categories"] }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<PlacementContentResponse> PlacementContentAsync(
+        string organizationId,
+        string userId,
+        string placementId,
+        GetPlacementContentRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PlacementContentResponse>(
+            PlacementContentAsyncCore(
                 organizationId,
                 userId,
                 placementId,

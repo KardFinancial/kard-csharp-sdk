@@ -66,6 +66,7 @@ public class PlacementContentTest : BaseMockServerTest
                 "self": "/v2/issuers/organization-123/users/user-123/placements/placement-homepage-banner/content"
               },
               "meta": {
+                "placementName": "Homepage Banner",
                 "availableCategories": [
                   {
                     "type": "category",
@@ -153,7 +154,10 @@ public class PlacementContentTest : BaseMockServerTest
                     "offers": []
                   }
                 }
-              ]
+              ],
+              "meta": {
+                "placementName": "Weekly Bundles"
+              }
             }
             """;
 

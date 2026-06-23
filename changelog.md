@@ -1,3 +1,7 @@
+## 15.0.1 - 2026-06-23
+* SDK regeneration
+* Unable to analyze changes with AI, incrementing PATCH version.
+
 ## 15.0.0 - 2026-06-23
 ### Breaking Changes
 * **`GetBatchesByPlacementRequest`** and **`GetOffersByPlacementRequest`** — records removed; replace with `GetPlacementContentRequest` passed to `RewardsClient.PlacementContentAsync`.

@@ -6,20 +6,20 @@ using KardFinancial.Core;
 namespace KardFinancial.Users;
 
 /// <summary>
-/// Ordered list of slots for a batch-activation or group placement, with freshness fields and per-slot offer sets.
+/// Metadata about the placement.
 /// </summary>
 [Serializable]
-public record BatchesResponseObject : IJsonOnDeserialized
+public record BatchesMeta : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("data")]
-    public IEnumerable<PlacementBatchData> Data { get; set; } = new List<PlacementBatchData>();
-
-    [JsonPropertyName("meta")]
-    public BatchesMeta? Meta { get; set; }
+    /// <summary>
+    /// Display name of the placement, resolved server-side from its id.
+    /// </summary>
+    [JsonPropertyName("placementName")]
+    public string? PlacementName { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

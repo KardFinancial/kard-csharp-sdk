@@ -21,6 +21,12 @@ public record OffersMeta : IJsonOnDeserialized
     [JsonPropertyName("availableCategories")]
     public IEnumerable<CategoryIncluded>? AvailableCategories { get; set; }
 
+    /// <summary>
+    /// Display name of the placement, resolved server-side from its id. Populated only on the Get Placement Content endpoint; absent on the Get Offers By User endpoint.
+    /// </summary>
+    [JsonPropertyName("placementName")]
+    public string? PlacementName { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

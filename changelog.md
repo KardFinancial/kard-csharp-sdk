@@ -1,3 +1,10 @@
+## 15.0.0 - 2026-06-23
+### Breaking Changes
+* **`GetBatchesByPlacementRequest`** and **`GetOffersByPlacementRequest`** — records removed; replace with `GetPlacementContentRequest` passed to `RewardsClient.PlacementContentAsync`.
+* **`PlacementContentResponse`** — removed from `KardFinancial.Users` namespace; no longer available as a standalone response model; update call sites to use `OneOf<OffersResponseObject, BatchesResponseObject>`.
+* **`RewardsClient.PlacementOffersAsync`** and **`RewardsClient.PlacementBatchesAsync`** — removed; migrate callers to `RewardsClient.PlacementContentAsync`, which handles both standard and batch placements.
+* **`RewardsClient.PlacementContentAsync`** — return type changed from `WithRawResponseTask<PlacementContentResponse>` to `WithRawResponseTask<OneOf<OffersResponseObject, BatchesResponseObject>>`; update all call sites to branch on the `OneOf` result.
+
 ## 14.2.0 - 2026-06-22
 ### Added
 * **`RewardsClient.PlacementContentAsync`** — new method that retrieves content for any placement by ID; the server resolves the placement type and returns either `standardOffer` or `placementBatch` resources in a unified JSON:API document.

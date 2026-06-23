@@ -538,8 +538,8 @@ public partial class AttributionsClient : IAttributionsClient
     /// `placementSlotAttribution` ACTIVATE event and fans out a per-offer
     /// `offerAttribution` ACTIVATE event for every offer resolved by the slot's content
     /// strategy. The slot-level event id and the resolved `offerIds` are returned so the
-    /// partner can render the batch immediately without an extra `getBatchesByPlacement`
-    /// round-trip.
+    /// partner can render the batch immediately without an extra round-trip to re-fetch
+    /// the placement content.
     ///
     /// <b>Required scopes:</b> `attributions:write`
     /// </summary>

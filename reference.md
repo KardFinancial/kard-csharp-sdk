@@ -2620,8 +2620,8 @@ Record when a user activates a batch-activation placement slot. Writes a slot-le
 `placementSlotAttribution` ACTIVATE event and fans out a per-offer
 `offerAttribution` ACTIVATE event for every offer resolved by the slot's content
 strategy. The slot-level event id and the resolved `offerIds` are returned so the
-partner can render the batch immediately without an extra `getBatchesByPlacement`
-round-trip.
+partner can render the batch immediately without an extra round-trip to re-fetch
+the placement content.
 
 <b>Required scopes:</b> `attributions:write`
 </dd>
@@ -2840,187 +2840,7 @@ await client.Users.Rewards.OffersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Users.Rewards.<a href="/src/KardFinancial/Users/Rewards/RewardsClient.cs">PlacementOffersAsync</a>(organizationId, userId, placementId, GetOffersByPlacementRequest { ... }) -> WithRawResponseTask&lt;OffersResponseObject&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieve offers for a placement slot. Returns offers sorted by highest cash back,
-limited by the placement's available slots.<br/>
-<b>Required scopes:</b> `rewards:read`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Users.Rewards.PlacementOffersAsync(
-    "organizationId",
-    "userId",
-    "placementId",
-    new GetOffersByPlacementRequest()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**organizationId:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**userId:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**placementId:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `GetOffersByPlacementRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.Users.Rewards.<a href="/src/KardFinancial/Users/Rewards/RewardsClient.cs">PlacementBatchesAsync</a>(organizationId, userId, placementId, GetBatchesByPlacementRequest { ... }) -> WithRawResponseTask&lt;BatchesResponseObject&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieve batches for a batch-activation or group placement. Returns each
-slot in slot order with its current offer set, alias, and freshness fields
-(`isActive`, `lastActivatedAt`, `expiresAt`). Applies the same per-user
-eligibility and per-slot content-strategy filter as Get Offers By
-Placement, independently per slot. For a batch-activation placement, a
-slot only flips to `isActive: false` when its refresh interval has elapsed
-AND its post-eligibility `offers[]` is non-empty; otherwise the slot is
-still returned and stays active so the partner UI does not promote
-"refresh" with nothing to show. For a group placement, slots are always
-active and each slot returns its offers regardless of activation state,
-hiding only offers that require activation (`requiredInBatch`) and have
-no activation record.<br/>
-<b>Required scopes:</b> `rewards:read`
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Users.Rewards.PlacementBatchesAsync(
-    "organizationId",
-    "userId",
-    "placementId",
-    new GetBatchesByPlacementRequest()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**organizationId:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**userId:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**placementId:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `GetBatchesByPlacementRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.Users.Rewards.<a href="/src/KardFinancial/Users/Rewards/RewardsClient.cs">PlacementContentAsync</a>(organizationId, userId, placementId, GetPlacementContentRequest { ... }) -> WithRawResponseTask&lt;PlacementContentResponse&gt;</code></summary>
+<details><summary><code>client.Users.Rewards.<a href="/src/KardFinancial/Users/Rewards/RewardsClient.cs">PlacementContentAsync</a>(organizationId, userId, placementId, GetPlacementContentRequest { ... }) -> WithRawResponseTask&lt;OneOf&lt;OffersResponseObject, BatchesResponseObject&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3035,13 +2855,12 @@ await client.Users.Rewards.PlacementBatchesAsync(
 Retrieve the content for a placement. The placement type is resolved
 server-side so callers no longer pick an endpoint by placement type.
 Returns a JSON:API document whose `data` resources are self-describing
-by `type`: a standard placement returns `standardOffer` resources (the
-same payload as Get Offers By Placement — with `links`, optional
-`included` categories, and `meta`); a batch-activation or group
-placement returns `placementBatch` slot resources (the same payload as
-Get Batches By Placement). Distinguish the two by each resource's
-`type`. Email and push-notification placements are not servable through
-this endpoint and respond with a `400`.<br/>
+by `type`: a standard placement returns `standardOffer` resources (with
+`links`, optional `included` categories, and `meta`); a batch-activation
+or group placement returns `placementBatch` slot resources. Distinguish
+the two by each resource's `type`. Email and push-notification
+placements are not servable through this endpoint and respond with a
+`400`.<br/>
 <b>Required scopes:</b> `rewards:read`
 </dd>
 </dl>

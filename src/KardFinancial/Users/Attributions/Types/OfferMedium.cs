@@ -18,6 +18,8 @@ public readonly record struct OfferMedium : IStringEnum
 
     public static readonly OfferMedium Cta = new(Values.Cta);
 
+    public static readonly OfferMedium Push = new(Values.Push);
+
     public OfferMedium(string value)
     {
         Value = value;
@@ -123,5 +125,7 @@ public readonly record struct OfferMedium : IStringEnum
         public const string Search = "SEARCH";
 
         public const string Cta = "CTA";
+
+        public const string Push = "PUSH";
     }
 }

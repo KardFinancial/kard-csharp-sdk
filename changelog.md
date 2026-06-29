@@ -1,3 +1,7 @@
+## 15.1.0 - 2026-06-29
+### Added
+* **`OfferMedium.Push`** — new enum value (`"PUSH"`) added to `OfferMedium`, allowing push-notification offer mediums to be represented in attribution requests.
+
 ## 15.0.1 - 2026-06-23
 * SDK regeneration
 * Unable to analyze changes with AI, incrementing PATCH version.

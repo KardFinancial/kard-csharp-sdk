@@ -1,3 +1,8 @@
+## 15.2.0 - 2026-07-02
+### Added
+* **`ProgressBarSegmentProgress`** — new type representing the fill state of a single progress bar segment node, with `Completed` and `Total` integer properties.
+* **`ProgressBarSegments.Progress`** — new optional property (`IEnumerable<ProgressBarSegmentProgress>`) exposing per-segment fill state, index-aligned with segment nodes; supports punch-card offer progress tracking.
+
 ## 15.1.1 - 2026-07-02
 * chore: update FilterSearch XML doc comment in GetOffersByUserRequest
 * Clarify the description of the `FilterSearch` property on

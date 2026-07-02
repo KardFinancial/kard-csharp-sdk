@@ -17,7 +17,7 @@ public record GetOffersByUserRequest
     public string? PageBefore { get; set; }
 
     /// <summary>
-    /// Case-insensitive search string to filter offers by merchant name
+    /// Case-insensitive substring search. Returns offers whose offer name or category name contains the search string.
     /// </summary>
     [JsonIgnore]
     public string? FilterSearch { get; set; }

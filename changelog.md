@@ -1,3 +1,13 @@
+## 15.1.1 - 2026-07-02
+* chore: update FilterSearch XML doc comment in GetOffersByUserRequest
+* Clarify the description of the `FilterSearch` property on
+* `GetOffersByUserRequest` to reflect that it performs a case-insensitive
+* substring search across both offer name and category name, not just
+* merchant name.
+* Key changes:
+* Updated XML doc comment on `FilterSearch` from "Case-insensitive search string to filter offers by merchant name" to "Case-insensitive substring search. Returns offers whose offer name or category name contains the search string."
+* 🌿 Generated with Fern
+
 ## 15.1.0 - 2026-06-29
 ### Added
 * **`OfferMedium.Push`** — new enum value (`"PUSH"`) added to `OfferMedium`, allowing push-notification offer mediums to be represented in attribution requests.

@@ -16,6 +16,8 @@ public readonly record struct ContentStrategySort : IStringEnum
 
     public static readonly ContentStrategySort Personalized = new(Values.Personalized);
 
+    public static readonly ContentStrategySort OffersNearYou = new(Values.OffersNearYou);
+
     public ContentStrategySort(string value)
     {
         Value = value;
@@ -119,5 +121,7 @@ public readonly record struct ContentStrategySort : IStringEnum
         public const string HighestCashback = "HIGHEST_CASHBACK";
 
         public const string Personalized = "PERSONALIZED";
+
+        public const string OffersNearYou = "OFFERS_NEAR_YOU";
     }
 }

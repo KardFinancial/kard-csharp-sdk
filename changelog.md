@@ -1,3 +1,7 @@
+## 15.3.0 - 2026-07-10
+### Added
+* **`ContentStrategySort.OffersNearYou`** — new enum value (`"OFFERS_NEAR_YOU"`) added to `ContentStrategySort`, allowing content strategies to be sorted by proximity-based offer recommendations.
+
 ## 15.2.0 - 2026-07-02
 ### Added
 * **`ProgressBarSegmentProgress`** — new type representing the fill state of a single progress bar segment node, with `Completed` and `Total` integer properties.

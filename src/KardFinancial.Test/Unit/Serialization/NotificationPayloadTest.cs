@@ -299,6 +299,115 @@ public class NotificationPayloadTest
         var json = """
             {
               "data": {
+                "id": "cdbbf8eb-b3b9-5f96-beb5-6e37d124e776",
+                "type": "earnedRewardRejected",
+                "attributes": {
+                  "reason": "AGGREGATOR_CARD_OVERLAP",
+                  "message": "Your transaction did not result in a reward.",
+                  "transactionId": "a9f3d7c1-6b25-4f91-8c0e-2d5a7b3e9f42",
+                  "transactionAmountInCents": 3000,
+                  "transactionTimestamp": "2026-06-23T22:15:26.124Z"
+                },
+                "relationships": {
+                  "user": {
+                    "data": {
+                      "type": "user",
+                      "id": "1234567890"
+                    }
+                  },
+                  "transaction": {
+                    "data": {
+                      "type": "transaction",
+                      "id": "6179473f14ef7a000882acbe"
+                    }
+                  }
+                }
+              }
+            }
+            """;
+        var expectedObject = new NotificationPayload
+        {
+            Data = new NotificationDataUnion(
+                new NotificationDataUnion.EarnedRewardRejected(
+                    new EarnedRewardRejectedData
+                    {
+                        Id = "cdbbf8eb-b3b9-5f96-beb5-6e37d124e776",
+                        Attributes = new EarnedRewardRejectedAttributes
+                        {
+                            Reason = "AGGREGATOR_CARD_OVERLAP",
+                            Message = "Your transaction did not result in a reward.",
+                            TransactionId = "a9f3d7c1-6b25-4f91-8c0e-2d5a7b3e9f42",
+                            TransactionAmountInCents = 3000,
+                            TransactionTimestamp = DateTime.Parse(
+                                "2026-06-23T22:15:26.124Z",
+                                null,
+                                DateTimeStyles.AdjustToUniversal
+                            ),
+                        },
+                        Relationships = new RejectedTransactionRelationships
+                        {
+                            User = new RelationshipSingle
+                            {
+                                Data = new RelationshipData { Type = "user", Id = "1234567890" },
+                            },
+                            Transaction = new RelationshipSingle
+                            {
+                                Data = new RelationshipData
+                                {
+                                    Type = "transaction",
+                                    Id = "6179473f14ef7a000882acbe",
+                                },
+                            },
+                        },
+                    }
+                )
+            ),
+        };
+        var deserializedObject = JsonUtils.Deserialize<NotificationPayload>(json);
+        Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
+    }
+
+    [NUnit.Framework.Test]
+    public void TestSerialization_3()
+    {
+        var inputJson = """
+            {
+              "data": {
+                "id": "cdbbf8eb-b3b9-5f96-beb5-6e37d124e776",
+                "type": "earnedRewardRejected",
+                "attributes": {
+                  "reason": "AGGREGATOR_CARD_OVERLAP",
+                  "message": "Your transaction did not result in a reward.",
+                  "transactionId": "a9f3d7c1-6b25-4f91-8c0e-2d5a7b3e9f42",
+                  "transactionAmountInCents": 3000,
+                  "transactionTimestamp": "2026-06-23T22:15:26.124Z"
+                },
+                "relationships": {
+                  "user": {
+                    "data": {
+                      "type": "user",
+                      "id": "1234567890"
+                    }
+                  },
+                  "transaction": {
+                    "data": {
+                      "type": "transaction",
+                      "id": "6179473f14ef7a000882acbe"
+                    }
+                  }
+                }
+              }
+            }
+            """;
+        JsonAssert.Roundtrips<NotificationPayload>(inputJson);
+    }
+
+    [NUnit.Framework.Test]
+    public void TestDeserialization_4()
+    {
+        var json = """
+            {
+              "data": {
                 "id": "a12b34c56d78e90f1234",
                 "type": "validTransaction",
                 "attributes": {
@@ -401,7 +510,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_3()
+    public void TestSerialization_4()
     {
         var inputJson = """
             {
@@ -454,7 +563,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestDeserialization_4()
+    public void TestDeserialization_5()
     {
         var json = """
             {
@@ -533,7 +642,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_4()
+    public void TestSerialization_5()
     {
         var inputJson = """
             {
@@ -573,7 +682,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestDeserialization_5()
+    public void TestDeserialization_6()
     {
         var json = """
             {
@@ -651,7 +760,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_5()
+    public void TestSerialization_6()
     {
         var inputJson = """
             {
@@ -691,7 +800,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestDeserialization_6()
+    public void TestDeserialization_7()
     {
         var json = """
             {
@@ -761,7 +870,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_6()
+    public void TestSerialization_7()
     {
         var inputJson = """
             {
@@ -796,7 +905,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestDeserialization_7()
+    public void TestDeserialization_8()
     {
         var json = """
             {
@@ -876,7 +985,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_7()
+    public void TestSerialization_8()
     {
         var inputJson = """
             {
@@ -914,7 +1023,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestDeserialization_8()
+    public void TestDeserialization_9()
     {
         var json = """
             {
@@ -954,7 +1063,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_8()
+    public void TestSerialization_9()
     {
         var inputJson = """
             {
@@ -974,7 +1083,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestDeserialization_9()
+    public void TestDeserialization_10()
     {
         var json = """
             {
@@ -1047,7 +1156,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_9()
+    public void TestSerialization_10()
     {
         var inputJson = """
             {
@@ -1081,7 +1190,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestDeserialization_10()
+    public void TestDeserialization_11()
     {
         var json = """
             {
@@ -1156,7 +1265,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_10()
+    public void TestSerialization_11()
     {
         var inputJson = """
             {

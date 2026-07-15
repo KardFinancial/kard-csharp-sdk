@@ -1,3 +1,12 @@
+## 16.0.0 - 2026-07-15
+### Breaking Changes
+* **`NotificationDataUnion.Match<T>()`** and **`NotificationDataUnion.Visit()`** now require a new `onEarnedRewardRejected` delegate parameter. Add a handler for `EarnedRewardRejectedData` at the appropriate position in each call site.
+### Added
+* **`EarnedRewardRejectedData`** — new notification data type representing a rejected earned reward, with `Id`, `Attributes`, and `Relationships` properties.
+* **`EarnedRewardRejectedAttributes`** — new type carrying the rejection `Reason`, `Message`, `TransactionId`, `TransactionAmountInCents`, and `TransactionTimestamp` for a rejected reward notification.
+* **`RejectedTransactionRelationships`** — new type holding `User` and `Transaction` relationship references for rejected reward notifications.
+* **`NotificationType.EarnedRewardRejected`** — new constant (`"earnedRewardRejected"`) added to `NotificationType`, and `NotificationDataUnion` gains `IsEarnedRewardRejected`, `AsEarnedRewardRejected()`, and `TryAsEarnedRewardRejected()` members.
+
 ## 15.3.0 - 2026-07-10
 ### Added
 * **`ContentStrategySort.OffersNearYou`** — new enum value (`"OFFERS_NEAR_YOU"`) added to `ContentStrategySort`, allowing content strategies to be sorted by proximity-based offer recommendations.

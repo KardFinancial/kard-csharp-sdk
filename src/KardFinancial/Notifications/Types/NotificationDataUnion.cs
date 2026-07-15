@@ -37,6 +37,15 @@ public record NotificationDataUnion
     }
 
     /// <summary>
+    /// Create an instance of NotificationDataUnion with <see cref="NotificationDataUnion.EarnedRewardRejected"/>.
+    /// </summary>
+    public NotificationDataUnion(NotificationDataUnion.EarnedRewardRejected value)
+    {
+        Type = "earnedRewardRejected";
+        Value = value.Value;
+    }
+
+    /// <summary>
     /// Create an instance of NotificationDataUnion with <see cref="NotificationDataUnion.ValidTransaction"/>.
     /// </summary>
     public NotificationDataUnion(NotificationDataUnion.ValidTransaction value)
@@ -121,6 +130,11 @@ public record NotificationDataUnion
     public bool IsEarnedRewardSettled => Type == "earnedRewardSettled";
 
     /// <summary>
+    /// Returns true if <see cref="Type"/> is "earnedRewardRejected"
+    /// </summary>
+    public bool IsEarnedRewardRejected => Type == "earnedRewardRejected";
+
+    /// <summary>
     /// Returns true if <see cref="Type"/> is "validTransaction"
     /// </summary>
     public bool IsValidTransaction => Type == "validTransaction";
@@ -175,6 +189,17 @@ public record NotificationDataUnion
             ? (KardFinancial.EarnedRewardSettledData)Value!
             : throw new global::System.Exception(
                 "NotificationDataUnion.Type is not 'earnedRewardSettled'"
+            );
+
+    /// <summary>
+    /// Returns the value as a <see cref="KardFinancial.EarnedRewardRejectedData"/> if <see cref="Type"/> is 'earnedRewardRejected', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'earnedRewardRejected'.</exception>
+    public KardFinancial.EarnedRewardRejectedData AsEarnedRewardRejected() =>
+        IsEarnedRewardRejected
+            ? (KardFinancial.EarnedRewardRejectedData)Value!
+            : throw new global::System.Exception(
+                "NotificationDataUnion.Type is not 'earnedRewardRejected'"
             );
 
     /// <summary>
@@ -253,6 +278,7 @@ public record NotificationDataUnion
     public T Match<T>(
         Func<KardFinancial.EarnedRewardApprovedData, T> onEarnedRewardApproved,
         Func<KardFinancial.EarnedRewardSettledData, T> onEarnedRewardSettled,
+        Func<KardFinancial.EarnedRewardRejectedData, T> onEarnedRewardRejected,
         Func<KardFinancial.ValidTransactionData, T> onValidTransaction,
         Func<KardFinancial.FailedTransactionData, T> onFailedTransaction,
         Func<KardFinancial.ClawbackData, T> onClawback,
@@ -267,6 +293,7 @@ public record NotificationDataUnion
         {
             "earnedRewardApproved" => onEarnedRewardApproved(AsEarnedRewardApproved()),
             "earnedRewardSettled" => onEarnedRewardSettled(AsEarnedRewardSettled()),
+            "earnedRewardRejected" => onEarnedRewardRejected(AsEarnedRewardRejected()),
             "validTransaction" => onValidTransaction(AsValidTransaction()),
             "failedTransaction" => onFailedTransaction(AsFailedTransaction()),
             "clawback" => onClawback(AsClawback()),
@@ -285,6 +312,7 @@ public record NotificationDataUnion
     public void Visit(
         Action<KardFinancial.EarnedRewardApprovedData> onEarnedRewardApproved,
         Action<KardFinancial.EarnedRewardSettledData> onEarnedRewardSettled,
+        Action<KardFinancial.EarnedRewardRejectedData> onEarnedRewardRejected,
         Action<KardFinancial.ValidTransactionData> onValidTransaction,
         Action<KardFinancial.FailedTransactionData> onFailedTransaction,
         Action<KardFinancial.ClawbackData> onClawback,
@@ -302,6 +330,9 @@ public record NotificationDataUnion
                 break;
             case "earnedRewardSettled":
                 onEarnedRewardSettled(AsEarnedRewardSettled());
+                break;
+            case "earnedRewardRejected":
+                onEarnedRewardRejected(AsEarnedRewardRejected());
                 break;
             case "validTransaction":
                 onValidTransaction(AsValidTransaction());
@@ -352,6 +383,20 @@ public record NotificationDataUnion
         if (Type == "earnedRewardSettled")
         {
             value = (KardFinancial.EarnedRewardSettledData)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="KardFinancial.EarnedRewardRejectedData"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsEarnedRewardRejected(out KardFinancial.EarnedRewardRejectedData? value)
+    {
+        if (Type == "earnedRewardRejected")
+        {
+            value = (KardFinancial.EarnedRewardRejectedData)Value!;
             return true;
         }
         value = null;
@@ -471,6 +516,10 @@ public record NotificationDataUnion
     ) => new(value);
 
     public static implicit operator NotificationDataUnion(
+        NotificationDataUnion.EarnedRewardRejected value
+    ) => new(value);
+
+    public static implicit operator NotificationDataUnion(
         NotificationDataUnion.ValidTransaction value
     ) => new(value);
 
@@ -552,6 +601,13 @@ public record NotificationDataUnion
                         ?? throw new JsonException(
                             "Failed to deserialize KardFinancial.EarnedRewardSettledData"
                         ),
+                "earnedRewardRejected" =>
+                    jsonWithoutDiscriminator.Deserialize<KardFinancial.EarnedRewardRejectedData?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize KardFinancial.EarnedRewardRejectedData"
+                        ),
                 "validTransaction" =>
                     jsonWithoutDiscriminator.Deserialize<KardFinancial.ValidTransactionData?>(
                         options
@@ -609,6 +665,7 @@ public record NotificationDataUnion
                 {
                     "earnedRewardApproved" => JsonSerializer.SerializeToNode(value.Value, options),
                     "earnedRewardSettled" => JsonSerializer.SerializeToNode(value.Value, options),
+                    "earnedRewardRejected" => JsonSerializer.SerializeToNode(value.Value, options),
                     "validTransaction" => JsonSerializer.SerializeToNode(value.Value, options),
                     "failedTransaction" => JsonSerializer.SerializeToNode(value.Value, options),
                     "clawback" => JsonSerializer.SerializeToNode(value.Value, options),
@@ -687,6 +744,26 @@ public record NotificationDataUnion
 
         public static implicit operator NotificationDataUnion.EarnedRewardSettled(
             KardFinancial.EarnedRewardSettledData value
+        ) => new(value);
+    }
+
+    /// <summary>
+    /// Discriminated union type for earnedRewardRejected
+    /// </summary>
+    [Serializable]
+    public struct EarnedRewardRejected
+    {
+        public EarnedRewardRejected(KardFinancial.EarnedRewardRejectedData value)
+        {
+            Value = value;
+        }
+
+        internal KardFinancial.EarnedRewardRejectedData Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator NotificationDataUnion.EarnedRewardRejected(
+            KardFinancial.EarnedRewardRejectedData value
         ) => new(value);
     }
 

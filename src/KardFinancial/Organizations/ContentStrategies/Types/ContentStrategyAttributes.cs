@@ -34,6 +34,12 @@ public record ContentStrategyAttributes : IJsonOnDeserialized
     public ContentStrategySort? Sort { get; set; }
 
     /// <summary>
+    /// Filters applied when selecting offers for the strategy
+    /// </summary>
+    [JsonPropertyName("filters")]
+    public required ContentStrategyFilters Filters { get; set; }
+
+    /// <summary>
     /// Merchant categories to include
     /// </summary>
     [JsonPropertyName("categories")]

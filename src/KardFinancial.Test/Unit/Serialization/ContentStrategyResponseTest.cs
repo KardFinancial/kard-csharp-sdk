@@ -21,6 +21,11 @@ public class ContentStrategyResponseTest
                 "name": "Featured Travel",
                 "organizationId": "org-123",
                 "sort": "HIGHEST_CASHBACK",
+                "filters": {
+                  "offerFeatures": [
+                    "INTERACTIVE"
+                  ]
+                },
                 "categories": [
                   "Travel"
                 ],
@@ -42,6 +47,10 @@ public class ContentStrategyResponseTest
                 Name = "Featured Travel",
                 OrganizationId = "org-123",
                 Sort = ContentStrategySort.HighestCashback,
+                Filters = new ContentStrategyFilters
+                {
+                    OfferFeatures = new List<OfferFeatures>() { OfferFeatures.Interactive },
+                },
                 Categories = new List<CategoryOption>() { CategoryOption.Travel },
                 CategoryExclusions = new List<CategoryOption>() { CategoryOption.Gas },
                 MerchantExclusions = new List<string>() { "merchant-abc" },
@@ -62,6 +71,11 @@ public class ContentStrategyResponseTest
                 "name": "Featured Travel",
                 "organizationId": "org-123",
                 "sort": "HIGHEST_CASHBACK",
+                "filters": {
+                  "offerFeatures": [
+                    "INTERACTIVE"
+                  ]
+                },
                 "categories": [
                   "Travel"
                 ],

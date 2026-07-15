@@ -40,6 +40,24 @@ public class GetTest : BaseMockServerTest
                     "name": "name",
                     "organizationId": "organizationId",
                     "sort": "NEWLY_LIVE",
+                    "filters": {
+                      "categories": [
+                        "categories",
+                        "categories"
+                      ],
+                      "categoryExclusions": [
+                        "categoryExclusions",
+                        "categoryExclusions"
+                      ],
+                      "merchantExclusions": [
+                        "merchantExclusions",
+                        "merchantExclusions"
+                      ],
+                      "offerFeatures": [
+                        "INTERACTIVE",
+                        "INTERACTIVE"
+                      ]
+                    },
                     "categories": [
                       "Arts & Entertainment",
                       "Arts & Entertainment"
@@ -61,6 +79,24 @@ public class GetTest : BaseMockServerTest
                     "name": "name",
                     "organizationId": "organizationId",
                     "sort": "NEWLY_LIVE",
+                    "filters": {
+                      "categories": [
+                        "categories",
+                        "categories"
+                      ],
+                      "categoryExclusions": [
+                        "categoryExclusions",
+                        "categoryExclusions"
+                      ],
+                      "merchantExclusions": [
+                        "merchantExclusions",
+                        "merchantExclusions"
+                      ],
+                      "offerFeatures": [
+                        "INTERACTIVE",
+                        "INTERACTIVE"
+                      ]
+                    },
                     "categories": [
                       "Arts & Entertainment",
                       "Arts & Entertainment"

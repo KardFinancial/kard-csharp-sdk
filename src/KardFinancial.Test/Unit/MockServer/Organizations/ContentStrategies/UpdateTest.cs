@@ -19,6 +19,7 @@ public class UpdateTest : BaseMockServerTest
                 "type": "contentStrategy",
                 "attributes": {
                   "name": "name",
+                  "filters": {},
                   "categories": [
                     "Arts & Entertainment",
                     "Arts & Entertainment"
@@ -44,6 +45,24 @@ public class UpdateTest : BaseMockServerTest
                 "name": "name",
                 "organizationId": "organizationId",
                 "sort": "NEWLY_LIVE",
+                "filters": {
+                  "categories": [
+                    "categories",
+                    "categories"
+                  ],
+                  "categoryExclusions": [
+                    "categoryExclusions",
+                    "categoryExclusions"
+                  ],
+                  "merchantExclusions": [
+                    "merchantExclusions",
+                    "merchantExclusions"
+                  ],
+                  "offerFeatures": [
+                    "INTERACTIVE",
+                    "INTERACTIVE"
+                  ]
+                },
                 "categories": [
                   "Arts & Entertainment",
                   "Arts & Entertainment"
@@ -86,6 +105,7 @@ public class UpdateTest : BaseMockServerTest
                     Attributes = new UpdateContentStrategyAttributes
                     {
                         Name = "name",
+                        Filters = new ContentStrategyFilters(),
                         Categories = new List<CategoryOption>()
                         {
                             CategoryOption.ArtsEntertainment,

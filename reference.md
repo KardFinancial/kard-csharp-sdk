@@ -778,6 +778,10 @@ await client.Organizations.ContentStrategies.CreateAsync(
             {
                 Name = "Featured Travel",
                 Sort = ContentStrategySort.HighestCashback,
+                Filters = new ContentStrategyFilters
+                {
+                    OfferFeatures = new List<OfferFeatures>() { OfferFeatures.Interactive },
+                },
                 Categories = new List<CategoryOption>() { CategoryOption.Travel },
                 CategoryExclusions = new List<CategoryOption>() { CategoryOption.Gas },
                 MerchantExclusions = new List<string>() { "merchant-abc" },
@@ -984,6 +988,7 @@ await client.Organizations.ContentStrategies.UpdateAsync(
             Attributes = new UpdateContentStrategyAttributes
             {
                 Name = "name",
+                Filters = new ContentStrategyFilters(),
                 Categories = new List<CategoryOption>()
                 {
                     CategoryOption.ArtsEntertainment,

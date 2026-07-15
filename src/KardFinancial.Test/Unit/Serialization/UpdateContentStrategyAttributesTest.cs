@@ -17,6 +17,11 @@ public class UpdateContentStrategyAttributesTest
             {
               "name": "Updated Travel Strategy",
               "sort": "EXPIRING_SOON",
+              "filters": {
+                "offerFeatures": [
+                  "INTERACTIVE"
+                ]
+              },
               "categories": [
                 "Travel",
                 "Food & Beverage"
@@ -31,6 +36,10 @@ public class UpdateContentStrategyAttributesTest
         {
             Name = "Updated Travel Strategy",
             Sort = ContentStrategySort.ExpiringSoon,
+            Filters = new ContentStrategyFilters
+            {
+                OfferFeatures = new List<OfferFeatures>() { OfferFeatures.Interactive },
+            },
             Categories = new List<CategoryOption>()
             {
                 CategoryOption.Travel,
@@ -50,6 +59,11 @@ public class UpdateContentStrategyAttributesTest
             {
               "name": "Updated Travel Strategy",
               "sort": "EXPIRING_SOON",
+              "filters": {
+                "offerFeatures": [
+                  "INTERACTIVE"
+                ]
+              },
               "categories": [
                 "Travel",
                 "Food & Beverage"

@@ -6,51 +6,38 @@ using KardFinancial.Core;
 namespace KardFinancial.Organizations;
 
 /// <summary>
-/// Attributes for updating a content strategy. All fields are required.
+/// Filters applied when selecting offers for a content strategy
 /// </summary>
 [Serializable]
-public record UpdateContentStrategyAttributes : IJsonOnDeserialized
+public record ContentStrategyFilters : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Name of the content strategy (unique within an organization)
-    /// </summary>
-    [JsonPropertyName("name")]
-    public required string Name { get; set; }
-
-    /// <summary>
-    /// Sort applied when selecting offers for the strategy
-    /// </summary>
-    [JsonPropertyName("sort")]
-    public ContentStrategySort? Sort { get; set; }
-
-    /// <summary>
-    /// Filters applied when selecting offers for the strategy
-    /// </summary>
-    [JsonPropertyName("filters")]
-    public required ContentStrategyFilters Filters { get; set; }
-
-    /// <summary>
     /// Merchant categories to include
     /// </summary>
     [JsonPropertyName("categories")]
-    public IEnumerable<CategoryOption> Categories { get; set; } = new List<CategoryOption>();
+    public IEnumerable<string>? Categories { get; set; }
 
     /// <summary>
     /// Merchant categories to exclude
     /// </summary>
     [JsonPropertyName("categoryExclusions")]
-    public IEnumerable<CategoryOption> CategoryExclusions { get; set; } =
-        new List<CategoryOption>();
+    public IEnumerable<string>? CategoryExclusions { get; set; }
 
     /// <summary>
     /// Merchant IDs to exclude
     /// </summary>
     [JsonPropertyName("merchantExclusions")]
-    public IEnumerable<string> MerchantExclusions { get; set; } = new List<string>();
+    public IEnumerable<string>? MerchantExclusions { get; set; }
+
+    /// <summary>
+    /// Offer features to filter by
+    /// </summary>
+    [JsonPropertyName("offerFeatures")]
+    public IEnumerable<OfferFeatures>? OfferFeatures { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

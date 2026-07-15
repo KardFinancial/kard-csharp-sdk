@@ -1,3 +1,10 @@
+## 18.0.0 - 2026-07-15
+### Breaking Changes
+* **`ContentStrategyAttributes.Filters`**, **`CreateContentStrategyAttributes.Filters`**, and **`UpdateContentStrategyAttributes.Filters`** — a new `required ContentStrategyFilters Filters` property has been added to all three types; existing object initializers that omit `Filters` will fail to compile. Add `Filters = new ContentStrategyFilters()` (with any desired filter values) to each affected initializer.
+### Added
+* **`ContentStrategyFilters`** — new record type representing offer-selection filters for a content strategy, with optional `Categories`, `CategoryExclusions`, `MerchantExclusions`, and `OfferFeatures` properties.
+* **`OfferFeatures`** — new string enum type with the `Interactive` ("INTERACTIVE") constant, used to filter offers by feature when building a `ContentStrategyFilters`.
+
 ## 17.0.0 - 2026-07-15
 ### Breaking Changes
 * **`EarnedRewardApprovedData.Attributes`** — property type changed from `RewardNotificationAttributes` to `EarnedRewardNotificationAttributes`; update any variable declarations or pattern matches that reference `RewardNotificationAttributes` to use `EarnedRewardNotificationAttributes` instead.

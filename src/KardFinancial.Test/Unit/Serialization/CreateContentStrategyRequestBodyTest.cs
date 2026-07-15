@@ -20,6 +20,11 @@ public class CreateContentStrategyRequestBodyTest
                 "attributes": {
                   "name": "Featured Travel",
                   "sort": "HIGHEST_CASHBACK",
+                  "filters": {
+                    "offerFeatures": [
+                      "INTERACTIVE"
+                    ]
+                  },
                   "categories": [
                     "Travel"
                   ],
@@ -42,6 +47,10 @@ public class CreateContentStrategyRequestBodyTest
                 {
                     Name = "Featured Travel",
                     Sort = ContentStrategySort.HighestCashback,
+                    Filters = new ContentStrategyFilters
+                    {
+                        OfferFeatures = new List<OfferFeatures>() { OfferFeatures.Interactive },
+                    },
                     Categories = new List<CategoryOption>() { CategoryOption.Travel },
                     CategoryExclusions = new List<CategoryOption>() { CategoryOption.Gas },
                     MerchantExclusions = new List<string>() { "merchant-abc" },
@@ -62,6 +71,11 @@ public class CreateContentStrategyRequestBodyTest
                 "attributes": {
                   "name": "Featured Travel",
                   "sort": "HIGHEST_CASHBACK",
+                  "filters": {
+                    "offerFeatures": [
+                      "INTERACTIVE"
+                    ]
+                  },
                   "categories": [
                     "Travel"
                   ],

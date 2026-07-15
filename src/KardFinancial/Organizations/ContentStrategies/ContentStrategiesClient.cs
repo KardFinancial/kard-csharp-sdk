@@ -536,6 +536,10 @@ public partial class ContentStrategiesClient : IContentStrategiesClient
     ///             {
     ///                 Name = "Featured Travel",
     ///                 Sort = ContentStrategySort.HighestCashback,
+    ///                 Filters = new ContentStrategyFilters
+    ///                 {
+    ///                     OfferFeatures = new List&lt;OfferFeatures&gt;() { OfferFeatures.Interactive },
+    ///                 },
     ///                 Categories = new List&lt;CategoryOption&gt;() { CategoryOption.Travel },
     ///                 CategoryExclusions = new List&lt;CategoryOption&gt;() { CategoryOption.Gas },
     ///                 MerchantExclusions = new List&lt;string&gt;() { "merchant-abc" },
@@ -610,6 +614,7 @@ public partial class ContentStrategiesClient : IContentStrategiesClient
     ///             Attributes = new UpdateContentStrategyAttributes
     ///             {
     ///                 Name = "name",
+    ///                 Filters = new ContentStrategyFilters(),
     ///                 Categories = new List&lt;CategoryOption&gt;()
     ///                 {
     ///                     CategoryOption.ArtsEntertainment,

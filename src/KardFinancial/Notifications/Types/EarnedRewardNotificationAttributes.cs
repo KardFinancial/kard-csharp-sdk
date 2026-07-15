@@ -5,14 +5,11 @@ using KardFinancial.Core;
 namespace KardFinancial;
 
 [Serializable]
-public record EarnedRewardSettledAttributes : IJsonOnDeserialized
+public record EarnedRewardNotificationAttributes : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
-
-    [JsonPropertyName("commissionEarned")]
-    public required CommissionValue CommissionEarned { get; set; }
 
     /// <summary>
     /// The category of the offer, e.g. "Food & Dining"

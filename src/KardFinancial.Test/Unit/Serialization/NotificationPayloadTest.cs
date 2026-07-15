@@ -30,7 +30,22 @@ public class NotificationPayloadTest
                   "cardProductId": "card_product_123",
                   "transactionTimestamp": "2024-10-01T14:32:10.000Z",
                   "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
-                  "transactionAmountInCents": 3000
+                  "transactionAmountInCents": 3000,
+                  "categoryName": "Food & Dining",
+                  "userReward": {
+                    "type": "PERCENT",
+                    "value": 5.7
+                  },
+                  "assets": [
+                    {
+                      "type": "IMG_VIEW",
+                      "url": "https://cdn.getkard.com/merchants/mcdonalds.png"
+                    }
+                  ],
+                  "purchaseChannel": [
+                    "ONLINE",
+                    "INSTORE"
+                  ]
                 },
                 "relationships": {
                   "user": {
@@ -82,6 +97,25 @@ public class NotificationPayloadTest
                             ),
                             TransactionId = "019df940-babd-7cd3-acfc-a96de16643e9",
                             TransactionAmountInCents = 3000,
+                            CategoryName = "Food & Dining",
+                            UserReward = new UserReward
+                            {
+                                Type = CommissionType.Percent,
+                                Value = 5.7,
+                            },
+                            Assets = new List<MerchantAsset>()
+                            {
+                                new MerchantAsset
+                                {
+                                    Type = MerchantAssetType.ImgView,
+                                    Url = "https://cdn.getkard.com/merchants/mcdonalds.png",
+                                },
+                            },
+                            PurchaseChannel = new List<PurchaseChannel>()
+                            {
+                                PurchaseChannel.Online,
+                                PurchaseChannel.Instore,
+                            },
                         },
                         Relationships = new EarnedRewardRelationships
                         {
@@ -130,7 +164,22 @@ public class NotificationPayloadTest
                   "cardProductId": "card_product_123",
                   "transactionTimestamp": "2024-10-01T14:32:10.000Z",
                   "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
-                  "transactionAmountInCents": 3000
+                  "transactionAmountInCents": 3000,
+                  "categoryName": "Food & Dining",
+                  "userReward": {
+                    "type": "PERCENT",
+                    "value": 5.7
+                  },
+                  "assets": [
+                    {
+                      "type": "IMG_VIEW",
+                      "url": "https://cdn.getkard.com/merchants/mcdonalds.png"
+                    }
+                  ],
+                  "purchaseChannel": [
+                    "ONLINE",
+                    "INSTORE"
+                  ]
                 },
                 "relationships": {
                   "user": {
@@ -174,7 +223,22 @@ public class NotificationPayloadTest
                   "cardProductId": "card_product_123",
                   "transactionTimestamp": "2024-10-01T14:32:10.000Z",
                   "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
-                  "transactionAmountInCents": 3000
+                  "transactionAmountInCents": 3000,
+                  "categoryName": "Food & Dining",
+                  "userReward": {
+                    "type": "PERCENT",
+                    "value": 5.7
+                  },
+                  "assets": [
+                    {
+                      "type": "IMG_VIEW",
+                      "url": "https://cdn.getkard.com/merchants/mcdonalds.png"
+                    }
+                  ],
+                  "purchaseChannel": [
+                    "ONLINE",
+                    "INSTORE"
+                  ]
                 },
                 "relationships": {
                   "user": {
@@ -206,7 +270,7 @@ public class NotificationPayloadTest
                     new EarnedRewardApprovedData
                     {
                         Id = "d80a6f28-1b24-4d65-9e42-e1cf3379bc98",
-                        Attributes = new RewardNotificationAttributes
+                        Attributes = new EarnedRewardNotificationAttributes
                         {
                             Message =
                                 "Thanks for shopping at McDonald's! We're checking to see if your purchase qualifies for cash back.",
@@ -221,6 +285,25 @@ public class NotificationPayloadTest
                             ),
                             TransactionId = "019df940-babd-7cd3-acfc-a96de16643e9",
                             TransactionAmountInCents = 3000,
+                            CategoryName = "Food & Dining",
+                            UserReward = new UserReward
+                            {
+                                Type = CommissionType.Percent,
+                                Value = 5.7,
+                            },
+                            Assets = new List<MerchantAsset>()
+                            {
+                                new MerchantAsset
+                                {
+                                    Type = MerchantAssetType.ImgView,
+                                    Url = "https://cdn.getkard.com/merchants/mcdonalds.png",
+                                },
+                            },
+                            PurchaseChannel = new List<PurchaseChannel>()
+                            {
+                                PurchaseChannel.Online,
+                                PurchaseChannel.Instore,
+                            },
                         },
                         Relationships = new EarnedRewardRelationships
                         {
@@ -265,7 +348,22 @@ public class NotificationPayloadTest
                   "cardProductId": "card_product_123",
                   "transactionTimestamp": "2024-10-01T14:32:10.000Z",
                   "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
-                  "transactionAmountInCents": 3000
+                  "transactionAmountInCents": 3000,
+                  "categoryName": "Food & Dining",
+                  "userReward": {
+                    "type": "PERCENT",
+                    "value": 5.7
+                  },
+                  "assets": [
+                    {
+                      "type": "IMG_VIEW",
+                      "url": "https://cdn.getkard.com/merchants/mcdonalds.png"
+                    }
+                  ],
+                  "purchaseChannel": [
+                    "ONLINE",
+                    "INSTORE"
+                  ]
                 },
                 "relationships": {
                   "user": {

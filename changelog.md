@@ -1,3 +1,11 @@
+## 17.0.0 - 2026-07-15
+### Breaking Changes
+* **`EarnedRewardApprovedData.Attributes`** — property type changed from `RewardNotificationAttributes` to `EarnedRewardNotificationAttributes`; update any variable declarations or pattern matches that reference `RewardNotificationAttributes` to use `EarnedRewardNotificationAttributes` instead.
+### Added
+* **`EarnedRewardNotificationAttributes`** — new type replacing `RewardNotificationAttributes` for earned-reward notification attributes, with all existing fields plus new optional `CategoryName`, `UserReward`, `Assets`, and `PurchaseChannel` properties.
+* **`UserReward`** — new record type representing the reward commission on a notification, with required `Type` (`CommissionType`) and `Value` (`double`) properties.
+* **`EarnedRewardSettledAttributes.CategoryName`**, **`.UserReward`**, **`.Assets`**, and **`.PurchaseChannel`** — new optional enrichment fields added to settled-reward notification attributes, mirroring the fields on `EarnedRewardNotificationAttributes`.
+
 ## 16.0.0 - 2026-07-15
 ### Breaking Changes
 * **`NotificationDataUnion.Match<T>()`** and **`NotificationDataUnion.Visit()`** now require a new `onEarnedRewardRejected` delegate parameter. Add a handler for `EarnedRewardRejectedData` at the appropriate position in each call site.

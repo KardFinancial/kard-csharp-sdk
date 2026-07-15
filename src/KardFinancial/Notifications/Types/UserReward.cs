@@ -5,23 +5,23 @@ using KardFinancial.Core;
 namespace KardFinancial;
 
 [Serializable]
-public record EarnedRewardApprovedData : IJsonOnDeserialized
+public record UserReward : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The internal ID of the notification
+    /// The type of reward (% or a flat $)
     /// </summary>
-    [JsonPropertyName("id")]
-    public required string Id { get; set; }
+    [JsonPropertyName("type")]
+    public required CommissionType Type { get; set; }
 
-    [JsonPropertyName("attributes")]
-    public required EarnedRewardNotificationAttributes Attributes { get; set; }
-
-    [JsonPropertyName("relationships")]
-    public required EarnedRewardRelationships Relationships { get; set; }
+    /// <summary>
+    /// The reward value
+    /// </summary>
+    [JsonPropertyName("value")]
+    public required double Value { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

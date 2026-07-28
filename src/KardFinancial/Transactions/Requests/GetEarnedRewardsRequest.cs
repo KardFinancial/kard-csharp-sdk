@@ -37,6 +37,12 @@ public record GetEarnedRewardsRequest
     public bool? FilterPaidInFullOnly { get; set; }
 
     /// <summary>
+    /// Time window for the returned transactions, ending now. Supported values are `12M`, `6M`, `3M`, and `YTD` (since January 1 of the current year). Defaults to `12M` when omitted. Also scopes `lifetimeRewardsInCents`, so the meta total always matches the returned rows.
+    /// </summary>
+    [JsonIgnore]
+    public EarnedRewardsRange? FilterRange { get; set; }
+
+    /// <summary>
     /// Comma-separated list of related resources to include in the response. Supported values are `merchant` and `offer`.
     /// </summary>
     [JsonIgnore]

@@ -1923,7 +1923,7 @@ await client.Transactions.CreateBulkTransactionsUploadUrlAsync(
 <dl>
 <dd>
 
-Retrieve rewarded transaction history for a specific user. By default this returns only SETTLED transactions within the last 12 months regardless of payment status. Pass `filter[paidInFullOnly]=true` to restrict the response to matched transactions that have been paid in full to the issuer (`paidToIssuer` is `PAID_IN_FULL`).
+Retrieve rewarded transaction history for a specific user. By default this returns only SETTLED transactions within the last 12 months regardless of payment status. Pass `filter[range]` to narrow the window to the last 6 months (`6M`), last 3 months (`3M`), or year to date (`YTD`). Pass `filter[paidInFullOnly]=true` to restrict the response to matched transactions that have been paid in full to the issuer (`paidToIssuer` is `PAID_IN_FULL`).
 <br/>
 <b>Required scopes:</b> `transaction:read`
 <br/>

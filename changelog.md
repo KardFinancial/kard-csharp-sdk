@@ -1,3 +1,10 @@
+## 18.1.0 - 2026-07-28
+### Added
+* **`EarnedRewardsRange`** — new string enum type with constants `Last12Months` (`12M`), `Last6Months` (`6M`), `Last3Months` (`3M`), and `YearToDate` (`YTD`), representing the supported time-window values for the earned-rewards filter.
+* **`GetEarnedRewardsRequest.FilterRange`** — new optional property that maps to the `filter[range]` query parameter, letting callers narrow the returned transaction window to the last 6 months, last 3 months, or year-to-date instead of the default 12-month window.
+### Changed
+* **`GetEarnedRewardsMeta.LifetimeRewardsInCents`** — the aggregate total is now scoped to the window selected by `filter[range]` (defaulting to the last 12 months), so the meta total always matches the rows returned in the response.
+
 ## 18.0.0 - 2026-07-15
 ### Breaking Changes
 * **`ContentStrategyAttributes.Filters`**, **`CreateContentStrategyAttributes.Filters`**, and **`UpdateContentStrategyAttributes.Filters`** — a new `required ContentStrategyFilters Filters` property has been added to all three types; existing object initializers that omit `Filters` will fail to compile. Add `Filters = new ContentStrategyFilters()` (with any desired filter values) to each affected initializer.

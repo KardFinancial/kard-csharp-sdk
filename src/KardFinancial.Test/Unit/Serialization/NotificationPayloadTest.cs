@@ -432,7 +432,7 @@ public class NotificationPayloadTest
                         Id = "cdbbf8eb-b3b9-5f96-beb5-6e37d124e776",
                         Attributes = new EarnedRewardRejectedAttributes
                         {
-                            Reason = "AGGREGATOR_CARD_OVERLAP",
+                            Reason = RejectedReason.AggregatorCardOverlap,
                             Message = "Your transaction did not result in a reward.",
                             TransactionId = "a9f3d7c1-6b25-4f91-8c0e-2d5a7b3e9f42",
                             TransactionAmountInCents = 3000,

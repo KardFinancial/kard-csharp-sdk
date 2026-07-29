@@ -1,3 +1,9 @@
+## 19.0.0 - 2026-07-29
+### Breaking Changes
+* **`EarnedRewardRejectedAttributes.Reason`** — property type changed from `string` to `RejectedReason`; update assignments and comparisons to use `RejectedReason` values (e.g. `RejectedReason.AggregatorCardOverlap`) or access the underlying string via `.Value`.
+### Added
+* **`RejectedReason`** — new strongly-typed string enum with constants `AggregatorCardOverlap` (`"AGGREGATOR_CARD_OVERLAP"`), `SettlementRejected` (`"SETTLEMENT_REJECTED"`), `UserNotEnrolled` (`"USER_NOT_ENROLLED"`), and `UserNotInAudienceSegment` (`"USER_NOT_IN_AUDIENCE_SEGMENT"`); supports custom values via `RejectedReason.FromCustom(string)`.
+
 ## 18.1.0 - 2026-07-28
 ### Added
 * **`EarnedRewardsRange`** — new string enum type with constants `Last12Months` (`12M`), `Last6Months` (`6M`), `Last3Months` (`3M`), and `YearToDate` (`YTD`), representing the supported time-window values for the earned-rewards filter.

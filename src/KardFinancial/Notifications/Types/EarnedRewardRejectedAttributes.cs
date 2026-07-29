@@ -15,7 +15,7 @@ public record EarnedRewardRejectedAttributes : IJsonOnDeserialized
     /// The reason code for why the transaction did not result in a reward
     /// </summary>
     [JsonPropertyName("reason")]
-    public required string Reason { get; set; }
+    public required RejectedReason Reason { get; set; }
 
     /// <summary>
     /// The display message associated to the notification

@@ -14,12 +14,6 @@ public readonly record struct NotificationType : IStringEnum
 
     public static readonly NotificationType EarnedRewardRejected = new(Values.EarnedRewardRejected);
 
-    public static readonly NotificationType ValidTransaction = new(Values.ValidTransaction);
-
-    public static readonly NotificationType FailedTransaction = new(Values.FailedTransaction);
-
-    public static readonly NotificationType Clawback = new(Values.Clawback);
-
     public static readonly NotificationType AuditUpdate = new(Values.AuditUpdate);
 
     public static readonly NotificationType FileProcessingResult = new(Values.FileProcessingResult);
@@ -133,12 +127,6 @@ public readonly record struct NotificationType : IStringEnum
         public const string EarnedRewardSettled = "earnedRewardSettled";
 
         public const string EarnedRewardRejected = "earnedRewardRejected";
-
-        public const string ValidTransaction = "validTransaction";
-
-        public const string FailedTransaction = "failedTransaction";
-
-        public const string Clawback = "clawback";
 
         public const string AuditUpdate = "auditUpdate";
 

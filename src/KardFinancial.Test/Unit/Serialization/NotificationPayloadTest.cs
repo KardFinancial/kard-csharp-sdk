@@ -507,403 +507,6 @@ public class NotificationPayloadTest
             {
               "data": {
                 "id": "a12b34c56d78e90f1234",
-                "type": "validTransaction",
-                "attributes": {
-                  "message": "Your transaction at Amazon has been validated successfully.",
-                  "name": "Amazon",
-                  "commissionEarned": {
-                    "issuer": {
-                      "type": "cents",
-                      "value": 100
-                    },
-                    "user": {
-                      "type": "cents",
-                      "value": 320
-                    }
-                  },
-                  "attributionUrl": "www.attribution.com/token",
-                  "surveyUrl": "www.survey.com",
-                  "cardProductId": "card_product_123",
-                  "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
-                  "transactionAmountInCents": 3000
-                },
-                "relationships": {
-                  "user": {
-                    "data": {
-                      "type": "user",
-                      "id": "9876543210"
-                    }
-                  },
-                  "offer": {
-                    "data": {
-                      "type": "offer",
-                      "id": "1234567890"
-                    }
-                  },
-                  "transaction": {
-                    "data": {
-                      "type": "transaction",
-                      "id": "0987654321"
-                    }
-                  }
-                }
-              }
-            }
-            """;
-        var expectedObject = new NotificationPayload
-        {
-            Data = new NotificationDataUnion(
-                new NotificationDataUnion.ValidTransaction(
-                    new ValidTransactionData
-                    {
-                        Id = "a12b34c56d78e90f1234",
-                        Attributes = new ValidTransactionAttributes
-                        {
-                            Message = "Your transaction at Amazon has been validated successfully.",
-                            Name = "Amazon",
-                            CommissionEarned = new ValidTransactionCommissionEarned
-                            {
-                                Issuer = new CommissionValue
-                                {
-                                    Type = CommissionValueType.Cents,
-                                    Value = 100,
-                                },
-                                User = new CommissionValue
-                                {
-                                    Type = CommissionValueType.Cents,
-                                    Value = 320,
-                                },
-                            },
-                            AttributionUrl = "www.attribution.com/token",
-                            SurveyUrl = "www.survey.com",
-                            CardProductId = "card_product_123",
-                            TransactionId = "019df940-babd-7cd3-acfc-a96de16643e9",
-                            TransactionAmountInCents = 3000,
-                        },
-                        Relationships = new TransactionRelationships
-                        {
-                            User = new RelationshipSingle
-                            {
-                                Data = new RelationshipData { Type = "user", Id = "9876543210" },
-                            },
-                            Offer = new RelationshipSingle
-                            {
-                                Data = new RelationshipData { Type = "offer", Id = "1234567890" },
-                            },
-                            Transaction = new RelationshipSingle
-                            {
-                                Data = new RelationshipData
-                                {
-                                    Type = "transaction",
-                                    Id = "0987654321",
-                                },
-                            },
-                        },
-                    }
-                )
-            ),
-        };
-        var deserializedObject = JsonUtils.Deserialize<NotificationPayload>(json);
-        Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
-    }
-
-    [NUnit.Framework.Test]
-    public void TestSerialization_4()
-    {
-        var inputJson = """
-            {
-              "data": {
-                "id": "a12b34c56d78e90f1234",
-                "type": "validTransaction",
-                "attributes": {
-                  "message": "Your transaction at Amazon has been validated successfully.",
-                  "name": "Amazon",
-                  "commissionEarned": {
-                    "issuer": {
-                      "type": "cents",
-                      "value": 100
-                    },
-                    "user": {
-                      "type": "cents",
-                      "value": 320
-                    }
-                  },
-                  "attributionUrl": "www.attribution.com/token",
-                  "surveyUrl": "www.survey.com",
-                  "cardProductId": "card_product_123",
-                  "transactionId": "019df940-babd-7cd3-acfc-a96de16643e9",
-                  "transactionAmountInCents": 3000
-                },
-                "relationships": {
-                  "user": {
-                    "data": {
-                      "type": "user",
-                      "id": "9876543210"
-                    }
-                  },
-                  "offer": {
-                    "data": {
-                      "type": "offer",
-                      "id": "1234567890"
-                    }
-                  },
-                  "transaction": {
-                    "data": {
-                      "type": "transaction",
-                      "id": "0987654321"
-                    }
-                  }
-                }
-              }
-            }
-            """;
-        JsonAssert.Roundtrips<NotificationPayload>(inputJson);
-    }
-
-    [NUnit.Framework.Test]
-    public void TestDeserialization_5()
-    {
-        var json = """
-            {
-              "data": {
-                "id": "a12b34c56d78e90f1234",
-                "type": "failedTransaction",
-                "attributes": {
-                  "message": "Transaction validation failed",
-                  "reason": "User is not part of the targeted audience eligible to redeem this offer",
-                  "name": "Walmart",
-                  "cardProductId": "card_product_123"
-                },
-                "relationships": {
-                  "user": {
-                    "data": {
-                      "type": "user",
-                      "id": "9876543210"
-                    }
-                  },
-                  "offer": {
-                    "data": {
-                      "type": "offer",
-                      "id": "1234567890"
-                    }
-                  },
-                  "transaction": {
-                    "data": {
-                      "type": "transaction",
-                      "id": "0987654321"
-                    }
-                  }
-                }
-              }
-            }
-            """;
-        var expectedObject = new NotificationPayload
-        {
-            Data = new NotificationDataUnion(
-                new NotificationDataUnion.FailedTransaction(
-                    new FailedTransactionData
-                    {
-                        Id = "a12b34c56d78e90f1234",
-                        Attributes = new FailedTransactionAttributes
-                        {
-                            Message = "Transaction validation failed",
-                            Reason =
-                                "User is not part of the targeted audience eligible to redeem this offer",
-                            Name = "Walmart",
-                            CardProductId = "card_product_123",
-                        },
-                        Relationships = new FailedTransactionRelationships
-                        {
-                            User = new RelationshipSingle
-                            {
-                                Data = new RelationshipData { Type = "user", Id = "9876543210" },
-                            },
-                            Offer = new RelationshipSingle
-                            {
-                                Data = new RelationshipData { Type = "offer", Id = "1234567890" },
-                            },
-                            Transaction = new RelationshipSingle
-                            {
-                                Data = new RelationshipData
-                                {
-                                    Type = "transaction",
-                                    Id = "0987654321",
-                                },
-                            },
-                        },
-                    }
-                )
-            ),
-        };
-        var deserializedObject = JsonUtils.Deserialize<NotificationPayload>(json);
-        Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
-    }
-
-    [NUnit.Framework.Test]
-    public void TestSerialization_5()
-    {
-        var inputJson = """
-            {
-              "data": {
-                "id": "a12b34c56d78e90f1234",
-                "type": "failedTransaction",
-                "attributes": {
-                  "message": "Transaction validation failed",
-                  "reason": "User is not part of the targeted audience eligible to redeem this offer",
-                  "name": "Walmart",
-                  "cardProductId": "card_product_123"
-                },
-                "relationships": {
-                  "user": {
-                    "data": {
-                      "type": "user",
-                      "id": "9876543210"
-                    }
-                  },
-                  "offer": {
-                    "data": {
-                      "type": "offer",
-                      "id": "1234567890"
-                    }
-                  },
-                  "transaction": {
-                    "data": {
-                      "type": "transaction",
-                      "id": "0987654321"
-                    }
-                  }
-                }
-              }
-            }
-            """;
-        JsonAssert.Roundtrips<NotificationPayload>(inputJson);
-    }
-
-    [NUnit.Framework.Test]
-    public void TestDeserialization_6()
-    {
-        var json = """
-            {
-              "data": {
-                "id": "a12b34c56d78e90f1234",
-                "type": "clawback",
-                "attributes": {
-                  "message": "Transaction has been marked for clawback",
-                  "reason": "This transaction was previously rewarded in another system",
-                  "name": "Starbucks",
-                  "cardProductId": "card_product_123"
-                },
-                "relationships": {
-                  "user": {
-                    "data": {
-                      "type": "user",
-                      "id": "9876543210"
-                    }
-                  },
-                  "offer": {
-                    "data": {
-                      "type": "offer",
-                      "id": "1234567890"
-                    }
-                  },
-                  "transaction": {
-                    "data": {
-                      "type": "transaction",
-                      "id": "0987654321"
-                    }
-                  }
-                }
-              }
-            }
-            """;
-        var expectedObject = new NotificationPayload
-        {
-            Data = new NotificationDataUnion(
-                new NotificationDataUnion.Clawback(
-                    new ClawbackData
-                    {
-                        Id = "a12b34c56d78e90f1234",
-                        Attributes = new FailedTransactionAttributes
-                        {
-                            Message = "Transaction has been marked for clawback",
-                            Reason = "This transaction was previously rewarded in another system",
-                            Name = "Starbucks",
-                            CardProductId = "card_product_123",
-                        },
-                        Relationships = new FailedTransactionRelationships
-                        {
-                            User = new RelationshipSingle
-                            {
-                                Data = new RelationshipData { Type = "user", Id = "9876543210" },
-                            },
-                            Offer = new RelationshipSingle
-                            {
-                                Data = new RelationshipData { Type = "offer", Id = "1234567890" },
-                            },
-                            Transaction = new RelationshipSingle
-                            {
-                                Data = new RelationshipData
-                                {
-                                    Type = "transaction",
-                                    Id = "0987654321",
-                                },
-                            },
-                        },
-                    }
-                )
-            ),
-        };
-        var deserializedObject = JsonUtils.Deserialize<NotificationPayload>(json);
-        Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
-    }
-
-    [NUnit.Framework.Test]
-    public void TestSerialization_6()
-    {
-        var inputJson = """
-            {
-              "data": {
-                "id": "a12b34c56d78e90f1234",
-                "type": "clawback",
-                "attributes": {
-                  "message": "Transaction has been marked for clawback",
-                  "reason": "This transaction was previously rewarded in another system",
-                  "name": "Starbucks",
-                  "cardProductId": "card_product_123"
-                },
-                "relationships": {
-                  "user": {
-                    "data": {
-                      "type": "user",
-                      "id": "9876543210"
-                    }
-                  },
-                  "offer": {
-                    "data": {
-                      "type": "offer",
-                      "id": "1234567890"
-                    }
-                  },
-                  "transaction": {
-                    "data": {
-                      "type": "transaction",
-                      "id": "0987654321"
-                    }
-                  }
-                }
-              }
-            }
-            """;
-        JsonAssert.Roundtrips<NotificationPayload>(inputJson);
-    }
-
-    [NUnit.Framework.Test]
-    public void TestDeserialization_7()
-    {
-        var json = """
-            {
-              "data": {
-                "id": "a12b34c56d78e90f1234",
                 "type": "auditUpdate",
                 "attributes": {
                   "status": "IN_PROGRESS",
@@ -968,7 +571,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_7()
+    public void TestSerialization_4()
     {
         var inputJson = """
             {
@@ -1003,7 +606,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestDeserialization_8()
+    public void TestDeserialization_5()
     {
         var json = """
             {
@@ -1083,7 +686,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_8()
+    public void TestSerialization_5()
     {
         var inputJson = """
             {
@@ -1121,7 +724,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestDeserialization_9()
+    public void TestDeserialization_6()
     {
         var json = """
             {
@@ -1161,7 +764,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_9()
+    public void TestSerialization_6()
     {
         var inputJson = """
             {
@@ -1181,7 +784,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestDeserialization_10()
+    public void TestDeserialization_7()
     {
         var json = """
             {
@@ -1254,7 +857,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_10()
+    public void TestSerialization_7()
     {
         var inputJson = """
             {
@@ -1288,7 +891,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestDeserialization_11()
+    public void TestDeserialization_8()
     {
         var json = """
             {
@@ -1363,7 +966,7 @@ public class NotificationPayloadTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization_11()
+    public void TestSerialization_8()
     {
         var inputJson = """
             {

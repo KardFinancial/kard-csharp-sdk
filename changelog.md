@@ -1,3 +1,10 @@
+## 20.0.0 - 2026-08-03
+### Breaking Changes
+* **`NotificationType.ValidTransaction`** — constant removed; update any references to use a remaining supported `NotificationType` value or a custom value via `new NotificationType("validTransaction")`.
+* **`NotificationType.FailedTransaction`** — constant removed; update any references to use a remaining supported `NotificationType` value or a custom value via `new NotificationType("failedTransaction")`.
+* **`NotificationType.Clawback`** — constant removed; update any references to use a remaining supported `NotificationType` value or a custom value via `new NotificationType("clawback")`.
+* **`NotificationType.Values.ValidTransaction`**, **`Values.FailedTransaction`**, and **`Values.Clawback`** string constants removed alongside their parent fields.
+
 ## 19.1.0 - 2026-08-03
 ### Added
 * **`NotificationMedium.Email`** — new constant (`"EMAIL"`) added to the `NotificationMedium` string enum, enabling email as a supported notification delivery channel alongside the existing `Push` value.

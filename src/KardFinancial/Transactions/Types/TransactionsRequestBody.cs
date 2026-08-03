@@ -15,7 +15,6 @@ public record TransactionsRequestBody : IJsonOnDeserialized
     /// Discriminated union representing the request body for submitting a transaction.
     /// Use `type` to distinguish between the two:
     /// - `transaction`: For transactions requiring processing and matching by the Kard system.
-    /// - `matchedTransaction`: For pre-matched transactions that need validation on match by the Kard system.
     /// - `coreTransaction`: For transactions from core banking systems with limited card-level data.
     /// </summary>
     [JsonPropertyName("data")]

@@ -10,6 +10,8 @@ public readonly record struct NotificationMedium : IStringEnum
 {
     public static readonly NotificationMedium Push = new(Values.Push);
 
+    public static readonly NotificationMedium Email = new(Values.Email);
+
     public NotificationMedium(string value)
     {
         Value = value;
@@ -107,5 +109,7 @@ public readonly record struct NotificationMedium : IStringEnum
     public static class Values
     {
         public const string Push = "PUSH";
+
+        public const string Email = "EMAIL";
     }
 }

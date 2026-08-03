@@ -1,3 +1,7 @@
+## 19.1.0 - 2026-08-03
+### Added
+* **`NotificationMedium.Email`** — new constant (`"EMAIL"`) added to the `NotificationMedium` string enum, enabling email as a supported notification delivery channel alongside the existing `Push` value.
+
 ## 19.0.0 - 2026-07-29
 ### Breaking Changes
 * **`EarnedRewardRejectedAttributes.Reason`** — property type changed from `string` to `RejectedReason`; update assignments and comparisons to use `RejectedReason` values (e.g. `RejectedReason.AggregatorCardOverlap`) or access the underlying string via `.Value`.

@@ -46,33 +46,6 @@ public record NotificationDataUnion
     }
 
     /// <summary>
-    /// Create an instance of NotificationDataUnion with <see cref="NotificationDataUnion.ValidTransaction"/>.
-    /// </summary>
-    public NotificationDataUnion(NotificationDataUnion.ValidTransaction value)
-    {
-        Type = "validTransaction";
-        Value = value.Value;
-    }
-
-    /// <summary>
-    /// Create an instance of NotificationDataUnion with <see cref="NotificationDataUnion.FailedTransaction"/>.
-    /// </summary>
-    public NotificationDataUnion(NotificationDataUnion.FailedTransaction value)
-    {
-        Type = "failedTransaction";
-        Value = value.Value;
-    }
-
-    /// <summary>
-    /// Create an instance of NotificationDataUnion with <see cref="NotificationDataUnion.Clawback"/>.
-    /// </summary>
-    public NotificationDataUnion(NotificationDataUnion.Clawback value)
-    {
-        Type = "clawback";
-        Value = value.Value;
-    }
-
-    /// <summary>
     /// Create an instance of NotificationDataUnion with <see cref="NotificationDataUnion.AuditUpdate"/>.
     /// </summary>
     public NotificationDataUnion(NotificationDataUnion.AuditUpdate value)
@@ -135,21 +108,6 @@ public record NotificationDataUnion
     public bool IsEarnedRewardRejected => Type == "earnedRewardRejected";
 
     /// <summary>
-    /// Returns true if <see cref="Type"/> is "validTransaction"
-    /// </summary>
-    public bool IsValidTransaction => Type == "validTransaction";
-
-    /// <summary>
-    /// Returns true if <see cref="Type"/> is "failedTransaction"
-    /// </summary>
-    public bool IsFailedTransaction => Type == "failedTransaction";
-
-    /// <summary>
-    /// Returns true if <see cref="Type"/> is "clawback"
-    /// </summary>
-    public bool IsClawback => Type == "clawback";
-
-    /// <summary>
     /// Returns true if <see cref="Type"/> is "auditUpdate"
     /// </summary>
     public bool IsAuditUpdate => Type == "auditUpdate";
@@ -203,37 +161,6 @@ public record NotificationDataUnion
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="KardFinancial.ValidTransactionData"/> if <see cref="Type"/> is 'validTransaction', otherwise throws an exception.
-    /// </summary>
-    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'validTransaction'.</exception>
-    public KardFinancial.ValidTransactionData AsValidTransaction() =>
-        IsValidTransaction
-            ? (KardFinancial.ValidTransactionData)Value!
-            : throw new global::System.Exception(
-                "NotificationDataUnion.Type is not 'validTransaction'"
-            );
-
-    /// <summary>
-    /// Returns the value as a <see cref="KardFinancial.FailedTransactionData"/> if <see cref="Type"/> is 'failedTransaction', otherwise throws an exception.
-    /// </summary>
-    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'failedTransaction'.</exception>
-    public KardFinancial.FailedTransactionData AsFailedTransaction() =>
-        IsFailedTransaction
-            ? (KardFinancial.FailedTransactionData)Value!
-            : throw new global::System.Exception(
-                "NotificationDataUnion.Type is not 'failedTransaction'"
-            );
-
-    /// <summary>
-    /// Returns the value as a <see cref="KardFinancial.ClawbackData"/> if <see cref="Type"/> is 'clawback', otherwise throws an exception.
-    /// </summary>
-    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'clawback'.</exception>
-    public KardFinancial.ClawbackData AsClawback() =>
-        IsClawback
-            ? (KardFinancial.ClawbackData)Value!
-            : throw new global::System.Exception("NotificationDataUnion.Type is not 'clawback'");
-
-    /// <summary>
     /// Returns the value as a <see cref="KardFinancial.AuditUpdateData"/> if <see cref="Type"/> is 'auditUpdate', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'auditUpdate'.</exception>
@@ -279,9 +206,6 @@ public record NotificationDataUnion
         Func<KardFinancial.EarnedRewardApprovedData, T> onEarnedRewardApproved,
         Func<KardFinancial.EarnedRewardSettledData, T> onEarnedRewardSettled,
         Func<KardFinancial.EarnedRewardRejectedData, T> onEarnedRewardRejected,
-        Func<KardFinancial.ValidTransactionData, T> onValidTransaction,
-        Func<KardFinancial.FailedTransactionData, T> onFailedTransaction,
-        Func<KardFinancial.ClawbackData, T> onClawback,
         Func<KardFinancial.AuditUpdateData, T> onAuditUpdate,
         Func<KardFinancial.FileResultData, T> onFileProcessingResult,
         Func<KardFinancial.PushNotificationPlacementFileData, T> onPushNotificationPlacementFile,
@@ -294,9 +218,6 @@ public record NotificationDataUnion
             "earnedRewardApproved" => onEarnedRewardApproved(AsEarnedRewardApproved()),
             "earnedRewardSettled" => onEarnedRewardSettled(AsEarnedRewardSettled()),
             "earnedRewardRejected" => onEarnedRewardRejected(AsEarnedRewardRejected()),
-            "validTransaction" => onValidTransaction(AsValidTransaction()),
-            "failedTransaction" => onFailedTransaction(AsFailedTransaction()),
-            "clawback" => onClawback(AsClawback()),
             "auditUpdate" => onAuditUpdate(AsAuditUpdate()),
             "fileProcessingResult" => onFileProcessingResult(AsFileProcessingResult()),
             "pushNotificationPlacementFile" => onPushNotificationPlacementFile(
@@ -313,9 +234,6 @@ public record NotificationDataUnion
         Action<KardFinancial.EarnedRewardApprovedData> onEarnedRewardApproved,
         Action<KardFinancial.EarnedRewardSettledData> onEarnedRewardSettled,
         Action<KardFinancial.EarnedRewardRejectedData> onEarnedRewardRejected,
-        Action<KardFinancial.ValidTransactionData> onValidTransaction,
-        Action<KardFinancial.FailedTransactionData> onFailedTransaction,
-        Action<KardFinancial.ClawbackData> onClawback,
         Action<KardFinancial.AuditUpdateData> onAuditUpdate,
         Action<KardFinancial.FileResultData> onFileProcessingResult,
         Action<KardFinancial.PushNotificationPlacementFileData> onPushNotificationPlacementFile,
@@ -333,15 +251,6 @@ public record NotificationDataUnion
                 break;
             case "earnedRewardRejected":
                 onEarnedRewardRejected(AsEarnedRewardRejected());
-                break;
-            case "validTransaction":
-                onValidTransaction(AsValidTransaction());
-                break;
-            case "failedTransaction":
-                onFailedTransaction(AsFailedTransaction());
-                break;
-            case "clawback":
-                onClawback(AsClawback());
                 break;
             case "auditUpdate":
                 onAuditUpdate(AsAuditUpdate());
@@ -397,48 +306,6 @@ public record NotificationDataUnion
         if (Type == "earnedRewardRejected")
         {
             value = (KardFinancial.EarnedRewardRejectedData)Value!;
-            return true;
-        }
-        value = null;
-        return false;
-    }
-
-    /// <summary>
-    /// Attempts to cast the value to a <see cref="KardFinancial.ValidTransactionData"/> and returns true if successful.
-    /// </summary>
-    public bool TryAsValidTransaction(out KardFinancial.ValidTransactionData? value)
-    {
-        if (Type == "validTransaction")
-        {
-            value = (KardFinancial.ValidTransactionData)Value!;
-            return true;
-        }
-        value = null;
-        return false;
-    }
-
-    /// <summary>
-    /// Attempts to cast the value to a <see cref="KardFinancial.FailedTransactionData"/> and returns true if successful.
-    /// </summary>
-    public bool TryAsFailedTransaction(out KardFinancial.FailedTransactionData? value)
-    {
-        if (Type == "failedTransaction")
-        {
-            value = (KardFinancial.FailedTransactionData)Value!;
-            return true;
-        }
-        value = null;
-        return false;
-    }
-
-    /// <summary>
-    /// Attempts to cast the value to a <see cref="KardFinancial.ClawbackData"/> and returns true if successful.
-    /// </summary>
-    public bool TryAsClawback(out KardFinancial.ClawbackData? value)
-    {
-        if (Type == "clawback")
-        {
-            value = (KardFinancial.ClawbackData)Value!;
             return true;
         }
         value = null;
@@ -520,17 +387,6 @@ public record NotificationDataUnion
     ) => new(value);
 
     public static implicit operator NotificationDataUnion(
-        NotificationDataUnion.ValidTransaction value
-    ) => new(value);
-
-    public static implicit operator NotificationDataUnion(
-        NotificationDataUnion.FailedTransaction value
-    ) => new(value);
-
-    public static implicit operator NotificationDataUnion(NotificationDataUnion.Clawback value) =>
-        new(value);
-
-    public static implicit operator NotificationDataUnion(
         NotificationDataUnion.AuditUpdate value
     ) => new(value);
 
@@ -608,23 +464,6 @@ public record NotificationDataUnion
                         ?? throw new JsonException(
                             "Failed to deserialize KardFinancial.EarnedRewardRejectedData"
                         ),
-                "validTransaction" =>
-                    jsonWithoutDiscriminator.Deserialize<KardFinancial.ValidTransactionData?>(
-                        options
-                    )
-                        ?? throw new JsonException(
-                            "Failed to deserialize KardFinancial.ValidTransactionData"
-                        ),
-                "failedTransaction" =>
-                    jsonWithoutDiscriminator.Deserialize<KardFinancial.FailedTransactionData?>(
-                        options
-                    )
-                        ?? throw new JsonException(
-                            "Failed to deserialize KardFinancial.FailedTransactionData"
-                        ),
-                "clawback" => jsonWithoutDiscriminator.Deserialize<KardFinancial.ClawbackData?>(
-                    options
-                ) ?? throw new JsonException("Failed to deserialize KardFinancial.ClawbackData"),
                 "auditUpdate" =>
                     jsonWithoutDiscriminator.Deserialize<KardFinancial.AuditUpdateData?>(options)
                         ?? throw new JsonException(
@@ -666,9 +505,6 @@ public record NotificationDataUnion
                     "earnedRewardApproved" => JsonSerializer.SerializeToNode(value.Value, options),
                     "earnedRewardSettled" => JsonSerializer.SerializeToNode(value.Value, options),
                     "earnedRewardRejected" => JsonSerializer.SerializeToNode(value.Value, options),
-                    "validTransaction" => JsonSerializer.SerializeToNode(value.Value, options),
-                    "failedTransaction" => JsonSerializer.SerializeToNode(value.Value, options),
-                    "clawback" => JsonSerializer.SerializeToNode(value.Value, options),
                     "auditUpdate" => JsonSerializer.SerializeToNode(value.Value, options),
                     "fileProcessingResult" => JsonSerializer.SerializeToNode(value.Value, options),
                     "pushNotificationPlacementFile" => JsonSerializer.SerializeToNode(
@@ -764,66 +600,6 @@ public record NotificationDataUnion
 
         public static implicit operator NotificationDataUnion.EarnedRewardRejected(
             KardFinancial.EarnedRewardRejectedData value
-        ) => new(value);
-    }
-
-    /// <summary>
-    /// Discriminated union type for validTransaction
-    /// </summary>
-    [Serializable]
-    public struct ValidTransaction
-    {
-        public ValidTransaction(KardFinancial.ValidTransactionData value)
-        {
-            Value = value;
-        }
-
-        internal KardFinancial.ValidTransactionData Value { get; set; }
-
-        public override string ToString() => Value.ToString() ?? "null";
-
-        public static implicit operator NotificationDataUnion.ValidTransaction(
-            KardFinancial.ValidTransactionData value
-        ) => new(value);
-    }
-
-    /// <summary>
-    /// Discriminated union type for failedTransaction
-    /// </summary>
-    [Serializable]
-    public struct FailedTransaction
-    {
-        public FailedTransaction(KardFinancial.FailedTransactionData value)
-        {
-            Value = value;
-        }
-
-        internal KardFinancial.FailedTransactionData Value { get; set; }
-
-        public override string ToString() => Value.ToString() ?? "null";
-
-        public static implicit operator NotificationDataUnion.FailedTransaction(
-            KardFinancial.FailedTransactionData value
-        ) => new(value);
-    }
-
-    /// <summary>
-    /// Discriminated union type for clawback
-    /// </summary>
-    [Serializable]
-    public struct Clawback
-    {
-        public Clawback(KardFinancial.ClawbackData value)
-        {
-            Value = value;
-        }
-
-        internal KardFinancial.ClawbackData Value { get; set; }
-
-        public override string ToString() => Value.ToString() ?? "null";
-
-        public static implicit operator NotificationDataUnion.Clawback(
-            KardFinancial.ClawbackData value
         ) => new(value);
     }
 

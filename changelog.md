@@ -1,3 +1,11 @@
+## 22.0.0 - 2026-08-04
+### Breaking Changes
+* **`ClawbackData`** — public record class removed; callers that reference or construct this type must remove all usages.
+* **`FailedTransactionData`**, **`FailedTransactionAttributes`**, and **`FailedTransactionRelationships`** — public record classes removed; update any references to remove usages of these types.
+* **`ValidTransactionData`**, **`ValidTransactionAttributes`**, **`ValidTransactionCommissionEarned`**, and **`TransactionRelationships`** — public record classes removed; update any references to remove usages of these types.
+* **`NotificationDataUnion.ValidTransaction`**, **`NotificationDataUnion.FailedTransaction`**, and **`NotificationDataUnion.Clawback`** — inner structs and all related members (`IsValidTransaction`, `IsFailedTransaction`, `IsClawback`, `AsValidTransaction()`, `AsFailedTransaction()`, `AsClawback()`, `TryAsValidTransaction()`, `TryAsFailedTransaction()`, `TryAsClawback()`, implicit operators, and the corresponding constructor overloads) removed; update all call sites to remove these branches.
+* **`NotificationDataUnion.Match<T>`** and **`NotificationDataUnion.Visit`** — the `onValidTransaction`, `onFailedTransaction`, and `onClawback` parameters have been removed from both overloads; update all call sites to remove these arguments.
+
 ## 21.0.0 - 2026-08-04
 ### Breaking Changes
 * **`MatchedTransactionsRequest`** — public record class removed; callers that construct or reference this type must migrate to `TransactionsRequest` or `CoreTransactionRequest`.

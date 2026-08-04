@@ -1,3 +1,11 @@
+## 21.0.0 - 2026-08-04
+### Breaking Changes
+* **`MatchedTransactionsRequest`** — public record class removed; callers that construct or reference this type must migrate to `TransactionsRequest` or `CoreTransactionRequest`.
+* **`MatchedTransactionsAttributes`** — public record class removed alongside `MatchedTransactionsRequest`; all properties (e.g. `UserId`, `PaymentType`, `ReceiptMedium`) are no longer available through this type.
+* **`PaymentType`** — string enum (`CARD`, `CASH`, `UNKNOWN`) removed; update any references to remove usages of this type.
+* **`ReceiptMediumType`** — string enum (`ELECTRONIC`, `PHYSICAL`) removed; update any references to remove usages of this type.
+* **`Transactions.MatchedTransaction`** — inner struct and all related members (`IsMatchedTransaction`, `AsMatchedTransaction()`, `TryAsMatchedTransaction()`, implicit operator, and the `onMatchedTransaction` parameter in `Match<T>` and `Visit`) removed; update all call sites to remove the `matchedTransaction` branch.
+
 ## 20.0.0 - 2026-08-03
 ### Breaking Changes
 * **`NotificationType.ValidTransaction`** — constant removed; update any references to use a remaining supported `NotificationType` value or a custom value via `new NotificationType("validTransaction")`.

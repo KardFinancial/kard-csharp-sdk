@@ -28,15 +28,6 @@ public record Transactions
     }
 
     /// <summary>
-    /// Create an instance of Transactions with <see cref="Transactions.MatchedTransaction"/>.
-    /// </summary>
-    public Transactions(Transactions.MatchedTransaction value)
-    {
-        Type = "matchedTransaction";
-        Value = value.Value;
-    }
-
-    /// <summary>
     /// Create an instance of Transactions with <see cref="Transactions.CoreTransaction"/>.
     /// </summary>
     public Transactions(Transactions.CoreTransaction value)
@@ -62,11 +53,6 @@ public record Transactions
     public bool IsTransaction => Type == "transaction";
 
     /// <summary>
-    /// Returns true if <see cref="Type"/> is "matchedTransaction"
-    /// </summary>
-    public bool IsMatchedTransaction => Type == "matchedTransaction";
-
-    /// <summary>
     /// Returns true if <see cref="Type"/> is "coreTransaction"
     /// </summary>
     public bool IsCoreTransaction => Type == "coreTransaction";
@@ -81,15 +67,6 @@ public record Transactions
             : throw new global::System.Exception("Transactions.Type is not 'transaction'");
 
     /// <summary>
-    /// Returns the value as a <see cref="KardFinancial.MatchedTransactionsRequest"/> if <see cref="Type"/> is 'matchedTransaction', otherwise throws an exception.
-    /// </summary>
-    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'matchedTransaction'.</exception>
-    public KardFinancial.MatchedTransactionsRequest AsMatchedTransaction() =>
-        IsMatchedTransaction
-            ? (KardFinancial.MatchedTransactionsRequest)Value!
-            : throw new global::System.Exception("Transactions.Type is not 'matchedTransaction'");
-
-    /// <summary>
     /// Returns the value as a <see cref="KardFinancial.CoreTransactionRequest"/> if <see cref="Type"/> is 'coreTransaction', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'coreTransaction'.</exception>
@@ -100,7 +77,6 @@ public record Transactions
 
     public T Match<T>(
         Func<KardFinancial.TransactionsRequest, T> onTransaction,
-        Func<KardFinancial.MatchedTransactionsRequest, T> onMatchedTransaction,
         Func<KardFinancial.CoreTransactionRequest, T> onCoreTransaction,
         Func<string, object?, T> onUnknown_
     )
@@ -108,7 +84,6 @@ public record Transactions
         return Type switch
         {
             "transaction" => onTransaction(AsTransaction()),
-            "matchedTransaction" => onMatchedTransaction(AsMatchedTransaction()),
             "coreTransaction" => onCoreTransaction(AsCoreTransaction()),
             _ => onUnknown_(Type, Value),
         };
@@ -116,7 +91,6 @@ public record Transactions
 
     public void Visit(
         Action<KardFinancial.TransactionsRequest> onTransaction,
-        Action<KardFinancial.MatchedTransactionsRequest> onMatchedTransaction,
         Action<KardFinancial.CoreTransactionRequest> onCoreTransaction,
         Action<string, object?> onUnknown_
     )
@@ -125,9 +99,6 @@ public record Transactions
         {
             case "transaction":
                 onTransaction(AsTransaction());
-                break;
-            case "matchedTransaction":
-                onMatchedTransaction(AsMatchedTransaction());
                 break;
             case "coreTransaction":
                 onCoreTransaction(AsCoreTransaction());
@@ -153,20 +124,6 @@ public record Transactions
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="KardFinancial.MatchedTransactionsRequest"/> and returns true if successful.
-    /// </summary>
-    public bool TryAsMatchedTransaction(out KardFinancial.MatchedTransactionsRequest? value)
-    {
-        if (Type == "matchedTransaction")
-        {
-            value = (KardFinancial.MatchedTransactionsRequest)Value!;
-            return true;
-        }
-        value = null;
-        return false;
-    }
-
-    /// <summary>
     /// Attempts to cast the value to a <see cref="KardFinancial.CoreTransactionRequest"/> and returns true if successful.
     /// </summary>
     public bool TryAsCoreTransaction(out KardFinancial.CoreTransactionRequest? value)
@@ -183,9 +140,6 @@ public record Transactions
     public override string ToString() => JsonUtils.Serialize(this);
 
     public static implicit operator Transactions(Transactions.Transaction value) => new(value);
-
-    public static implicit operator Transactions(Transactions.MatchedTransaction value) =>
-        new(value);
 
     public static implicit operator Transactions(Transactions.CoreTransaction value) => new(value);
 
@@ -237,13 +191,6 @@ public record Transactions
                         ?? throw new JsonException(
                             "Failed to deserialize KardFinancial.TransactionsRequest"
                         ),
-                "matchedTransaction" =>
-                    jsonWithoutDiscriminator.Deserialize<KardFinancial.MatchedTransactionsRequest?>(
-                        options
-                    )
-                        ?? throw new JsonException(
-                            "Failed to deserialize KardFinancial.MatchedTransactionsRequest"
-                        ),
                 "coreTransaction" =>
                     jsonWithoutDiscriminator.Deserialize<KardFinancial.CoreTransactionRequest?>(
                         options
@@ -266,7 +213,6 @@ public record Transactions
                 value.Type switch
                 {
                     "transaction" => JsonSerializer.SerializeToNode(value.Value, options),
-                    "matchedTransaction" => JsonSerializer.SerializeToNode(value.Value, options),
                     "coreTransaction" => JsonSerializer.SerializeToNode(value.Value, options),
                     _ => JsonSerializer.SerializeToNode(value.Value, options),
                 } ?? new JsonObject();
@@ -313,26 +259,6 @@ public record Transactions
 
         public static implicit operator Transactions.Transaction(
             KardFinancial.TransactionsRequest value
-        ) => new(value);
-    }
-
-    /// <summary>
-    /// Discriminated union type for matchedTransaction
-    /// </summary>
-    [Serializable]
-    public struct MatchedTransaction
-    {
-        public MatchedTransaction(KardFinancial.MatchedTransactionsRequest value)
-        {
-            Value = value;
-        }
-
-        internal KardFinancial.MatchedTransactionsRequest Value { get; set; }
-
-        public override string ToString() => Value.ToString() ?? "null";
-
-        public static implicit operator Transactions.MatchedTransaction(
-            KardFinancial.MatchedTransactionsRequest value
         ) => new(value);
     }
 

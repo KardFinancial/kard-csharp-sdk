@@ -30,7 +30,8 @@ public record ExternalOrganizationAttributes : IJsonOnDeserialized
     /// Card networks supported by the organization
     /// </summary>
     [JsonPropertyName("cardNetworks")]
-    public IEnumerable<CardNetwork> CardNetworks { get; set; } = new List<CardNetwork>();
+    public IEnumerable<OrganizationCardNetwork> CardNetworks { get; set; } =
+        new List<OrganizationCardNetwork>();
 
     /// <summary>
     /// Bank Identification Numbers for the organization

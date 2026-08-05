@@ -1,3 +1,9 @@
+## 24.0.0 - 2026-08-05
+### Breaking Changes
+* **`ExternalOrganizationAttributes.CardNetworks`** — property type changed from `IEnumerable<CardNetwork>` to `IEnumerable<OrganizationCardNetwork>`; update all call sites that read, assign, or iterate this property to use `OrganizationCardNetwork` instead of `CardNetwork`.
+### Added
+* **`OrganizationCardNetwork`** — new string-enum struct in the `KardFinancial` namespace representing card networks supported by an organization, with built-in constants `Visa`, `Mastercard`, `AmericanExpress`, and `Discover`.
+
 ## 23.0.0 - 2026-08-05
 ### Breaking Changes
 * **`ButtonStyle`**, **`CtaAction`**, **`CtaComponent`**, **`LogoFlare`**, **`LogoFlareBadge`**, **`LogoFlareBadgePosition`**, **`LogoFlareBorderColor`**, **`OfferComponents`**, **`ProgressBar`**, **`ProgressBarLabelPair`**, **`ProgressBarLabels`**, **`ProgressBarSegment`**, **`ProgressBarSegmentLabel`**, **`ProgressBarSegmentPosition`**, **`ProgressBarSegmentProgress`**, **`ProgressBarSegmentSelection`**, **`ProgressBarSegmentSeparator`**, and **`ProgressBarSegments`** — moved from the `KardFinancial.Users` namespace to the root `KardFinancial` namespace; update all `using KardFinancial.Users;` directives to `using KardFinancial;` at any call site that references these types.

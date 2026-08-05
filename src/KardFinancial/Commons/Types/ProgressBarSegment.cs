@@ -1,9 +1,8 @@
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
-using KardFinancial;
 using KardFinancial.Core;
 
-namespace KardFinancial.Users;
+namespace KardFinancial;
 
 /// <summary>
 /// Segment configuration for a specific layout

@@ -2,19 +2,19 @@ using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 using KardFinancial.Core;
 
-namespace KardFinancial.Users;
+namespace KardFinancial;
 
-[JsonConverter(typeof(ButtonStyle.ButtonStyleSerializer))]
+[JsonConverter(typeof(ProgressBarSegmentPosition.ProgressBarSegmentPositionSerializer))]
 [Serializable]
-public readonly record struct ButtonStyle : IStringEnum
+public readonly record struct ProgressBarSegmentPosition : IStringEnum
 {
-    public static readonly ButtonStyle Primary = new(Values.Primary);
+    public static readonly ProgressBarSegmentPosition Left = new(Values.Left);
 
-    public static readonly ButtonStyle Secondary = new(Values.Secondary);
+    public static readonly ProgressBarSegmentPosition Right = new(Values.Right);
 
-    public static readonly ButtonStyle Disabled = new(Values.Disabled);
+    public static readonly ProgressBarSegmentPosition FullWidth = new(Values.FullWidth);
 
-    public ButtonStyle(string value)
+    public ProgressBarSegmentPosition(string value)
     {
         Value = value;
     }
@@ -27,9 +27,9 @@ public readonly record struct ButtonStyle : IStringEnum
     /// <summary>
     /// Create a string enum with the given value.
     /// </summary>
-    public static ButtonStyle FromCustom(string value)
+    public static ProgressBarSegmentPosition FromCustom(string value)
     {
-        return new ButtonStyle(value);
+        return new ProgressBarSegmentPosition(value);
     }
 
     public bool Equals(string? other)
@@ -45,19 +45,19 @@ public readonly record struct ButtonStyle : IStringEnum
         return Value;
     }
 
-    public static bool operator ==(ButtonStyle value1, string value2) =>
+    public static bool operator ==(ProgressBarSegmentPosition value1, string value2) =>
         value1.Value.Equals(value2);
 
-    public static bool operator !=(ButtonStyle value1, string value2) =>
+    public static bool operator !=(ProgressBarSegmentPosition value1, string value2) =>
         !value1.Value.Equals(value2);
 
-    public static explicit operator string(ButtonStyle value) => value.Value;
+    public static explicit operator string(ProgressBarSegmentPosition value) => value.Value;
 
-    public static explicit operator ButtonStyle(string value) => new(value);
+    public static explicit operator ProgressBarSegmentPosition(string value) => new(value);
 
-    internal class ButtonStyleSerializer : JsonConverter<ButtonStyle>
+    internal class ProgressBarSegmentPositionSerializer : JsonConverter<ProgressBarSegmentPosition>
     {
-        public override ButtonStyle Read(
+        public override ProgressBarSegmentPosition Read(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -68,19 +68,19 @@ public readonly record struct ButtonStyle : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON value could not be read as a string."
                 );
-            return new ButtonStyle(stringValue);
+            return new ProgressBarSegmentPosition(stringValue);
         }
 
         public override void Write(
             Utf8JsonWriter writer,
-            ButtonStyle value,
+            ProgressBarSegmentPosition value,
             JsonSerializerOptions options
         )
         {
             writer.WriteStringValue(value.Value);
         }
 
-        public override ButtonStyle ReadAsPropertyName(
+        public override ProgressBarSegmentPosition ReadAsPropertyName(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -91,12 +91,12 @@ public readonly record struct ButtonStyle : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON property name could not be read as a string."
                 );
-            return new ButtonStyle(stringValue);
+            return new ProgressBarSegmentPosition(stringValue);
         }
 
         public override void WriteAsPropertyName(
             Utf8JsonWriter writer,
-            ButtonStyle value,
+            ProgressBarSegmentPosition value,
             JsonSerializerOptions options
         )
         {
@@ -110,10 +110,10 @@ public readonly record struct ButtonStyle : IStringEnum
     [Serializable]
     public static class Values
     {
-        public const string Primary = "PRIMARY";
+        public const string Left = "LEFT";
 
-        public const string Secondary = "SECONDARY";
+        public const string Right = "RIGHT";
 
-        public const string Disabled = "DISABLED";
+        public const string FullWidth = "FULL_WIDTH";
     }
 }

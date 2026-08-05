@@ -2,19 +2,21 @@ using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 using KardFinancial.Core;
 
-namespace KardFinancial.Users;
+namespace KardFinancial;
 
-[JsonConverter(typeof(ProgressBarSegmentSelection.ProgressBarSegmentSelectionSerializer))]
+[JsonConverter(typeof(LogoFlareBadgePosition.LogoFlareBadgePositionSerializer))]
 [Serializable]
-public readonly record struct ProgressBarSegmentSelection : IStringEnum
+public readonly record struct LogoFlareBadgePosition : IStringEnum
 {
-    public static readonly ProgressBarSegmentSelection Current = new(Values.Current);
+    public static readonly LogoFlareBadgePosition TopRight = new(Values.TopRight);
 
-    public static readonly ProgressBarSegmentSelection CurrentAndBelow = new(
-        Values.CurrentAndBelow
-    );
+    public static readonly LogoFlareBadgePosition TopLeft = new(Values.TopLeft);
 
-    public ProgressBarSegmentSelection(string value)
+    public static readonly LogoFlareBadgePosition BottomRight = new(Values.BottomRight);
+
+    public static readonly LogoFlareBadgePosition BottomLeft = new(Values.BottomLeft);
+
+    public LogoFlareBadgePosition(string value)
     {
         Value = value;
     }
@@ -27,9 +29,9 @@ public readonly record struct ProgressBarSegmentSelection : IStringEnum
     /// <summary>
     /// Create a string enum with the given value.
     /// </summary>
-    public static ProgressBarSegmentSelection FromCustom(string value)
+    public static LogoFlareBadgePosition FromCustom(string value)
     {
-        return new ProgressBarSegmentSelection(value);
+        return new LogoFlareBadgePosition(value);
     }
 
     public bool Equals(string? other)
@@ -45,20 +47,19 @@ public readonly record struct ProgressBarSegmentSelection : IStringEnum
         return Value;
     }
 
-    public static bool operator ==(ProgressBarSegmentSelection value1, string value2) =>
+    public static bool operator ==(LogoFlareBadgePosition value1, string value2) =>
         value1.Value.Equals(value2);
 
-    public static bool operator !=(ProgressBarSegmentSelection value1, string value2) =>
+    public static bool operator !=(LogoFlareBadgePosition value1, string value2) =>
         !value1.Value.Equals(value2);
 
-    public static explicit operator string(ProgressBarSegmentSelection value) => value.Value;
+    public static explicit operator string(LogoFlareBadgePosition value) => value.Value;
 
-    public static explicit operator ProgressBarSegmentSelection(string value) => new(value);
+    public static explicit operator LogoFlareBadgePosition(string value) => new(value);
 
-    internal class ProgressBarSegmentSelectionSerializer
-        : JsonConverter<ProgressBarSegmentSelection>
+    internal class LogoFlareBadgePositionSerializer : JsonConverter<LogoFlareBadgePosition>
     {
-        public override ProgressBarSegmentSelection Read(
+        public override LogoFlareBadgePosition Read(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -69,19 +70,19 @@ public readonly record struct ProgressBarSegmentSelection : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON value could not be read as a string."
                 );
-            return new ProgressBarSegmentSelection(stringValue);
+            return new LogoFlareBadgePosition(stringValue);
         }
 
         public override void Write(
             Utf8JsonWriter writer,
-            ProgressBarSegmentSelection value,
+            LogoFlareBadgePosition value,
             JsonSerializerOptions options
         )
         {
             writer.WriteStringValue(value.Value);
         }
 
-        public override ProgressBarSegmentSelection ReadAsPropertyName(
+        public override LogoFlareBadgePosition ReadAsPropertyName(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -92,12 +93,12 @@ public readonly record struct ProgressBarSegmentSelection : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON property name could not be read as a string."
                 );
-            return new ProgressBarSegmentSelection(stringValue);
+            return new LogoFlareBadgePosition(stringValue);
         }
 
         public override void WriteAsPropertyName(
             Utf8JsonWriter writer,
-            ProgressBarSegmentSelection value,
+            LogoFlareBadgePosition value,
             JsonSerializerOptions options
         )
         {
@@ -111,8 +112,12 @@ public readonly record struct ProgressBarSegmentSelection : IStringEnum
     [Serializable]
     public static class Values
     {
-        public const string Current = "CURRENT";
+        public const string TopRight = "TOP_RIGHT";
 
-        public const string CurrentAndBelow = "CURRENT_AND_BELOW";
+        public const string TopLeft = "TOP_LEFT";
+
+        public const string BottomRight = "BOTTOM_RIGHT";
+
+        public const string BottomLeft = "BOTTOM_LEFT";
     }
 }

@@ -1,3 +1,9 @@
+## 23.0.0 - 2026-08-05
+### Breaking Changes
+* **`ButtonStyle`**, **`CtaAction`**, **`CtaComponent`**, **`LogoFlare`**, **`LogoFlareBadge`**, **`LogoFlareBadgePosition`**, **`LogoFlareBorderColor`**, **`OfferComponents`**, **`ProgressBar`**, **`ProgressBarLabelPair`**, **`ProgressBarLabels`**, **`ProgressBarSegment`**, **`ProgressBarSegmentLabel`**, **`ProgressBarSegmentPosition`**, **`ProgressBarSegmentProgress`**, **`ProgressBarSegmentSelection`**, **`ProgressBarSegmentSeparator`**, and **`ProgressBarSegments`** — moved from the `KardFinancial.Users` namespace to the root `KardFinancial` namespace; update all `using KardFinancial.Users;` directives to `using KardFinancial;` at any call site that references these types.
+### Added
+* **`RewardedTransactionAttributes.Components`** — new optional `OfferComponents?` property carrying UI component data (e.g. a progress bar for progressive and punch-card offers) built from the offer state persisted on the matched transaction; omitted when the reward carries no persisted state.
+
 ## 22.0.0 - 2026-08-04
 ### Breaking Changes
 * **`ClawbackData`** — public record class removed; callers that reference or construct this type must remove all usages.

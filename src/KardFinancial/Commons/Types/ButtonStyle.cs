@@ -2,21 +2,19 @@ using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 using KardFinancial.Core;
 
-namespace KardFinancial.Users;
+namespace KardFinancial;
 
-[JsonConverter(typeof(LogoFlareBadgePosition.LogoFlareBadgePositionSerializer))]
+[JsonConverter(typeof(ButtonStyle.ButtonStyleSerializer))]
 [Serializable]
-public readonly record struct LogoFlareBadgePosition : IStringEnum
+public readonly record struct ButtonStyle : IStringEnum
 {
-    public static readonly LogoFlareBadgePosition TopRight = new(Values.TopRight);
+    public static readonly ButtonStyle Primary = new(Values.Primary);
 
-    public static readonly LogoFlareBadgePosition TopLeft = new(Values.TopLeft);
+    public static readonly ButtonStyle Secondary = new(Values.Secondary);
 
-    public static readonly LogoFlareBadgePosition BottomRight = new(Values.BottomRight);
+    public static readonly ButtonStyle Disabled = new(Values.Disabled);
 
-    public static readonly LogoFlareBadgePosition BottomLeft = new(Values.BottomLeft);
-
-    public LogoFlareBadgePosition(string value)
+    public ButtonStyle(string value)
     {
         Value = value;
     }
@@ -29,9 +27,9 @@ public readonly record struct LogoFlareBadgePosition : IStringEnum
     /// <summary>
     /// Create a string enum with the given value.
     /// </summary>
-    public static LogoFlareBadgePosition FromCustom(string value)
+    public static ButtonStyle FromCustom(string value)
     {
-        return new LogoFlareBadgePosition(value);
+        return new ButtonStyle(value);
     }
 
     public bool Equals(string? other)
@@ -47,19 +45,19 @@ public readonly record struct LogoFlareBadgePosition : IStringEnum
         return Value;
     }
 
-    public static bool operator ==(LogoFlareBadgePosition value1, string value2) =>
+    public static bool operator ==(ButtonStyle value1, string value2) =>
         value1.Value.Equals(value2);
 
-    public static bool operator !=(LogoFlareBadgePosition value1, string value2) =>
+    public static bool operator !=(ButtonStyle value1, string value2) =>
         !value1.Value.Equals(value2);
 
-    public static explicit operator string(LogoFlareBadgePosition value) => value.Value;
+    public static explicit operator string(ButtonStyle value) => value.Value;
 
-    public static explicit operator LogoFlareBadgePosition(string value) => new(value);
+    public static explicit operator ButtonStyle(string value) => new(value);
 
-    internal class LogoFlareBadgePositionSerializer : JsonConverter<LogoFlareBadgePosition>
+    internal class ButtonStyleSerializer : JsonConverter<ButtonStyle>
     {
-        public override LogoFlareBadgePosition Read(
+        public override ButtonStyle Read(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -70,19 +68,19 @@ public readonly record struct LogoFlareBadgePosition : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON value could not be read as a string."
                 );
-            return new LogoFlareBadgePosition(stringValue);
+            return new ButtonStyle(stringValue);
         }
 
         public override void Write(
             Utf8JsonWriter writer,
-            LogoFlareBadgePosition value,
+            ButtonStyle value,
             JsonSerializerOptions options
         )
         {
             writer.WriteStringValue(value.Value);
         }
 
-        public override LogoFlareBadgePosition ReadAsPropertyName(
+        public override ButtonStyle ReadAsPropertyName(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -93,12 +91,12 @@ public readonly record struct LogoFlareBadgePosition : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON property name could not be read as a string."
                 );
-            return new LogoFlareBadgePosition(stringValue);
+            return new ButtonStyle(stringValue);
         }
 
         public override void WriteAsPropertyName(
             Utf8JsonWriter writer,
-            LogoFlareBadgePosition value,
+            ButtonStyle value,
             JsonSerializerOptions options
         )
         {
@@ -112,12 +110,10 @@ public readonly record struct LogoFlareBadgePosition : IStringEnum
     [Serializable]
     public static class Values
     {
-        public const string TopRight = "TOP_RIGHT";
+        public const string Primary = "PRIMARY";
 
-        public const string TopLeft = "TOP_LEFT";
+        public const string Secondary = "SECONDARY";
 
-        public const string BottomRight = "BOTTOM_RIGHT";
-
-        public const string BottomLeft = "BOTTOM_LEFT";
+        public const string Disabled = "DISABLED";
     }
 }

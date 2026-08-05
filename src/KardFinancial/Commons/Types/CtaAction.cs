@@ -1,31 +1,30 @@
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
-using KardFinancial;
 using KardFinancial.Core;
 
-namespace KardFinancial.Users;
+namespace KardFinancial;
 
 /// <summary>
-/// Labels to render around the progress bar in different layouts
+/// Action configuration for CTA button
 /// </summary>
 [Serializable]
-public record ProgressBarLabels : IJsonOnDeserialized
+public record CtaAction : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Label configuration for the details view
+    /// URL endpoint to call when button is clicked
     /// </summary>
-    [JsonPropertyName("details")]
-    public ProgressBarLabelPair? Details { get; set; }
+    [JsonPropertyName("url")]
+    public required string Url { get; set; }
 
     /// <summary>
-    /// Label configuration for the default view
+    /// HTTP method to use (e.g., POST)
     /// </summary>
-    [JsonPropertyName("default")]
-    public required ProgressBarLabelPair Default { get; set; }
+    [JsonPropertyName("method")]
+    public required string Method { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

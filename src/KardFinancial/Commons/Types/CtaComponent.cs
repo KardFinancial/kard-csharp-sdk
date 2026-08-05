@@ -1,31 +1,42 @@
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
-using KardFinancial;
 using KardFinancial.Core;
 
-namespace KardFinancial.Users;
+namespace KardFinancial;
 
 /// <summary>
-/// Fill state of a single segment node, expressed as completed of total.
+/// Call-to-action button component for offers
 /// </summary>
 [Serializable]
-public record ProgressBarSegmentProgress : IJsonOnDeserialized
+public record CtaComponent : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Units completed within the current segment.
+    /// Text to display on the button
     /// </summary>
-    [JsonPropertyName("completed")]
-    public required int Completed { get; set; }
+    [JsonPropertyName("buttonText")]
+    public required string ButtonText { get; set; }
 
     /// <summary>
-    /// Total units required to complete the current segment.
+    /// Style of the button
     /// </summary>
-    [JsonPropertyName("total")]
-    public required int Total { get; set; }
+    [JsonPropertyName("buttonStyle")]
+    public required ButtonStyle ButtonStyle { get; set; }
+
+    /// <summary>
+    /// Action to perform when the button is clicked
+    /// </summary>
+    [JsonPropertyName("action")]
+    public CtaAction? Action { get; set; }
+
+    /// <summary>
+    /// Icon identifier to display on the button
+    /// </summary>
+    [JsonPropertyName("startIcon")]
+    public string? StartIcon { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

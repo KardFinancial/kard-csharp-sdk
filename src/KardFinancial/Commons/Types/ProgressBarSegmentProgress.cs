@@ -1,31 +1,30 @@
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
-using KardFinancial;
 using KardFinancial.Core;
 
-namespace KardFinancial.Users;
+namespace KardFinancial;
 
 /// <summary>
-/// Badge configuration for logo flare
+/// Fill state of a single segment node, expressed as completed of total.
 /// </summary>
 [Serializable]
-public record LogoFlareBadge : IJsonOnDeserialized
+public record ProgressBarSegmentProgress : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Icon identifier for the badge
+    /// Units completed within the current segment.
     /// </summary>
-    [JsonPropertyName("icon")]
-    public required string Icon { get; set; }
+    [JsonPropertyName("completed")]
+    public required int Completed { get; set; }
 
     /// <summary>
-    /// Position of the badge on the logo
+    /// Total units required to complete the current segment.
     /// </summary>
-    [JsonPropertyName("position")]
-    public required LogoFlareBadgePosition Position { get; set; }
+    [JsonPropertyName("total")]
+    public required int Total { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

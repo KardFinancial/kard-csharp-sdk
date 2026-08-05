@@ -50,6 +50,12 @@ public record RewardedTransactionAttributes : IJsonOnDeserialized
     [JsonPropertyName("payoutTimestamp")]
     public DateTime? PayoutTimestamp { get; set; }
 
+    /// <summary>
+    /// UI component data for the reward, built from the offer state persisted on the matched transaction (e.g. a progress bar for progressive and punch-card offers). Omitted when the reward carries no persisted state.
+    /// </summary>
+    [JsonPropertyName("components")]
+    public OfferComponents? Components { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

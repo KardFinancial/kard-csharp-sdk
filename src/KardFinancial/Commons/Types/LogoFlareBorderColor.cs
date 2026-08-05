@@ -2,7 +2,7 @@ using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 using KardFinancial.Core;
 
-namespace KardFinancial.Users;
+namespace KardFinancial;
 
 [JsonConverter(typeof(LogoFlareBorderColor.LogoFlareBorderColorSerializer))]
 [Serializable]

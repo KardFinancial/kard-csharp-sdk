@@ -2,19 +2,19 @@ using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 using KardFinancial.Core;
 
-namespace KardFinancial.Users;
+namespace KardFinancial;
 
-[JsonConverter(typeof(ProgressBarSegmentPosition.ProgressBarSegmentPositionSerializer))]
+[JsonConverter(typeof(ProgressBarSegmentSelection.ProgressBarSegmentSelectionSerializer))]
 [Serializable]
-public readonly record struct ProgressBarSegmentPosition : IStringEnum
+public readonly record struct ProgressBarSegmentSelection : IStringEnum
 {
-    public static readonly ProgressBarSegmentPosition Left = new(Values.Left);
+    public static readonly ProgressBarSegmentSelection Current = new(Values.Current);
 
-    public static readonly ProgressBarSegmentPosition Right = new(Values.Right);
+    public static readonly ProgressBarSegmentSelection CurrentAndBelow = new(
+        Values.CurrentAndBelow
+    );
 
-    public static readonly ProgressBarSegmentPosition FullWidth = new(Values.FullWidth);
-
-    public ProgressBarSegmentPosition(string value)
+    public ProgressBarSegmentSelection(string value)
     {
         Value = value;
     }
@@ -27,9 +27,9 @@ public readonly record struct ProgressBarSegmentPosition : IStringEnum
     /// <summary>
     /// Create a string enum with the given value.
     /// </summary>
-    public static ProgressBarSegmentPosition FromCustom(string value)
+    public static ProgressBarSegmentSelection FromCustom(string value)
     {
-        return new ProgressBarSegmentPosition(value);
+        return new ProgressBarSegmentSelection(value);
     }
 
     public bool Equals(string? other)
@@ -45,19 +45,20 @@ public readonly record struct ProgressBarSegmentPosition : IStringEnum
         return Value;
     }
 
-    public static bool operator ==(ProgressBarSegmentPosition value1, string value2) =>
+    public static bool operator ==(ProgressBarSegmentSelection value1, string value2) =>
         value1.Value.Equals(value2);
 
-    public static bool operator !=(ProgressBarSegmentPosition value1, string value2) =>
+    public static bool operator !=(ProgressBarSegmentSelection value1, string value2) =>
         !value1.Value.Equals(value2);
 
-    public static explicit operator string(ProgressBarSegmentPosition value) => value.Value;
+    public static explicit operator string(ProgressBarSegmentSelection value) => value.Value;
 
-    public static explicit operator ProgressBarSegmentPosition(string value) => new(value);
+    public static explicit operator ProgressBarSegmentSelection(string value) => new(value);
 
-    internal class ProgressBarSegmentPositionSerializer : JsonConverter<ProgressBarSegmentPosition>
+    internal class ProgressBarSegmentSelectionSerializer
+        : JsonConverter<ProgressBarSegmentSelection>
     {
-        public override ProgressBarSegmentPosition Read(
+        public override ProgressBarSegmentSelection Read(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -68,19 +69,19 @@ public readonly record struct ProgressBarSegmentPosition : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON value could not be read as a string."
                 );
-            return new ProgressBarSegmentPosition(stringValue);
+            return new ProgressBarSegmentSelection(stringValue);
         }
 
         public override void Write(
             Utf8JsonWriter writer,
-            ProgressBarSegmentPosition value,
+            ProgressBarSegmentSelection value,
             JsonSerializerOptions options
         )
         {
             writer.WriteStringValue(value.Value);
         }
 
-        public override ProgressBarSegmentPosition ReadAsPropertyName(
+        public override ProgressBarSegmentSelection ReadAsPropertyName(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -91,12 +92,12 @@ public readonly record struct ProgressBarSegmentPosition : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON property name could not be read as a string."
                 );
-            return new ProgressBarSegmentPosition(stringValue);
+            return new ProgressBarSegmentSelection(stringValue);
         }
 
         public override void WriteAsPropertyName(
             Utf8JsonWriter writer,
-            ProgressBarSegmentPosition value,
+            ProgressBarSegmentSelection value,
             JsonSerializerOptions options
         )
         {
@@ -110,10 +111,8 @@ public readonly record struct ProgressBarSegmentPosition : IStringEnum
     [Serializable]
     public static class Values
     {
-        public const string Left = "LEFT";
+        public const string Current = "CURRENT";
 
-        public const string Right = "RIGHT";
-
-        public const string FullWidth = "FULL_WIDTH";
+        public const string CurrentAndBelow = "CURRENT_AND_BELOW";
     }
 }

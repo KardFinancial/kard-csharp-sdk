@@ -1,31 +1,30 @@
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
-using KardFinancial;
 using KardFinancial.Core;
 
-namespace KardFinancial.Users;
+namespace KardFinancial;
 
 /// <summary>
-/// Label configuration for a single node within a segment
+/// Logo flare configuration for offer display
 /// </summary>
 [Serializable]
-public record ProgressBarSegmentLabel : IJsonOnDeserialized
+public record LogoFlare : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Title text for the segment node
+    /// Border color style for the logo flare
     /// </summary>
-    [JsonPropertyName("title")]
-    public required string Title { get; set; }
+    [JsonPropertyName("borderColor")]
+    public required LogoFlareBorderColor BorderColor { get; set; }
 
     /// <summary>
-    /// Description text for the segment node
+    /// Optional badge to display on the logo
     /// </summary>
-    [JsonPropertyName("description")]
-    public required string Description { get; set; }
+    [JsonPropertyName("badge")]
+    public LogoFlareBadge? Badge { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

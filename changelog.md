@@ -1,3 +1,13 @@
+## 24.0.1 - 2026-08-07
+* chore: update XML doc comments for GetLocationsByUserRequest and RewardsClient
+* Improve inline documentation for the `GetLocationsByUserRequest` record
+* and the `GetLocationsByUser` method in both `RewardsClient` and
+* `IRewardsClient`. No public API surface was added, removed, or changed.
+* Key changes:
+* Added XML `<summary>` doc comments to `FilterCity`, `FilterZipCode`, `FilterState`, `FilterLongitude`, `FilterLatitude`, and `FilterRadius` properties on `GetLocationsByUserRequest`, clarifying their roles and constraints
+* Removed the outdated note about Longitude/Latitude being prioritized over State, City, and Zipcode from the `GetLocationsByUser` method summary in both `RewardsClient` and `IRewardsClient`
+* 🌿 Generated with Fern
+
 ## 24.0.0 - 2026-08-05
 ### Breaking Changes
 * **`ExternalOrganizationAttributes.CardNetworks`** — property type changed from `IEnumerable<CardNetwork>` to `IEnumerable<OrganizationCardNetwork>`; update all call sites that read, assign, or iterate this property to use `OrganizationCardNetwork` instead of `CardNetwork`.

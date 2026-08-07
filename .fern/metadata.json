@@ -11,10 +11,10 @@
     "base-exception-class-name": "KardException",
     "generate-mock-server-tests": true
   },
-  "originGitCommit": "8063ad4a55027b16bfc7260bf84ac43b3d654595",
+  "originGitCommit": "0ec6f06e8d62d68e5d1fb896c4422100933144a9",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
   "requestedVersion": "AUTO",
   "ciProvider": "unknown",
-  "sdkVersion": "24.0.0"
+  "sdkVersion": "24.0.1"
 }

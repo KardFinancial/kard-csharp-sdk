@@ -1,3 +1,11 @@
+## 24.1.0 - 2026-08-18
+### Added
+* **`CuisineOption`** — new string-enum struct in the `KardFinancial` namespace representing the kind of food or venue a location offers, with 140+ built-in constants (e.g. `CuisineOption.Pizza`, `CuisineOption.Sushi`, `CuisineOption.Brewery`).
+* **`LocationRating`** — new record in the `KardFinancial.Users` namespace carrying a `Value` (1–5 scale) and an optional `Count` representing the number of ratings a score is based on.
+* **`LocationAttributes.Cuisine`** — new optional `CuisineOption?` property indicating the venue category for a location.
+* **`LocationAttributes.Rating`** — new optional `LocationRating?` property carrying the customer rating for a location.
+* **`LocationAttributes.PriceLevel`** — new optional `int?` property indicating the typical price range (1 = least expensive, 4 = most expensive).
+
 ## 24.0.1 - 2026-08-07
 * chore: update XML doc comments for GetLocationsByUserRequest and RewardsClient
 * Improve inline documentation for the `GetLocationsByUserRequest` record

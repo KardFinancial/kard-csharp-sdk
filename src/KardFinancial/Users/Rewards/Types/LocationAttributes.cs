@@ -33,6 +33,24 @@ public record LocationAttributes : IJsonOnDeserialized
     [JsonPropertyName("partnerIds")]
     public IEnumerable<LocationPartnerId> PartnerIds { get; set; } = new List<LocationPartnerId>();
 
+    /// <summary>
+    /// The kind of food or venue this location offers, for example "Pizza Restaurant".
+    /// </summary>
+    [JsonPropertyName("cuisine")]
+    public CuisineOption? Cuisine { get; set; }
+
+    /// <summary>
+    /// Customer rating for this location.
+    /// </summary>
+    [JsonPropertyName("rating")]
+    public LocationRating? Rating { get; set; }
+
+    /// <summary>
+    /// Typical price range for this location, from 1 (least expensive) to 4 (most expensive).
+    /// </summary>
+    [JsonPropertyName("priceLevel")]
+    public int? PriceLevel { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

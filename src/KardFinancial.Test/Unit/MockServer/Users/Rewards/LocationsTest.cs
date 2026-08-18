@@ -99,7 +99,13 @@ public class LocationsTest : BaseMockServerTest
                         "type": "google",
                         "id": "3pafnweri4"
                       }
-                    ]
+                    ],
+                    "cuisine": "Pizza Restaurant",
+                    "rating": {
+                      "value": 4.6,
+                      "count": 812
+                    },
+                    "priceLevel": 2
                   },
                   "relationships": {
                     "offers": {

@@ -5,31 +5,27 @@ using KardFinancial.Core;
 
 namespace KardFinancial.Users;
 
+/// <summary>
+/// Customer rating for a location.
+/// </summary>
 [Serializable]
-public record Asset : IJsonOnDeserialized
+public record LocationRating : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// What the asset shows. `IMG_VIEW` is the merchant logo, `BANNER_VIEW` a promotional
-    /// banner, and `LOCATION_IMG_VIEW` a photo of the location. New values may be added over time.
+    /// Rating on a scale of 1 to 5.
     /// </summary>
-    [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    [JsonPropertyName("value")]
+    public required double Value { get; set; }
 
     /// <summary>
-    /// URL of the asset containing an attribution token
+    /// Number of ratings the score is based on. Null when a count is not available.
     /// </summary>
-    [JsonPropertyName("url")]
-    public required string Url { get; set; }
-
-    /// <summary>
-    /// Alt text of the asset
-    /// </summary>
-    [JsonPropertyName("alt")]
-    public required string Alt { get; set; }
+    [JsonPropertyName("count")]
+    public int? Count { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

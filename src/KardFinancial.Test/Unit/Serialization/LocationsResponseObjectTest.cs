@@ -102,7 +102,13 @@ public class LocationsResponseObjectTest
                         "type": "google",
                         "id": "3pafnweri4"
                       }
-                    ]
+                    ],
+                    "cuisine": "Pizza Restaurant",
+                    "rating": {
+                      "value": 4.6,
+                      "count": 812
+                    },
+                    "priceLevel": 2
                   },
                   "relationships": {
                     "offers": {
@@ -262,6 +268,9 @@ public class LocationsResponseObjectTest
                                 Id = "3pafnweri4",
                             },
                         },
+                        Cuisine = CuisineOption.Pizza,
+                        Rating = new LocationRating { Value = 4.6, Count = 812 },
+                        PriceLevel = 2,
                     },
                     Relationships = new LocationRelationships
                     {
@@ -476,7 +485,13 @@ public class LocationsResponseObjectTest
                         "type": "google",
                         "id": "3pafnweri4"
                       }
-                    ]
+                    ],
+                    "cuisine": "Pizza Restaurant",
+                    "rating": {
+                      "value": 4.6,
+                      "count": 812
+                    },
+                    "priceLevel": 2
                   },
                   "relationships": {
                     "offers": {

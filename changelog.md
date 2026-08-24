@@ -1,3 +1,9 @@
+## 24.2.0 - 2026-08-24
+### Added
+* **`PlacementStatus`** — new string-enum struct in the `KardFinancial.Organizations` namespace representing whether a placement is active or inactive, with built-in constants `PlacementStatus.Active` and `PlacementStatus.Inactive`.
+* **`PlacementAttributes.Status`**, **`EmailPlacementAttributes.Status`**, **`GroupPlacementAttributes.Status`**, **`PushNotificationPlacementAttributes.Status`**, and **`BatchActivationPlacementAttributes.Status`** — new required `PlacementStatus` property on all response-side placement attribute records indicating whether the placement currently serves content.
+* **`Status`** on all create and update placement attribute types (e.g. `CreateStandardAttributes`, `UpdateEmailAttributes`) — new optional `PlacementStatus?` property; defaults to `ACTIVE` on create and preserves the existing status when omitted on update.
+
 ## 24.1.0 - 2026-08-18
 ### Added
 * **`CuisineOption`** — new string-enum struct in the `KardFinancial` namespace representing the kind of food or venue a location offers, with 140+ built-in constants (e.g. `CuisineOption.Pizza`, `CuisineOption.Sushi`, `CuisineOption.Brewery`).

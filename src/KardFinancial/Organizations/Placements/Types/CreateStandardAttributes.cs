@@ -22,6 +22,12 @@ public record CreateStandardAttributes : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
+    /// Placement status. Defaults to ACTIVE on create; when omitted on update, the current status is preserved.
+    /// </summary>
+    [JsonPropertyName("status")]
+    public PlacementStatus? Status { get; set; }
+
+    /// <summary>
     /// Number of available slots (minimum 1)
     /// </summary>
     [JsonPropertyName("availableSlots")]

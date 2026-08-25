@@ -20,7 +20,6 @@ public class ListTest : BaseMockServerTest
                   "id": "id",
                   "attributes": {
                     "name": "name",
-                    "status": "ACTIVE",
                     "organizationId": "organizationId",
                     "availableSlots": 1,
                     "contentStrategyId": "contentStrategyId"
@@ -39,7 +38,6 @@ public class ListTest : BaseMockServerTest
                   "id": "id",
                   "attributes": {
                     "name": "name",
-                    "status": "ACTIVE",
                     "organizationId": "organizationId",
                     "availableSlots": 1,
                     "contentStrategyId": "contentStrategyId"

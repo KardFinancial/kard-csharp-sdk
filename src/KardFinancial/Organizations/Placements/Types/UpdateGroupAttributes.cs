@@ -22,12 +22,6 @@ public record UpdateGroupAttributes : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
-    /// Placement status. Defaults to ACTIVE on create; when omitted on update, the current status is preserved.
-    /// </summary>
-    [JsonPropertyName("status")]
-    public PlacementStatus? Status { get; set; }
-
-    /// <summary>
     /// Slots that make up the group. Slots present in the prior state but absent from this list are removed.
     /// </summary>
     [JsonPropertyName("slots")]

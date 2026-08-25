@@ -1,3 +1,12 @@
+## 25.0.0 - 2026-08-25
+### Breaking Changes
+* **`PlacementAttributes.Status`** — the required `PlacementStatus Status` property has been removed; callers that read this field must be updated to remove the reference.
+* **`GroupPlacementAttributes.Status`** — the required `PlacementStatus Status` property has been removed; update any code that reads this field.
+* **`BatchActivationPlacementAttributes.Status`** — the required `PlacementStatus Status` property has been removed; update any code that reads this field.
+* **`Status` on create/update request types** — the optional `PlacementStatus? Status` property has been removed from `CreateStandardAttributes`, `CreateGroupAttributes`, `CreateBatchActivationAttributes`, `UpdateStandardAttributes`, `UpdateGroupAttributes`, and `UpdateBatchActivationAttributes`; remove any assignments to this property.
+### Changed
+* **`EmailPlacementAttributes.Status`** and **`PushNotificationPlacementAttributes.Status`** — XML doc comment updated to clarify that `Status` controls whether scheduled deliveries are paused and has no effect on content serving.
+
 ## 24.2.0 - 2026-08-24
 ### Added
 * **`PlacementStatus`** — new string-enum struct in the `KardFinancial.Organizations` namespace representing whether a placement is active or inactive, with built-in constants `PlacementStatus.Active` and `PlacementStatus.Inactive`.

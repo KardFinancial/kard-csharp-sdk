@@ -22,12 +22,6 @@ public record CreateBatchActivationAttributes : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
-    /// Placement status. Defaults to ACTIVE on create; when omitted on update, the current status is preserved.
-    /// </summary>
-    [JsonPropertyName("status")]
-    public PlacementStatus? Status { get; set; }
-
-    /// <summary>
     /// ISO-8601 duration controlling how often the activation cohort refreshes
     /// </summary>
     [JsonPropertyName("refreshInterval")]

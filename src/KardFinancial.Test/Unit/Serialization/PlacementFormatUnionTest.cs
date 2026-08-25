@@ -19,7 +19,6 @@ public class PlacementFormatUnionTest
               "attributes": {
                 "name": "Homepage Banner",
                 "organizationId": "org-123",
-                "status": "ACTIVE",
                 "availableSlots": 5
               }
             }
@@ -33,7 +32,6 @@ public class PlacementFormatUnionTest
                     {
                         Name = "Homepage Banner",
                         OrganizationId = "org-123",
-                        Status = PlacementStatus.Active,
                         AvailableSlots = 5,
                     },
                 }
@@ -53,7 +51,6 @@ public class PlacementFormatUnionTest
               "attributes": {
                 "name": "Homepage Banner",
                 "organizationId": "org-123",
-                "status": "ACTIVE",
                 "availableSlots": 5
               }
             }
@@ -201,7 +198,6 @@ public class PlacementFormatUnionTest
               "attributes": {
                 "name": "Weekly Cohort",
                 "organizationId": "org-123",
-                "status": "ACTIVE",
                 "refreshInterval": "P7D"
               },
               "relationships": {
@@ -225,7 +221,6 @@ public class PlacementFormatUnionTest
                     {
                         Name = "Weekly Cohort",
                         OrganizationId = "org-123",
-                        Status = PlacementStatus.Active,
                         RefreshInterval = "P7D",
                     },
                     Relationships = new SlottedPlacementRelationships
@@ -259,7 +254,6 @@ public class PlacementFormatUnionTest
               "attributes": {
                 "name": "Weekly Cohort",
                 "organizationId": "org-123",
-                "status": "ACTIVE",
                 "refreshInterval": "P7D"
               },
               "relationships": {
@@ -286,8 +280,7 @@ public class PlacementFormatUnionTest
               "id": "01961e5a-a48b-7e66-8c7b-3cf9e2bd6a89",
               "attributes": {
                 "name": "Seasonal Collection",
-                "organizationId": "org-123",
-                "status": "ACTIVE"
+                "organizationId": "org-123"
               },
               "relationships": {
                 "slots": {
@@ -310,7 +303,6 @@ public class PlacementFormatUnionTest
                     {
                         Name = "Seasonal Collection",
                         OrganizationId = "org-123",
-                        Status = PlacementStatus.Active,
                     },
                     Relationships = new SlottedPlacementRelationships
                     {
@@ -342,8 +334,7 @@ public class PlacementFormatUnionTest
               "id": "01961e5a-a48b-7e66-8c7b-3cf9e2bd6a89",
               "attributes": {
                 "name": "Seasonal Collection",
-                "organizationId": "org-123",
-                "status": "ACTIVE"
+                "organizationId": "org-123"
               },
               "relationships": {
                 "slots": {

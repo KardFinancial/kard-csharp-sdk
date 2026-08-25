@@ -19,7 +19,6 @@ public class GetTest : BaseMockServerTest
                 "id": "id",
                 "attributes": {
                   "name": "name",
-                  "status": "ACTIVE",
                   "organizationId": "organizationId",
                   "availableSlots": 1,
                   "contentStrategyId": "contentStrategyId"

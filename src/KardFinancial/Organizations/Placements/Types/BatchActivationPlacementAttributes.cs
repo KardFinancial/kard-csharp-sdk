@@ -22,12 +22,6 @@ public record BatchActivationPlacementAttributes : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
-    /// Whether the placement serves content and fires scheduled deliveries. An INACTIVE placement keeps its configuration but serves empty content and skips scheduled deliveries.
-    /// </summary>
-    [JsonPropertyName("status")]
-    public required PlacementStatus Status { get; set; }
-
-    /// <summary>
     /// ID of the organization this placement belongs to
     /// </summary>
     [JsonPropertyName("organizationId")]

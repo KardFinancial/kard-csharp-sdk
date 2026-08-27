@@ -16,10 +16,6 @@ public readonly record struct FileType : IStringEnum
         Values.EarnedRewardSettledDailyReconciliationFile
     );
 
-    public static readonly FileType ValidatedTransactionDailyReconciliationFile = new(
-        Values.ValidatedTransactionDailyReconciliationFile
-    );
-
     public static readonly FileType MonthlyReconciliationFile = new(
         Values.MonthlyReconciliationFile
     );
@@ -123,9 +119,6 @@ public readonly record struct FileType : IStringEnum
 
         public const string EarnedRewardSettledDailyReconciliationFile =
             "earnedRewardSettledDailyReconciliationFile";
-
-        public const string ValidatedTransactionDailyReconciliationFile =
-            "validatedTransactionDailyReconciliationFile";
 
         public const string MonthlyReconciliationFile = "monthlyReconciliationFile";
     }

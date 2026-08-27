@@ -1,3 +1,7 @@
+## 26.0.0 - 2026-08-27
+### Breaking Changes
+* **`FileType.ValidatedTransactionDailyReconciliationFile`** — the public static readonly field and its corresponding `FileType.Values.ValidatedTransactionDailyReconciliationFile` string constant have been removed; update any code that references this value to remove or replace the reference.
+
 ## 25.0.0 - 2026-08-25
 ### Breaking Changes
 * **`PlacementAttributes.Status`** — the required `PlacementStatus Status` property has been removed; callers that read this field must be updated to remove the reference.

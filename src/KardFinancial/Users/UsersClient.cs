@@ -14,7 +14,6 @@ public partial class UsersClient : IUsersClient
         Attributions = new AttributionsClient(_client);
         Auth = new KardFinancial.Users.AuthClient(_client);
         Rewards = new RewardsClient(_client);
-        Uploads = new UploadsClient(_client);
     }
 
     public IAttributionsClient Attributions { get; }
@@ -22,8 +21,6 @@ public partial class UsersClient : IUsersClient
     public KardFinancial.Users.IAuthClient Auth { get; }
 
     public IRewardsClient Rewards { get; }
-
-    public IUploadsClient Uploads { get; }
 
     private async Task<WithRawResponse<CreateUsersObject>> CreateAsyncCore(
         string organizationId,

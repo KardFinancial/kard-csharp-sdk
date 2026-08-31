@@ -1,3 +1,11 @@
+## 27.0.0 - 2026-08-31
+### Breaking Changes
+* **`IUploadsClient`** — the interface and all its methods (`CreateAsync`, `CreatePartAsync`, `UpdateAsync`) have been removed; replace any calls to these methods with the bulk transactions upload URL endpoint.
+* **`IUsersClient.Uploads`** and **`UsersClient.Uploads`** — the `IUploadsClient Uploads` property has been removed from both the interface and concrete class; migrate all `client.Users.Uploads` usages to the bulk upload API (see the Historical Transaction Uploads integration guide).
+* **`UploadsClient`** — the entire concrete client class has been removed alongside `IUploadsClient`; replace direct instantiation or usage with the corresponding bulk upload API methods.
+* **`UploadPartMultiStatus`** — the HTTP 207 exception class has been removed; remove any `catch` blocks that reference this type.
+* **All upload request/response record types** — `CreateUploadPartDataUnion`, `CreateUploadPartMultiStatusResponse`, `CreateUploadPartRequestObject`, `CreateUploadPartResponseObject`, `CreateUploadPartResponseData`, `CreateUploadPartResponseDataUnion`, `CreateUploadRequestDataUnion`, `CreateUploadRequestObject`, `CreateUploadResponseData`, `CreateUploadResponseDataUnion`, `CreateUploadResponseObject`, `UpdateUploadRequestDataUnion`, `UpdateUploadRequestObject`, `UpdateUploadResponseDataUnion`, `UpdateUploadResponseObject`, `HistoricalTransactionCompleteNoData`, and `StartHistoricalUploadNoData` have all been removed; remove all references to these types.
+
 ## 26.0.0 - 2026-08-27
 ### Breaking Changes
 * **`FileType.ValidatedTransactionDailyReconciliationFile`** — the public static readonly field and its corresponding `FileType.Values.ValidatedTransactionDailyReconciliationFile` string constant have been removed; update any code that references this value to remove or replace the reference.

@@ -7,7 +7,6 @@ public partial interface IUsersClient
     public IAttributionsClient Attributions { get; }
     public KardFinancial.Users.IAuthClient Auth { get; }
     public IRewardsClient Rewards { get; }
-    public IUploadsClient Uploads { get; }
 
     /// <summary>
     /// Call this endpoint to enroll a specified user into your rewards program.<br/>

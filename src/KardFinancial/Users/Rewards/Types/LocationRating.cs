@@ -16,7 +16,7 @@ public record LocationRating : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Rating on a scale of 1 to 5.
+    /// Restaurant star rating. Rating is out of 5.
     /// </summary>
     [JsonPropertyName("value")]
     public required double Value { get; set; }

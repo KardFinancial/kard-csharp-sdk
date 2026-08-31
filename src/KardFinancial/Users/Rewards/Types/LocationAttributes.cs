@@ -46,10 +46,10 @@ public record LocationAttributes : IJsonOnDeserialized
     public LocationRating? Rating { get; set; }
 
     /// <summary>
-    /// Typical price range for this location, from 1 (least expensive) to 4 (most expensive).
+    /// Typical price range for this location, rendered as dollar signs from "$" (least expensive) to "$$$$" (most expensive).
     /// </summary>
     [JsonPropertyName("priceLevel")]
-    public int? PriceLevel { get; set; }
+    public string? PriceLevel { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

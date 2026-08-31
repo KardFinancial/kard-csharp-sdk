@@ -1,3 +1,11 @@
+## 28.0.0 - 2026-08-31
+### Breaking Changes
+* **`LocationAttributes.PriceLevel`** — the property type has changed from `int?` to `string?`; price levels are now returned as dollar-sign strings (e.g., `"$"`, `"$$"`, `"$$$$"`) instead of integers (e.g., `2`). Update any code that reads or compares this property as a number to handle the new string format.
+### Changed
+* **Asset attribution URLs** — offer asset URLs now use a new query parameter scheme (`eventCode`, `type`, `medium`) replacing the previous `subtype`-based format; no SDK code changes required, but any hardcoded URL comparisons should be updated.
+* **`LOCATION_IMG_VIEW` asset type** — location responses may now include a new asset of type `LOCATION_IMG_VIEW` alongside the existing `IMG_VIEW` and `BANNER_VIEW` assets.
+* **`LocationRating.Value`** — XML doc comment updated to clarify that the rating is a restaurant star rating out of 5.
+
 ## 27.0.0 - 2026-08-31
 ### Breaking Changes
 * **`IUploadsClient`** — the interface and all its methods (`CreateAsync`, `CreatePartAsync`, `UpdateAsync`) have been removed; replace any calls to these methods with the bulk transactions upload URL endpoint.

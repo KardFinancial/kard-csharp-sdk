@@ -108,7 +108,7 @@ public class LocationsResponseObjectTest
                       "value": 4.6,
                       "count": 812
                     },
-                    "priceLevel": 2
+                    "priceLevel": "$$"
                   },
                   "relationships": {
                     "offers": {
@@ -173,14 +173,19 @@ public class LocationsResponseObjectTest
                     "isTargeted": true,
                     "assets": [
                       {
-                        "url": "http://attribution.getkard.com/logos/breakfastbunny_logo.png?subtype=IMG_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                        "url": "http://attribution.getkard.com/logos/breakfastbunny_logo.png?eventCode=IMPRESSION&type=offerAttribution&medium=BROWSE&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
                         "alt": "",
                         "type": "IMG_VIEW"
                       },
                       {
-                        "url": "https://attribution.getkard.com/public/banners/breakfast-bunny-banner.jpg?subtype=BANNER_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                        "url": "https://attribution.getkard.com/public/banners/breakfast-bunny-banner.jpg?eventCode=VIEW&type=offerAttribution&medium=BROWSE&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
                         "alt": "",
                         "type": "BANNER_VIEW"
+                      },
+                      {
+                        "url": "https://attribution.getkard.com/public/franki/venue/a3f2c81d0b7e4a55-storefront.jpg?eventCode=IMPRESSION&type=offerAttribution&medium=BROWSE&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                        "alt": "",
+                        "type": "LOCATION_IMG_VIEW"
                       }
                     ],
                     "websiteUrl": "http://worldsgreatestchickent.test.com",
@@ -270,7 +275,7 @@ public class LocationsResponseObjectTest
                         },
                         Cuisine = CuisineOption.Pizza,
                         Rating = new LocationRating { Value = 4.6, Count = 812 },
-                        PriceLevel = 2,
+                        PriceLevel = "$$",
                     },
                     Relationships = new LocationRelationships
                     {
@@ -363,16 +368,23 @@ public class LocationsResponseObjectTest
                                     new Asset
                                     {
                                         Url =
-                                            "http://attribution.getkard.com/logos/breakfastbunny_logo.png?subtype=IMG_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                                            "http://attribution.getkard.com/logos/breakfastbunny_logo.png?eventCode=IMPRESSION&type=offerAttribution&medium=BROWSE&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
                                         Alt = "",
                                         Type = "IMG_VIEW",
                                     },
                                     new Asset
                                     {
                                         Url =
-                                            "https://attribution.getkard.com/public/banners/breakfast-bunny-banner.jpg?subtype=BANNER_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                                            "https://attribution.getkard.com/public/banners/breakfast-bunny-banner.jpg?eventCode=VIEW&type=offerAttribution&medium=BROWSE&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
                                         Alt = "",
                                         Type = "BANNER_VIEW",
+                                    },
+                                    new Asset
+                                    {
+                                        Url =
+                                            "https://attribution.getkard.com/public/franki/venue/a3f2c81d0b7e4a55-storefront.jpg?eventCode=IMPRESSION&type=offerAttribution&medium=BROWSE&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                                        Alt = "",
+                                        Type = "LOCATION_IMG_VIEW",
                                     },
                                 },
                                 WebsiteUrl = "http://worldsgreatestchickent.test.com",
@@ -491,7 +503,7 @@ public class LocationsResponseObjectTest
                       "value": 4.6,
                       "count": 812
                     },
-                    "priceLevel": 2
+                    "priceLevel": "$$"
                   },
                   "relationships": {
                     "offers": {
@@ -556,14 +568,19 @@ public class LocationsResponseObjectTest
                     "isTargeted": true,
                     "assets": [
                       {
-                        "url": "http://attribution.getkard.com/logos/breakfastbunny_logo.png?subtype=IMG_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                        "url": "http://attribution.getkard.com/logos/breakfastbunny_logo.png?eventCode=IMPRESSION&type=offerAttribution&medium=BROWSE&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
                         "alt": "",
                         "type": "IMG_VIEW"
                       },
                       {
-                        "url": "https://attribution.getkard.com/public/banners/breakfast-bunny-banner.jpg?subtype=BANNER_VIEW&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                        "url": "https://attribution.getkard.com/public/banners/breakfast-bunny-banner.jpg?eventCode=VIEW&type=offerAttribution&medium=BROWSE&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
                         "alt": "",
                         "type": "BANNER_VIEW"
+                      },
+                      {
+                        "url": "https://attribution.getkard.com/public/franki/venue/a3f2c81d0b7e4a55-storefront.jpg?eventCode=IMPRESSION&type=offerAttribution&medium=BROWSE&offerId=629fc220b7a4290009a188ec&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZlcnJpbmdQYXJ0bmVyVXNlcklkIjoiNDM4MTAzIiwiaXNzdWVySWQiOiIwMDAwNDMyMSIsInR5cGUiOiJPRkZFUiIsInBheWxvYWQiOnsiand0VGltZXN0YW1wIjoiMjAyNi0wNC0yMyJ9fQ.4f9QmoGpgXVIXu9Tq8XFVcx7Rz0jptsYNYpmaIBszyc&state=eyJyYW5rIjoxLCJmaWx0ZXJzIjpbXX0%3D",
+                        "alt": "",
+                        "type": "LOCATION_IMG_VIEW"
                       }
                     ],
                     "websiteUrl": "http://worldsgreatestchickent.test.com",

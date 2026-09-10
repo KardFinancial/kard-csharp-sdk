@@ -1,3 +1,14 @@
+## 28.0.1 - 2026-09-10
+* chore: improve XML doc comment for GetLocationsByUserRequest.Sort
+* Expand the documentation on the `Sort` property to clarify its default
+* ordering behavior and how it interacts with latitude/longitude filters.
+* Key changes:
+* Updated XML doc comment on `GetLocationsByUserRequest.Sort` to document
+* the default sort order (descending `createdDate`, i.e. newest first)
+* Clarified that when `filter[latitude]`/`filter[longitude]` are provided,
+* results are ordered by ascending distance first, then newest first
+* 🌿 Generated with Fern
+
 ## 28.0.0 - 2026-08-31
 ### Breaking Changes
 * **`LocationAttributes.PriceLevel`** — the property type has changed from `int?` to `string?`; price levels are now returned as dollar-sign strings (e.g., `"$"`, `"$$"`, `"$$$$"`) instead of integers (e.g., `2`). Update any code that reads or compares this property as a number to handle the new string format.

@@ -22,6 +22,12 @@ public record PlacementAttributes : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
+    /// Cardholder-facing title for the section, if one was set. When absent, clients fall back to their own default label.
+    /// </summary>
+    [JsonPropertyName("displayName")]
+    public string? DisplayName { get; set; }
+
+    /// <summary>
     /// ID of the organization this placement belongs to
     /// </summary>
     [JsonPropertyName("organizationId")]

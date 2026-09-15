@@ -1,3 +1,9 @@
+## 28.1.0 - 2026-09-15
+### Added
+* **`PlacementAttributes.DisplayName`** — new optional `string?` property exposing the cardholder-facing title for a placement section; absent when no display name has been set.
+* **`CreateStandardAttributes.DisplayName`** — new optional `string?` property for setting a cardholder-facing section title when creating a placement; omit to let clients use their default label.
+* **`UpdateStandardAttributes.DisplayName`** — new optional `string?` property for setting or clearing the cardholder-facing section title when updating a placement.
+
 ## 28.0.1 - 2026-09-10
 * chore: improve XML doc comment for GetLocationsByUserRequest.Sort
 * Expand the documentation on the `Sort` property to clarify its default

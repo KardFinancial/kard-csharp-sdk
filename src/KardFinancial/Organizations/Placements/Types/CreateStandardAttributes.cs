@@ -22,6 +22,12 @@ public record CreateStandardAttributes : IJsonOnDeserialized
     public required string Name { get; set; }
 
     /// <summary>
+    /// Cardholder-facing title for the section (minimum 1 character). Omit to let clients use their default label.
+    /// </summary>
+    [JsonPropertyName("displayName")]
+    public string? DisplayName { get; set; }
+
+    /// <summary>
     /// Number of available slots (minimum 1)
     /// </summary>
     [JsonPropertyName("availableSlots")]

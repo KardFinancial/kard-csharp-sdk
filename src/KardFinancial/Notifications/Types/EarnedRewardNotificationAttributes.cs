@@ -12,32 +12,6 @@ public record EarnedRewardNotificationAttributes : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The category of the offer, e.g. "Food & Dining"
-    /// </summary>
-    [JsonPropertyName("categoryName")]
-    public string? CategoryName { get; set; }
-
-    /// <summary>
-    /// Type of commission on offer (% or a flat $)
-    /// </summary>
-    [JsonPropertyName("userReward")]
-    public UserReward? UserReward { get; set; }
-
-    /// <summary>
-    /// Tracked asset images for the merchant. The asset
-    /// URL is signed for attribution tracking and should be loaded as-is by the
-    /// client.
-    /// </summary>
-    [JsonPropertyName("assets")]
-    public IEnumerable<MerchantAsset>? Assets { get; set; }
-
-    /// <summary>
-    /// The purchase channels the offer applies to
-    /// </summary>
-    [JsonPropertyName("purchaseChannel")]
-    public IEnumerable<PurchaseChannel>? PurchaseChannel { get; set; }
-
-    /// <summary>
     /// The display message associated to the notification
     /// </summary>
     [JsonPropertyName("message")]
@@ -84,6 +58,32 @@ public record EarnedRewardNotificationAttributes : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("transactionAmountInCents")]
     public required int TransactionAmountInCents { get; set; }
+
+    /// <summary>
+    /// The category of the offer, e.g. "Food & Dining"
+    /// </summary>
+    [JsonPropertyName("categoryName")]
+    public string? CategoryName { get; set; }
+
+    /// <summary>
+    /// Type of commission on offer (% or a flat $)
+    /// </summary>
+    [JsonPropertyName("userReward")]
+    public required UserReward UserReward { get; set; }
+
+    /// <summary>
+    /// Tracked asset images for the merchant. The asset
+    /// URL is signed for attribution tracking and should be loaded as-is by the
+    /// client.
+    /// </summary>
+    [JsonPropertyName("assets")]
+    public IEnumerable<MerchantAsset>? Assets { get; set; }
+
+    /// <summary>
+    /// The purchase channels the offer applies to
+    /// </summary>
+    [JsonPropertyName("purchaseChannel")]
+    public IEnumerable<PurchaseChannel>? PurchaseChannel { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

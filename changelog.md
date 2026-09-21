@@ -1,3 +1,9 @@
+## 29.0.0 - 2026-09-21
+### Breaking Changes
+* **`RewardNotificationAttributes`** — this class has been removed entirely; migrate any code referencing it to `EarnedRewardNotificationAttributes` or `EarnedRewardSettledAttributes` as appropriate.
+* **`EarnedRewardNotificationAttributes.UserReward`** — changed from `UserReward?` (optional, nullable) to `required UserReward`; callers that construct this record without providing `UserReward` will no longer compile.
+* **`EarnedRewardSettledAttributes.UserReward`** — changed from `UserReward?` (optional, nullable) to `required UserReward`; callers that construct this record without providing `UserReward` will no longer compile.
+
 ## 28.1.0 - 2026-09-15
 ### Added
 * **`PlacementAttributes.DisplayName`** — new optional `string?` property exposing the cardholder-facing title for a placement section; absent when no display name has been set.

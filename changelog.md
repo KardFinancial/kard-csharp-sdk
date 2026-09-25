@@ -1,3 +1,7 @@
+## 29.1.0 - 2026-09-25
+### Added
+* **`RejectedReason.MaxRedemptionLimitReached`** — new rejection reason value (`"MAX_REDEMPTION_LIMIT_REACHED"`) returned when a user has reached their maximum redemption limit.
+
 ## 29.0.0 - 2026-09-21
 ### Breaking Changes
 * **`RewardNotificationAttributes`** — this class has been removed entirely; migrate any code referencing it to `EarnedRewardNotificationAttributes` or `EarnedRewardSettledAttributes` as appropriate.

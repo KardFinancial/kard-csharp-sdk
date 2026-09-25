@@ -10,6 +10,10 @@ public readonly record struct RejectedReason : IStringEnum
 {
     public static readonly RejectedReason AggregatorCardOverlap = new(Values.AggregatorCardOverlap);
 
+    public static readonly RejectedReason MaxRedemptionLimitReached = new(
+        Values.MaxRedemptionLimitReached
+    );
+
     public static readonly RejectedReason SettlementRejected = new(Values.SettlementRejected);
 
     public static readonly RejectedReason UserNotEnrolled = new(Values.UserNotEnrolled);
@@ -115,6 +119,8 @@ public readonly record struct RejectedReason : IStringEnum
     public static class Values
     {
         public const string AggregatorCardOverlap = "AGGREGATOR_CARD_OVERLAP";
+
+        public const string MaxRedemptionLimitReached = "MAX_REDEMPTION_LIMIT_REACHED";
 
         public const string SettlementRejected = "SETTLEMENT_REJECTED";
 

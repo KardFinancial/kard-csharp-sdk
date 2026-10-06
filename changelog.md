@@ -1,3 +1,17 @@
+## 29.1.1 - 2026-10-06
+* chore: update child organization name validation docs
+* Update XML doc comments across ChildrenClient, IChildrenClient,
+* ChildOrganizationAttributes, CreateChildAttributes, and
+* UpdateChildAttributes to reflect the revised name validation rule:
+* names now require at least two letters or numbers (previously at least
+* one letter) and may contain letters, numbers, and spaces (previously
+* letters and spaces only).
+* Key changes:
+* Updated doc comment in `ChildrenClient.CreateAsync` to reflect new name constraints
+* Updated doc comment in `IChildrenClient.CreateAsync` to reflect new name constraints
+* Updated `Name` property doc in `ChildOrganizationAttributes`, `CreateChildAttributes`, and `UpdateChildAttributes`
+* 🌿 Generated with Fern
+
 ## 29.1.0 - 2026-09-25
 ### Added
 * **`RejectedReason.MaxRedemptionLimitReached`** — new rejection reason value (`"MAX_REDEMPTION_LIMIT_REACHED"`) returned when a user has reached their maximum redemption limit.

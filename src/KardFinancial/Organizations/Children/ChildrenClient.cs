@@ -527,7 +527,7 @@ public partial class ChildrenClient : IChildrenClient
     }
 
     /// <summary>
-    /// Create a child organization by cloning the parent and overriding specified fields. An 8-digit numeric ID is generated automatically. The name is required, must contain at least one letter, and may contain only letters and spaces.
+    /// Create a child organization by cloning the parent and overriding specified fields. An 8-digit numeric ID is generated automatically. The name is required, must contain at least two letters or numbers, and may contain only letters, numbers, and spaces.
     /// </summary>
     /// <example><code>
     /// await client.Organizations.Children.CreateAsync(

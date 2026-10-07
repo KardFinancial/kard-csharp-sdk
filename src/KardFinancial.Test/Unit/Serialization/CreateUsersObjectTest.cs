@@ -10,7 +10,7 @@ namespace KardFinancial.Test;
 public class CreateUsersObjectTest
 {
     [NUnit.Framework.Test]
-    public void TestDeserialization()
+    public void TestDeserialization_1()
     {
         var json = """
             {
@@ -66,7 +66,7 @@ public class CreateUsersObjectTest
     }
 
     [NUnit.Framework.Test]
-    public void TestSerialization()
+    public void TestSerialization_1()
     {
         var inputJson = """
             {
@@ -84,6 +84,139 @@ public class CreateUsersObjectTest
                     "phoneNumber": "+14155552671",
                     "birthYear": "1990",
                     "historicalTransactionsSent": true
+                  }
+                }
+              ]
+            }
+            """;
+        JsonAssert.Roundtrips<CreateUsersObject>(inputJson);
+    }
+
+    [NUnit.Framework.Test]
+    public void TestDeserialization_2()
+    {
+        var json = """
+            {
+              "data": [
+                {
+                  "type": "user",
+                  "id": "1234567890",
+                  "attributes": {
+                    "enrolledRewards": [
+                      "CARDLINKED"
+                    ],
+                    "email": "user@example.com",
+                    "phoneNumbers": [
+                      {
+                        "number": "+14155552671",
+                        "type": "MOBILE"
+                      },
+                      {
+                        "number": "+12125550188",
+                        "type": "HOME"
+                      }
+                    ],
+                    "postalCodes": [
+                      {
+                        "code": "11238",
+                        "type": "PHYSICAL"
+                      },
+                      {
+                        "code": "10028",
+                        "type": "BILLING"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+            """;
+        var expectedObject = new CreateUsersObject
+        {
+            Data = new List<UserRequestDataUnion>()
+            {
+                new UserRequestDataUnion(
+                    new UserRequestDataUnion.User(
+                        new UserRequestData
+                        {
+                            Id = "1234567890",
+                            Attributes = new UserRequestAttributes
+                            {
+                                EnrolledRewards = new List<EnrolledRewardsType>()
+                                {
+                                    EnrolledRewardsType.Cardlinked,
+                                },
+                                Email = "user@example.com",
+                                PhoneNumbers = new List<PhoneNumber>()
+                                {
+                                    new PhoneNumber
+                                    {
+                                        Number = "+14155552671",
+                                        Type = PhoneNumberType.Mobile,
+                                    },
+                                    new PhoneNumber
+                                    {
+                                        Number = "+12125550188",
+                                        Type = PhoneNumberType.Home,
+                                    },
+                                },
+                                PostalCodes = new List<PostalCode>()
+                                {
+                                    new PostalCode
+                                    {
+                                        Code = "11238",
+                                        Type = PostalCodeType.Physical,
+                                    },
+                                    new PostalCode
+                                    {
+                                        Code = "10028",
+                                        Type = PostalCodeType.Billing,
+                                    },
+                                },
+                            },
+                        }
+                    )
+                ),
+            },
+        };
+        var deserializedObject = JsonUtils.Deserialize<CreateUsersObject>(json);
+        Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
+    }
+
+    [NUnit.Framework.Test]
+    public void TestSerialization_2()
+    {
+        var inputJson = """
+            {
+              "data": [
+                {
+                  "type": "user",
+                  "id": "1234567890",
+                  "attributes": {
+                    "enrolledRewards": [
+                      "CARDLINKED"
+                    ],
+                    "email": "user@example.com",
+                    "phoneNumbers": [
+                      {
+                        "number": "+14155552671",
+                        "type": "MOBILE"
+                      },
+                      {
+                        "number": "+12125550188",
+                        "type": "HOME"
+                      }
+                    ],
+                    "postalCodes": [
+                      {
+                        "code": "11238",
+                        "type": "PHYSICAL"
+                      },
+                      {
+                        "code": "10028",
+                        "type": "BILLING"
+                      }
+                    ]
                   }
                 }
               ]

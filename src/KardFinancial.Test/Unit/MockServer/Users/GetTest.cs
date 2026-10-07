@@ -25,7 +25,27 @@ public class GetTest : BaseMockServerTest
                   "hashedEmail": "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3e2d8a5b76e45a1d4c4e2e3a1",
                   "phoneNumber": "+14155552671",
                   "birthYear": "1990",
-                  "historicalTransactionsSent": true
+                  "historicalTransactionsSent": true,
+                  "phoneNumbers": [
+                    {
+                      "number": "+14155552671",
+                      "type": "MOBILE"
+                    },
+                    {
+                      "number": "+12125550188",
+                      "type": "HOME"
+                    }
+                  ],
+                  "postalCodes": [
+                    {
+                      "code": "11238",
+                      "type": "PHYSICAL"
+                    },
+                    {
+                      "code": "10028",
+                      "type": "BILLING"
+                    }
+                  ]
                 }
               }
             }

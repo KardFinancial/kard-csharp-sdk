@@ -54,6 +54,18 @@ public record UpdateUserRequestAttributes : IJsonOnDeserialized
     [JsonPropertyName("historicalTransactionsSent")]
     public bool? HistoricalTransactionsSent { get; set; }
 
+    /// <summary>
+    /// Phone numbers of user, up to 10. Sending the list replaces every number on file.
+    /// </summary>
+    [JsonPropertyName("phoneNumbers")]
+    public IEnumerable<PhoneNumber>? PhoneNumbers { get; set; }
+
+    /// <summary>
+    /// Postal codes of user, up to 10. Sending the list replaces every postal code on file.
+    /// </summary>
+    [JsonPropertyName("postalCodes")]
+    public IEnumerable<PostalCode>? PostalCodes { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

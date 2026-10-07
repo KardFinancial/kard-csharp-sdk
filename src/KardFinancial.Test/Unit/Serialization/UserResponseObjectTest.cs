@@ -26,7 +26,27 @@ public class UserResponseObjectTest
                   "hashedEmail": "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3e2d8a5b76e45a1d4c4e2e3a1",
                   "phoneNumber": "+14155552671",
                   "birthYear": "1990",
-                  "historicalTransactionsSent": true
+                  "historicalTransactionsSent": true,
+                  "phoneNumbers": [
+                    {
+                      "number": "+14155552671",
+                      "type": "MOBILE"
+                    },
+                    {
+                      "number": "+12125550188",
+                      "type": "HOME"
+                    }
+                  ],
+                  "postalCodes": [
+                    {
+                      "code": "11238",
+                      "type": "PHYSICAL"
+                    },
+                    {
+                      "code": "10028",
+                      "type": "BILLING"
+                    }
+                  ]
                 }
               }
             }
@@ -51,6 +71,24 @@ public class UserResponseObjectTest
                             PhoneNumber = "+14155552671",
                             BirthYear = "1990",
                             HistoricalTransactionsSent = true,
+                            PhoneNumbers = new List<PhoneNumber>()
+                            {
+                                new PhoneNumber
+                                {
+                                    Number = "+14155552671",
+                                    Type = PhoneNumberType.Mobile,
+                                },
+                                new PhoneNumber
+                                {
+                                    Number = "+12125550188",
+                                    Type = PhoneNumberType.Home,
+                                },
+                            },
+                            PostalCodes = new List<PostalCode>()
+                            {
+                                new PostalCode { Code = "11238", Type = PostalCodeType.Physical },
+                                new PostalCode { Code = "10028", Type = PostalCodeType.Billing },
+                            },
                         },
                     }
                 )
@@ -77,7 +115,27 @@ public class UserResponseObjectTest
                   "hashedEmail": "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3e2d8a5b76e45a1d4c4e2e3a1",
                   "phoneNumber": "+14155552671",
                   "birthYear": "1990",
-                  "historicalTransactionsSent": true
+                  "historicalTransactionsSent": true,
+                  "phoneNumbers": [
+                    {
+                      "number": "+14155552671",
+                      "type": "MOBILE"
+                    },
+                    {
+                      "number": "+12125550188",
+                      "type": "HOME"
+                    }
+                  ],
+                  "postalCodes": [
+                    {
+                      "code": "11238",
+                      "type": "PHYSICAL"
+                    },
+                    {
+                      "code": "10028",
+                      "type": "BILLING"
+                    }
+                  ]
                 }
               }
             }

@@ -1,3 +1,10 @@
+## 29.2.0 - 2026-10-07
+### Added
+* **`PhoneNumber`** — new record type representing a user phone number in E.164 format, with an optional `PhoneNumberType` (MOBILE, HOME, WORK, OTHER).
+* **`PostalCode`** — new record type representing a user postal code, with an optional `PostalCodeType` (PHYSICAL, BILLING, OTHER).
+* **`UserRequestAttributes.PhoneNumbers`** and **`UserRequestAttributes.PostalCodes`** — new optional properties for supplying up to 10 phone numbers and postal codes when creating a user; sending the list replaces all numbers/codes on file.
+* **`UpdateUserRequestAttributes.PhoneNumbers`** and **`UpdateUserRequestAttributes.PostalCodes`** — same optional properties available when updating a user.
+
 ## 29.1.1 - 2026-10-06
 * chore: update child organization name validation docs
 * Update XML doc comments across ChildrenClient, IChildrenClient,

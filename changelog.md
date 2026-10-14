@@ -1,3 +1,7 @@
+## 29.3.0 - 2026-10-14
+### Added
+* **`FileMetadataAttribute.PeriodStart`** and **`FileMetadataAttribute.PeriodEnd`** — new optional nullable `string?` properties representing the inclusive start and end of a file's reporting period in RFC 3339 UTC format; present only when a period was provided at upload time.
+
 ## 29.2.0 - 2026-10-07
 ### Added
 * **`PhoneNumber`** — new record type representing a user phone number in E.164 format, with an optional `PhoneNumberType` (MOBILE, HOME, WORK, OTHER).

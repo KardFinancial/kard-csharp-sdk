@@ -35,6 +35,18 @@ public record FileMetadataAttribute : IJsonOnDeserialized
     [JsonPropertyName("downloadUrl")]
     public required string DownloadUrl { get; set; }
 
+    /// <summary>
+    /// Start of the reporting period, inclusive (RFC 3339, UTC). Present only when a period was informed at upload.
+    /// </summary>
+    [JsonPropertyName("periodStart")]
+    public string? PeriodStart { get; set; }
+
+    /// <summary>
+    /// End of the reporting period, inclusive (RFC 3339, UTC). Present only when a period was informed at upload.
+    /// </summary>
+    [JsonPropertyName("periodEnd")]
+    public string? PeriodEnd { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

@@ -26,6 +26,10 @@ public readonly record struct NotificationType : IStringEnum
         Values.EmailNotificationPlacementFile
     );
 
+    public static readonly NotificationType PayoutReconciliationFile = new(
+        Values.PayoutReconciliationFile
+    );
+
     public NotificationType(string value)
     {
         Value = value;
@@ -135,5 +139,7 @@ public readonly record struct NotificationType : IStringEnum
         public const string PushNotificationPlacementFile = "pushNotificationPlacementFile";
 
         public const string EmailNotificationPlacementFile = "emailNotificationPlacementFile";
+
+        public const string PayoutReconciliationFile = "payoutReconciliationFile";
     }
 }

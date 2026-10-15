@@ -1,3 +1,11 @@
+## 30.0.0 - 2026-10-15
+### Breaking Changes
+* **`NotificationDataUnion.Match<T>`** and **`NotificationDataUnion.Visit`** now require an additional `onPayoutReconciliationFile` handler argument for the new `"payoutReconciliationFile"` variant. Existing call sites must add a handler (e.g., `onPayoutReconciliationFile: data => ...`) to compile successfully.
+### Added
+* **`NotificationType.PayoutReconciliationFile`** — new notification type constant for payout reconciliation file events.
+* **`PayoutReconciliationFileData`**, **`PayoutReconciliationFileAttributes`**, and **`PayoutReconciliationFileRelationships`** — new record types representing the payload of a payout reconciliation file notification, including file name, period start/end, download URL, expiry, and file relationship.
+* **`NotificationDataUnion.IsPayoutReconciliationFile`**, **`AsPayoutReconciliationFile()`**, and **`TryAsPayoutReconciliationFile()`** — new members for inspecting and extracting the `payoutReconciliationFile` variant from a `NotificationDataUnion`.
+
 ## 29.3.0 - 2026-10-14
 ### Added
 * **`FileMetadataAttribute.PeriodStart`** and **`FileMetadataAttribute.PeriodEnd`** — new optional nullable `string?` properties representing the inclusive start and end of a file's reporting period in RFC 3339 UTC format; present only when a period was provided at upload time.

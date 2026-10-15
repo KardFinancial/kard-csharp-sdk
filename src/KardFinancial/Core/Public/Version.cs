@@ -3,5 +3,5 @@ namespace KardFinancial;
 [Serializable]
 internal class Version
 {
-    public const string Current = "29.3.0";
+    public const string Current = "30.0.0";
 }

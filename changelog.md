@@ -1,3 +1,14 @@
+## 30.0.1 - 2026-10-15
+* chore: update PlacementContentAsync XML doc for email/push behavior
+* Update the XML documentation comment on `PlacementContentAsync` in both
+* `IRewardsClient` and `RewardsClient` to reflect that email and push-notification
+* placements now return `standardOffer` resources as a preview of a send,
+* rather than responding with a `400`. No public API surface was changed.
+* Key changes:
+* Corrected `IRewardsClient.PlacementContentAsync` doc: email/push placements return `standardOffer` resources (up to `availableSlots` for email, up to one for push)
+* Corrected `RewardsClient.PlacementContentAsync` doc: same update mirrored in the concrete implementation
+* 🌿 Generated with Fern
+
 ## 30.0.0 - 2026-10-15
 ### Breaking Changes
 * **`NotificationDataUnion.Match<T>`** and **`NotificationDataUnion.Visit`** now require an additional `onPayoutReconciliationFile` handler argument for the new `"payoutReconciliationFile"` variant. Existing call sites must add a handler (e.g., `onPayoutReconciliationFile: data => ...`) to compile successfully.

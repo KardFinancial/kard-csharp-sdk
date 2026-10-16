@@ -34,7 +34,7 @@ public record Cadence : IJsonOnDeserialized
     public DayOfWeek? DayOfWeek { get; set; }
 
     /// <summary>
-    /// Day of the month to deliver, 1-31 (used when frequency is MONTHLY, defaults to 1)
+    /// Day of the month to deliver, 1-31 (used when frequency is MONTHLY, defaults to 1). For 29-31, months without that day deliver on their last day.
     /// </summary>
     [JsonPropertyName("dayOfMonth")]
     public int? DayOfMonth { get; set; }

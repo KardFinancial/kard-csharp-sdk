@@ -1,3 +1,14 @@
+## 31.0.1 - 2026-10-16
+* chore: clarify DayOfMonth behavior for months with fewer days
+* Update the XML documentation comment on `Cadence.DayOfMonth` to note
+* that when a day value of 29–31 is specified and the target month does
+* not have that day, delivery falls on the last day of that month instead.
+* No public API surface was changed.
+* Key changes:
+* Expanded `Cadence.DayOfMonth` doc comment to document end-of-month
+* fallback behavior for day values 29–31
+* 🌿 Generated with Fern
+
 ## 31.0.0 - 2026-10-16
 ### Breaking Changes
 * **`EmailPlacementAttributes.CreatedAt`** — new `required DateTime CreatedAt` property added; any code constructing `EmailPlacementAttributes` without supplying `CreatedAt` will not compile. Add `CreatedAt = <timestamp>` to all object initializers.

@@ -1,3 +1,4 @@
+using global::System.Globalization;
 using KardFinancial.Core;
 using KardFinancial.Organizations;
 using KardFinancial.Test.Utils;
@@ -72,7 +73,8 @@ public class PlacementFormatUnionTest
                 "cadence": {
                   "frequency": "DAILY",
                   "timeOfDay": "09:00"
-                }
+                },
+                "createdAt": "2026-10-01T14:30:00Z"
               }
             }
             """;
@@ -91,6 +93,11 @@ public class PlacementFormatUnionTest
                             Frequency = CadenceFrequency.Daily,
                             TimeOfDay = "09:00",
                         },
+                        CreatedAt = DateTime.Parse(
+                            "2026-10-01T14:30:00.000Z",
+                            null,
+                            DateTimeStyles.AdjustToUniversal
+                        ),
                     },
                 }
             )
@@ -113,7 +120,8 @@ public class PlacementFormatUnionTest
                 "cadence": {
                   "frequency": "DAILY",
                   "timeOfDay": "09:00"
-                }
+                },
+                "createdAt": "2026-10-01T14:30:00Z"
               }
             }
             """;
@@ -136,7 +144,8 @@ public class PlacementFormatUnionTest
                   "frequency": "WEEKLY",
                   "timeOfDay": "10:00",
                   "dayOfWeek": "MON"
-                }
+                },
+                "createdAt": "2026-10-01T14:30:00Z"
               }
             }
             """;
@@ -157,6 +166,11 @@ public class PlacementFormatUnionTest
                             TimeOfDay = "10:00",
                             DayOfWeek = KardFinancial.Organizations.DayOfWeek.Mon,
                         },
+                        CreatedAt = DateTime.Parse(
+                            "2026-10-01T14:30:00.000Z",
+                            null,
+                            DateTimeStyles.AdjustToUniversal
+                        ),
                     },
                 }
             )
@@ -181,7 +195,8 @@ public class PlacementFormatUnionTest
                   "frequency": "WEEKLY",
                   "timeOfDay": "10:00",
                   "dayOfWeek": "MON"
-                }
+                },
+                "createdAt": "2026-10-01T14:30:00Z"
               }
             }
             """;

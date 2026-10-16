@@ -39,6 +39,12 @@ public record Cadence : IJsonOnDeserialized
     [JsonPropertyName("dayOfMonth")]
     public int? DayOfMonth { get; set; }
 
+    /// <summary>
+    /// Deliver on the first or last dayOfWeek of the month. Requires frequency MONTHLY and dayOfWeek, and cannot be combined with dayOfMonth.
+    /// </summary>
+    [JsonPropertyName("weekOfMonth")]
+    public WeekOfMonth? WeekOfMonth { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

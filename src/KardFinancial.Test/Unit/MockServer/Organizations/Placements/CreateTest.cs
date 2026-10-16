@@ -101,7 +101,8 @@ public class CreateTest : BaseMockServerTest
                 "cadence": {
                   "frequency": "DAILY",
                   "timeOfDay": "09:00"
-                }
+                },
+                "createdAt": "2026-10-01T14:30:00.000Z"
               }
             }
             """;
@@ -179,7 +180,8 @@ public class CreateTest : BaseMockServerTest
                   "frequency": "WEEKLY",
                   "timeOfDay": "10:00",
                   "dayOfWeek": "MON"
-                }
+                },
+                "createdAt": "2026-10-01T14:30:00.000Z"
               }
             }
             """;

@@ -1,3 +1,11 @@
+## 31.0.0 - 2026-10-16
+### Breaking Changes
+* **`EmailPlacementAttributes.CreatedAt`** — new `required DateTime CreatedAt` property added; any code constructing `EmailPlacementAttributes` without supplying `CreatedAt` will not compile. Add `CreatedAt = <timestamp>` to all object initializers.
+* **`PushNotificationPlacementAttributes.CreatedAt`** — same breaking addition as above; update all `PushNotificationPlacementAttributes` initializers to include `CreatedAt`.
+### Added
+* **`WeekOfMonth`** — new enum type with `First` and `Last` values for targeting the first or last occurrence of a weekday within a month.
+* **`Cadence.WeekOfMonth`** — new optional `WeekOfMonth?` property on `Cadence`; use with `frequency = MONTHLY` and `dayOfWeek` to schedule on the first or last matching weekday of the month.
+
 ## 30.0.1 - 2026-10-15
 * chore: update PlacementContentAsync XML doc for email/push behavior
 * Update the XML documentation comment on `PlacementContentAsync` in both

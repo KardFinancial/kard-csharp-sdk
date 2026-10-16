@@ -45,6 +45,12 @@ public record PushNotificationPlacementAttributes : IJsonOnDeserialized
     [JsonPropertyName("contentStrategyId")]
     public string? ContentStrategyId { get; set; }
 
+    /// <summary>
+    /// When the placement was created
+    /// </summary>
+    [JsonPropertyName("createdAt")]
+    public required DateTime CreatedAt { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
